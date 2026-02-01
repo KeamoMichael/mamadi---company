@@ -26,7 +26,7 @@ const leadership: TeamMember[] = [
   {
     name: "Mr Langton Ndlovu",
     role: "Board Advisor | Finance & Tax",
-    image: "/assets/Board Images_Updated/Mr Ndlovu(02).jpg"
+    image: "/assets/Board Images_Updated/Mr Ndlovu (02).jpg"
   },
   {
     name: "Ms Teboho Mofokeng",
