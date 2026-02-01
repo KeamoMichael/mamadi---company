@@ -37,6 +37,13 @@ const leadership: TeamMember[] = [
 
 export const KeyPeople: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = React.useState(false);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      setShowLeftArrow(scrollRef.current.scrollLeft > 10);
+    }
+  };
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -64,24 +71,29 @@ export const KeyPeople: React.FC = () => {
         {/* Team Horizontal Scroll Container */}
         <div className="relative">
           {/* Fading Edge Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          {showLeftArrow && (
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          )}
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
           {/* Left Arrow Button */}
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 transition-all hover:scale-110 active:scale-95 overflow-hidden"
-          >
-            <img
-              src="/assets/next (3).png"
-              alt="Back"
-              className="w-full h-full object-cover rotate-180 scale-125"
-              style={{ filter: "invert(12%) sepia(35%) saturate(2466%) hue-rotate(205deg) brightness(95%) contrast(92%)" }}
-            />
-          </button>
+          {showLeftArrow && (
+            <button
+              onClick={scrollLeft}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 transition-all hover:scale-110 active:scale-95 overflow-hidden"
+            >
+              <img
+                src="/assets/next (3).png"
+                alt="Back"
+                className="w-full h-full object-cover rotate-180 scale-125"
+                style={{ filter: "invert(12%) sepia(35%) saturate(2466%) hue-rotate(205deg) brightness(95%) contrast(92%)" }}
+              />
+            </button>
+          )}
 
           <div
             ref={scrollRef}
+            onScroll={handleScroll}
             className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x px-12"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
