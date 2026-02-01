@@ -75,7 +75,7 @@ export const KeyPeople: React.FC = () => {
         </p>
 
         {/* Team Horizontal Scroll Container */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             {/* Left Arrow Button */}
             {showLeftArrow && (
               <button
@@ -86,7 +86,7 @@ export const KeyPeople: React.FC = () => {
                 <img
                   src="/assets/next-right arrow.png"
                   alt=""
-                  className="w-5 h-5 object-contain rotate-180"
+                  className="w-6 h-6 object-contain rotate-180"
                 />
               </button>
             )}
@@ -130,7 +130,7 @@ export const KeyPeople: React.FC = () => {
               <img
                 src="/assets/next-right arrow.png"
                 alt=""
-                className="w-5 h-5 object-contain"
+                className="w-6 h-6 object-contain"
               />
             </button>
           </div>
