@@ -68,10 +68,9 @@ export const KeyPeople: React.FC = () => {
       <div className="flex flex-col gap-12 relative group">
         {/* Intro Text */}
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-          Our team comprises seasoned professionals with extensive experience in the
-          industry. We bring a wealth of knowledge and a proven track record in
-          strategic consulting. Meet our dedicated team members who
-          are committed to delivering exceptional results.
+          Mamadi’s leadership combines technical knowledge, strategic insight,
+          and people-centred values to guide the organisation toward consistent
+          performance and lasting impact.
         </p>
 
         {/* Team Horizontal Scroll Container */}
