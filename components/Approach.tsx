@@ -26,12 +26,10 @@ export const Approach: React.FC = () => {
     <Section label="// Our Methodology" className="pb-32">
       <div className="flex flex-col gap-16">
         {/* Intro Text */}
-        <div className="flex justify-end">
-            <p className="text-sm text-gray-500 leading-relaxed max-w-xl">
-            We provide end-to-end solutions in engineering, sustainability, and technology, 
-            distinguishing ourselves through technical excellence and innovative, award-winning results.
-            </p>
-        </div>
+        <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
+          We provide end-to-end solutions in engineering, sustainability, and technology, 
+          distinguishing ourselves through technical excellence and innovative, award-winning results.
+        </p>
 
         {/* List */}
         <div className="flex flex-col border-t border-gray-100">
