@@ -6,6 +6,7 @@ import { Mission } from './components/Mission';
 import { Values } from './components/Values';
 import { KeyPeople } from './components/KeyPeople';
 import { Approach } from './components/Approach';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -17,13 +18,7 @@ function App() {
       <Values />
       <KeyPeople />
       <Approach />
-      
-      {/* Footer */}
-      <footer className="py-12 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 text-center">
-             <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} Mamadi & Company. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
