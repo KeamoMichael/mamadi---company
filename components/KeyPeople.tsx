@@ -1,69 +1,100 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Section } from './Section';
-import { Plus } from 'lucide-react';
 import { TeamMember } from '../types';
 
-const team: TeamMember[] = [
+const leadership: TeamMember[] = [
   {
-    name: "Sean Wesley",
-    role: "PARTNER",
-    // Using unspash source for realistic placeholder portraits
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600&h=700"
+    name: "Mr Mabu Enos Mamadi",
+    role: "Chairman of the Board",
+    image: "/assets/Board Images/Mr Mamadi.jpg"
   },
   {
-    name: "Christian Squire",
-    role: "PARTNER",
-    image: "https://images.unsplash.com/photo-1534030347209-7147fd694c12?auto=format&fit=crop&q=80&w=600&h=700"
+    name: "Mr Jacob Maroga",
+    role: "Board Member",
+    image: "/assets/Board Images/Mr Maroga.jpg"
   },
   {
-    name: "Daniel Roe",
-    role: "ASSOCIATE PARTNER",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600&h=700"
+    name: "Ms Danai Magugumela",
+    role: "Board Member",
+    image: "/assets/Board Images/Ms Magugumela.jpg"
   },
   {
-    name: "Rory Uwins",
-    role: "ASSOCIATE PARTNER",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600&h=700"
+    name: "Mr Ike Rampedi",
+    role: "CEO, Board Member",
+    image: "/assets/Board Images/Ike Rampedi.jpg"
+  },
+  {
+    name: "Mr Ndlovu",
+    role: "Board Member",
+    image: "/assets/Board Images/Mr Ndlovu.jpg"
+  },
+  {
+    name: "Ms Mofokeng",
+    role: "Board Member",
+    image: "/assets/Board Images/Ms Mofokeng.jpg"
   }
 ];
 
 export const KeyPeople: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <Section label="// Key People">
-      <div className="flex flex-col gap-16">
+    <Section label="// Mamadi Leadership">
+      <div className="flex flex-col gap-12 relative group">
         {/* Intro Text */}
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
           Our team comprises seasoned professionals with extensive experience in the
-          industry. We bring a wealth of knowledge and a proven track record in 
+          industry. We bring a wealth of knowledge and a proven track record in
           strategic consulting. Meet our dedicated team members who
           are committed to delivering exceptional results.
         </p>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {team.map((person, index) => (
-            <div key={index} className="flex flex-col group cursor-pointer">
-              <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
-                <img 
-                  src={person.image} 
-                  alt={person.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* Gold Plus Button Overlay */}
-                <div className="absolute bottom-4 right-4 bg-brand-gold p-1.5 transition-opacity duration-300">
-                  <Plus strokeWidth={1.5} size={16} className="text-white" />
+        {/* Team Horizontal Scroll Container */}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {leadership.map((person, index) => (
+              <div
+                key={index}
+                className="flex flex-col flex-shrink-0 w-[280px] snap-start"
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-6">
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-xl font-bold text-brand-blue tracking-tight">{person.name}</h3>
+                  <p className="text-xs text-brand-gold font-medium uppercase tracking-wider">{person.role}</p>
                 </div>
               </div>
-              
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2 mb-1">
-                    <span className="w-1 h-1 bg-brand-gold rounded-full"></span>
-                    <span className="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">{person.role}</span>
-                </div>
-                <h3 className="text-lg font-medium text-brand-blue">{person.name}</h3>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Right Arrow Ticker Button */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 transition-all hover:scale-110 active:scale-95"
+          >
+            <img
+              src="/assets/next (3).png"
+              alt="Next"
+              className="w-5 h-5 object-contain"
+              style={{ filter: "invert(12%) sepia(35%) saturate(2466%) hue-rotate(205deg) brightness(95%) contrast(92%)" }}
+            />
+          </button>
         </div>
       </div>
     </Section>
