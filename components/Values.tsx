@@ -23,8 +23,16 @@ const values: ValueItem[] = [
 
 export const Values: React.FC = () => {
   return (
-    <Section label="// Our Core Values" labelSubtitle="Principles that guide our engineering practice.">
-      <div className="grid grid-cols-1 md:grid-cols-3 w-full border-t border-gray-200 md:border-none">
+    <Section label="// Our Core Values">
+      <div className="flex flex-col gap-12">
+        {/* Intro Text */}
+        <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
+          Our core values define our engineering approach, anchoring our 
+          commitment to technical excellence, environmental stewardship, and 
+          the collaborative partnerships that drive sustainable development.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 w-full border-t border-gray-200 md:border-none">
         {values.map((value, index) => (
           <div 
             key={index}
