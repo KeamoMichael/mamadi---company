@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './Section';
-import { Award, ShieldCheck, FileText, Users } from 'lucide-react';
+import { Award, ShieldCheck, FileText, Users, Map, Globe } from 'lucide-react';
 
 export const AboutUsPage: React.FC = () => {
   return (
@@ -125,9 +125,9 @@ export const AboutUsPage: React.FC = () => {
       {/* Geographic Footprint Section */}
       <div id="geographic-footprint">
         <Section label="// Geographic Footprint">
-            <div className="flex flex-col gap-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-12">
+                    <div className="flex flex-col gap-6 max-w-2xl">
                         <p className="text-sm text-gray-500 leading-relaxed">
                             Headquartered in South Africa, Mamadi & Company maintains a strategic 
                             regional presence with a growing footprint across the African continent. 
@@ -139,28 +139,50 @@ export const AboutUsPage: React.FC = () => {
                             We are committed to regional integration and delivering excellence 
                             wherever our clients require sophisticated engineering and consulting solutions.
                         </p>
-                        <div className="flex gap-4 pt-4">
-                            <div className="flex flex-col">
-                                <span className="text-3xl font-bold text-brand-blue">Local</span>
-                                <span className="text-xs uppercase tracking-wider text-brand-gold font-semibold">South African Roots</span>
-                            </div>
-                            <div className="w-px h-12 bg-gray-200"></div>
-                            <div className="flex flex-col">
-                                <span className="text-3xl font-bold text-brand-blue">Regional</span>
-                                <span className="text-xs uppercase tracking-wider text-brand-gold font-semibold">SADC Presence</span>
-                            </div>
-                            <div className="w-px h-12 bg-gray-200"></div>
-                            <div className="flex flex-col">
-                                <span className="text-3xl font-bold text-brand-blue">Pan-African</span>
-                                <span className="text-xs uppercase tracking-wider text-brand-gold font-semibold">Strategic Growth</span>
-                            </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Local</h3>
+                            <p className="text-sm text-brand-gold font-medium">South african roots</p>
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Regional</h3>
+                            <p className="text-sm text-brand-gold font-medium">Sadc presence</p>
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Pan-African</h3>
+                            <p className="text-sm text-brand-gold font-medium">Strategic growth</p>
                         </div>
                     </div>
-                    <div className="aspect-video bg-gray-50 border border-gray-100 flex items-center justify-center p-8">
-                        <div className="text-center">
-                            <Users size={48} className="text-brand-gold/20 mx-auto mb-4" />
-                            <p className="text-xs text-gray-400 italic">Strategic regional offices supporting operations across the continent.</p>
-                        </div>
+                </div>
+
+                {/* Map Area */}
+                <div className="w-full aspect-video md:aspect-[21/9] bg-gray-50 border border-gray-100 rounded-sm overflow-hidden flex items-center justify-center relative group">
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/world-map.png')] opacity-[0.05] grayscale contrast-125"></div>
+                    
+                    <div className="text-center p-8 z-10">
+                        <Globe size={48} className="text-brand-gold/20 mx-auto mb-4" />
+                        <h4 className="text-brand-blue font-semibold mb-1">Continental Strategic Presence</h4>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-widest">Visualizing Mamadi's expanding reach</p>
+                    </div>
+
+                    {/* Animated markers */}
+                    <div className="absolute top-[65%] left-[52%] flex flex-col items-center">
+                         <div className="w-3 h-3 bg-brand-gold rounded-full animate-ping absolute" />
+                         <div className="w-3 h-3 bg-brand-gold rounded-full relative" />
+                    </div>
+                    <div className="absolute top-[40%] left-[48%] flex flex-col items-center">
+                         <div className="w-2 h-2 bg-brand-blue rounded-full opacity-50" />
+                    </div>
+                    <div className="absolute top-[75%] left-[55%] flex flex-col items-center">
+                         <div className="w-2 h-2 bg-brand-blue rounded-full opacity-50" />
+                    </div>
+                    <div className="absolute top-[20%] left-[40%] flex flex-col items-center">
+                         <div className="w-1.5 h-1.5 bg-brand-gold/30 rounded-full" />
+                    </div>
+                    <div className="absolute top-[30%] left-[60%] flex flex-col items-center">
+                         <div className="w-1.5 h-1.5 bg-brand-gold/30 rounded-full" />
                     </div>
                 </div>
             </div>
