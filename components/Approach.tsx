@@ -28,9 +28,8 @@ export const Approach: React.FC = () => {
         {/* Intro Text */}
         <div className="flex justify-end">
             <p className="text-sm text-gray-500 leading-relaxed max-w-xl">
-            Our project methodology ensures precision from concept to commissioning. 
-            We integrate technical expertise with local insights to overcome complex 
-            infrastructure challenges.
+            We provide end-to-end solutions in engineering, sustainability, and technology, 
+            distinguishing ourselves through technical excellence and innovative, award-winning results.
             </p>
         </div>
 
