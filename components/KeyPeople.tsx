@@ -71,22 +71,21 @@ export const KeyPeople: React.FC = () => {
         {/* Team Horizontal Scroll Container */}
         <div className="relative">
           {/* Fading Edge Overlays */}
-          {showLeftArrow && (
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          )}
+          <div
+            className={`absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`}
+          ></div>
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
           {/* Left Arrow Button */}
           {showLeftArrow && (
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 transition-all hover:scale-110 active:scale-95 overflow-hidden"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 transition-all hover:scale-110 active:scale-95"
             >
               <img
-                src="/assets/next (3).png"
+                src="/assets/next-right arrow.png"
                 alt="Back"
-                className="w-full h-full object-cover rotate-180 scale-125"
-                style={{ filter: "invert(12%) sepia(35%) saturate(2466%) hue-rotate(205deg) brightness(95%) contrast(92%)" }}
+                className="w-10 h-10 object-contain rotate-180"
               />
             </button>
           )}
@@ -121,13 +120,12 @@ export const KeyPeople: React.FC = () => {
           {/* Right Arrow Ticker Button */}
           <button
             onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 transition-all hover:scale-110 active:scale-95 overflow-hidden"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 transition-all hover:scale-110 active:scale-95"
           >
             <img
-              src="/assets/next (3).png"
+              src="/assets/next-right arrow.png"
               alt="Next"
-              className="w-full h-full object-cover scale-125"
-              style={{ filter: "invert(12%) sepia(35%) saturate(2466%) hue-rotate(205deg) brightness(95%) contrast(92%)" }}
+              className="w-10 h-10 object-contain"
             />
           </button>
         </div>
