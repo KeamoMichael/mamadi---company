@@ -57,10 +57,10 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
       name: 'About Us',
       hasDropdown: true,
       items: [
-        'Company Overview',
-        'Leadership',
-        'B-BBEE Status',
-        'Accreditations'
+        'Who We Are',
+        'Leadership & Governance',
+        'Geographic Footprint',
+        'Strategy & Values'
       ]
     },
   ];

@@ -1,13 +1,8 @@
 import React from 'react';
 import { Section } from './Section';
-import { KeyPeople } from './KeyPeople';
 import { Award, ShieldCheck, FileText, Users } from 'lucide-react';
 
 export const AboutUsPage: React.FC = () => {
-  const overviewPages = [
-    '2', '3', '4', '5', '6', '7', '8', '9', '16', '17', '18', '19', '20'
-  ];
-
   return (
     <div className="pt-20">
       {/* About Hero */}
@@ -30,122 +25,185 @@ export const AboutUsPage: React.FC = () => {
       {/* Navigation for About Section (Internal) */}
       <div className="sticky top-[72px] bg-white border-b border-gray-100 z-30 overflow-x-auto">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl flex gap-8 whitespace-nowrap">
-            {['Company Overview', 'Leadership', 'B-BBEE Status', 'Accreditations'].map((item) => (
+            {[
+              { name: 'Who We Are', id: 'who-we-are' },
+              { name: 'Leadership & Governance', id: 'leadership-&-governance' },
+              { name: 'Geographic Footprint', id: 'geographic-footprint' },
+              { name: 'Strategy & Values', id: 'strategy-&-values' }
+            ].map((item) => (
                 <a 
-                    key={item}
-                    href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                    key={item.id}
+                    href={`#${item.id}`}
                     className="py-4 text-sm font-semibold text-gray-500 hover:text-brand-gold transition-colors"
                 >
-                    {item}
+                    {item.name}
                 </a>
             ))}
         </div>
       </div>
 
-      {/* Company Overview Section */}
-      <div id="company-overview">
-        <Section label="// Company Overview">
-            <div className="flex flex-col gap-12">
-                <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                    Our company profile outlines our journey, capabilities, and the strategic vision 
-                    that drives our engineering and consulting services. Browse through our 
-                    latest corporate overview below.
+      {/* Who We Are Section */}
+      <div id="who-we-are">
+        <Section label="// Who We Are">
+            <div className="flex flex-col gap-8">
+                <p className="text-lg text-brand-blue font-medium leading-relaxed max-w-3xl">
+                    Mamadi & Company is an established, multidisciplinary engineering and consulting firm 
+                    dedicated to delivering technical excellence and sustainable infrastructure solutions.
                 </p>
-                
-                <div className="flex flex-col gap-4 bg-gray-50 p-4 md:p-8 rounded-sm">
-                    {overviewPages.map((page) => (
-                        <div key={page} className="w-full bg-white shadow-sm border border-gray-100">
-                            <img 
-                                src={`/About Us/CO - Page ${page}.jpg`} 
-                                alt={`Company Overview Page ${page}`}
-                                className="w-full h-auto"
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </Section>
-      </div>
-
-      {/* Leadership Section */}
-      <div id="leadership">
-        <KeyPeople />
-      </div>
-
-      {/* B-BBEE Section */}
-      <div id="b-bbee-status">
-        <Section label="// B-BBEE Status">
-            <div className="flex flex-col gap-12">
                 <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                    Mamadi & Company is committed to broad-based black economic empowerment 
-                    and social transformation in South Africa. We maintain a strong B-BBEE 
-                    rating that reflects our commitment to equity and inclusivity.
+                    We provide a comprehensive suite of professional services, acting as a strategic partner 
+                    to both public and private sectors. Our approach integrates global best practices with 
+                    deep local insights, ensuring every project yields long-term socio-economic value and 
+                    measurable community impact.
                 </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-brand-beige p-10 flex flex-col gap-6">
-                        <div className="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-white">
-                            <Users size={32} />
-                        </div>
-                        <h3 className="text-2xl font-semibold text-brand-blue">B-BBEE Level 1 Contributor</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                            We are proud to be a Level 1 B-BBEE contributor, demonstrating our 
-                            leadership in economic transformation and our commitment to 
-                            empowering previously disadvantaged individuals and communities.
-                        </p>
-                        <ul className="space-y-3">
-                            {['135% Procurement Recognition', 'Black Owned & Managed', 'Skills Development Focused', 'Enterprise Development Partner'].map(point => (
-                                <li key={point} className="flex items-center gap-3 text-sm text-brand-blue font-medium">
-                                    <ShieldCheck size={18} className="text-brand-gold" />
-                                    {point}
-                                </li>
-                            ))}
-                        </ul>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                    <div className="p-6 bg-gray-50 border-l-2 border-brand-gold">
+                        <h4 className="font-bold text-brand-blue mb-2">Technical Excellence</h4>
+                        <p className="text-xs text-gray-500">Rigorous engineering standards and innovative problem-solving.</p>
                     </div>
-
-                    <div className="border border-gray-100 p-10 flex flex-col justify-center gap-6">
-                        <h4 className="font-semibold text-brand-blue">Download Certificate</h4>
-                        <p className="text-sm text-gray-500">
-                            Our latest B-BBEE verification certificate is available for download 
-                            to our clients and partners.
-                        </p>
-                        <button className="flex items-center gap-3 w-fit px-6 py-3 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-all rounded-sm text-sm font-semibold">
-                            <FileText size={18} />
-                            View B-BBEE Certificate
-                        </button>
+                    <div className="p-6 bg-gray-50 border-l-2 border-brand-gold">
+                        <h4 className="font-bold text-brand-blue mb-2">Strategic Partnership</h4>
+                        <p className="text-xs text-gray-500">Collaborating with stakeholders to achieve shared developmental goals.</p>
+                    </div>
+                    <div className="p-6 bg-gray-50 border-l-2 border-brand-gold">
+                        <h4 className="font-bold text-brand-blue mb-2">Community Impact</h4>
+                        <p className="text-xs text-gray-500">Leaving a lasting positive legacy in the environments we touch.</p>
                     </div>
                 </div>
             </div>
         </Section>
       </div>
 
-      {/* Accreditations Section */}
-      <div id="accreditations">
-        <Section label="// Accreditations">
+      {/* Leadership & Governance Section */}
+      <div id="leadership-&-governance">
+        <Section label="// Leadership & Governance">
+            <div className="flex flex-col gap-12">
+                <div className="flex flex-col gap-6">
+                    <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
+                        Our organization is anchored by a robust governance framework and strategic 
+                        oversight provided by an experienced Board of Directors and Executive Management 
+                        team. We uphold the highest standards of ethics, transparency, and accountability 
+                        across all operations.
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
+                        As a Level 1 B-BBEE contributor, our leadership is committed to driving economic 
+                        transformation and fostering an inclusive corporate culture that empowers the 
+                        next generation of technical professionals.
+                    </p>
+                </div>
+
+                <div className="bg-brand-blue p-10 text-white rounded-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 className="text-2xl font-semibold mb-6">Strategic Oversight</h3>
+                            <ul className="space-y-4">
+                                {['Robust Governance Framework', 'Ethical Leadership', 'Transparency & Accountability', 'Risk Management'].map(point => (
+                                    <li key={point} className="flex items-center gap-3 text-sm text-gray-300">
+                                        <ShieldCheck size={18} className="text-brand-gold" />
+                                        {point}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-2xl font-semibold mb-6">Transformation</h3>
+                            <p className="text-sm text-gray-300 leading-relaxed mb-6">
+                                Our commitment to B-BBEE Level 1 status reflects our dedication to 
+                                meaningful economic participation and the professional development 
+                                of previously disadvantaged individuals.
+                            </p>
+                            <div className="inline-block px-4 py-2 border border-brand-gold text-brand-gold text-xs font-bold uppercase tracking-widest">
+                                B-BBEE Level 1 Contributor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+      </div>
+
+      {/* Geographic Footprint Section */}
+      <div id="geographic-footprint">
+        <Section label="// Geographic Footprint">
+            <div className="flex flex-col gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="flex flex-col gap-6">
+                        <p className="text-sm text-gray-500 leading-relaxed">
+                            Headquartered in South Africa, Mamadi & Company maintains a strategic 
+                            regional presence with a growing footprint across the African continent. 
+                            Our ability to mobilize technical expertise across diverse territories 
+                            allows us to address complex infrastructure challenges in varying 
+                            regulatory and environmental contexts.
+                        </p>
+                        <p className="text-sm text-gray-500 leading-relaxed">
+                            We are committed to regional integration and delivering excellence 
+                            wherever our clients require sophisticated engineering and consulting solutions.
+                        </p>
+                        <div className="flex gap-4 pt-4">
+                            <div className="flex flex-col">
+                                <span className="text-3xl font-bold text-brand-blue">Local</span>
+                                <span className="text-xs uppercase tracking-wider text-brand-gold font-semibold">South African Roots</span>
+                            </div>
+                            <div className="w-px h-12 bg-gray-200"></div>
+                            <div className="flex flex-col">
+                                <span className="text-3xl font-bold text-brand-blue">Regional</span>
+                                <span className="text-xs uppercase tracking-wider text-brand-gold font-semibold">SADC Presence</span>
+                            </div>
+                            <div className="w-px h-12 bg-gray-200"></div>
+                            <div className="flex flex-col">
+                                <span className="text-3xl font-bold text-brand-blue">Pan-African</span>
+                                <span className="text-xs uppercase tracking-wider text-brand-gold font-semibold">Strategic Growth</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="aspect-video bg-gray-50 border border-gray-100 flex items-center justify-center p-8">
+                        <div className="text-center">
+                            <Users size={48} className="text-brand-gold/20 mx-auto mb-4" />
+                            <p className="text-xs text-gray-400 italic">Strategic regional offices supporting operations across the continent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Section>
+      </div>
+
+      {/* Strategy & Values Section */}
+      <div id="strategy-&-values">
+        <Section label="// Strategy & Values">
             <div className="flex flex-col gap-12">
                 <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                    Our technical excellence is backed by industry-leading certifications and 
-                    memberships in professional bodies, ensuring we adhere to the highest 
-                    global standards.
+                    Our strategic direction is built on a foundation of innovation, sustainability, 
+                    and technical integrity. We are driven by a growth mindset that seeks to 
+                    redefine consulting engineering through digital transformation and community-centric design.
                 </p>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {[
-                        { name: 'ECSA', desc: 'Engineering Council of SA' },
-                        { name: 'ISO 9001', desc: 'Quality Management' },
-                        { name: 'ISO 14001', desc: 'Environmental Mngmt' },
-                        { name: 'ISO 45001', desc: 'Health & Safety' },
-                        { name: 'CESA', desc: 'Consulting Engineers SA' },
-                        { name: 'SAICE', desc: 'Civil Engineering' },
-                        { name: 'SABTACO', desc: 'Black Technical Orgs' },
-                        { name: 'SACPCMP', desc: 'Project Management' }
-                    ].map((acc) => (
-                        <div key={acc.name} className="p-6 border border-gray-100 flex flex-col gap-2 hover:border-brand-gold transition-colors group">
-                            <Award size={24} className="text-brand-gold mb-2" />
-                            <h4 className="font-bold text-brand-blue">{acc.name}</h4>
-                            <p className="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">{acc.desc}</p>
+                        { title: 'Integrity', desc: 'Upholding the highest ethical standards in every engagement.' },
+                        { title: 'Excellence', desc: 'Striving for technical precision and superior project delivery.' },
+                        { title: 'Reliability', desc: 'Being a consistent and trusted partner for our clients.' }
+                    ].map((value) => (
+                        <div key={value.title} className="p-8 border border-gray-100 hover:border-brand-gold transition-colors">
+                            <div className="w-10 h-10 bg-brand-beige flex items-center justify-center text-brand-gold mb-6">
+                                <Award size={20} />
+                            </div>
+                            <h4 className="text-xl font-bold text-brand-blue mb-3">{value.title}</h4>
+                            <p className="text-sm text-gray-500 leading-relaxed">{value.desc}</p>
                         </div>
                     ))}
+                </div>
+
+                <div className="mt-8 p-10 border border-brand-blue/10 bg-brand-beige/30 flex flex-col md:flex-row gap-8 items-center justify-between">
+                    <div className="max-w-xl">
+                        <h4 className="text-lg font-bold text-brand-blue mb-2">Our Vision for the Future</h4>
+                        <p className="text-sm text-gray-600">
+                            To be the leading African consulting firm, recognized for transforming 
+                            lives through innovative and sustainable infrastructure solutions.
+                        </p>
+                    </div>
+                    <button className="px-8 py-3 bg-brand-blue text-white hover:bg-brand-blue/90 transition-all text-sm font-semibold">
+                        View Our Projects
+                    </button>
                 </div>
             </div>
         </Section>
