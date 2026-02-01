@@ -6,32 +6,32 @@ const leadership: TeamMember[] = [
   {
     name: "Mr Mabu Enos Mamadi",
     role: "Chairman of the Board",
-    image: "/assets/Board Images/Mr Mamadi.jpg"
+    image: "/assets/Board Images_Updated/Mr Mamadi - Updated.jpg"
   },
   {
     name: "Mr Jacob Maroga",
     role: "Board Member",
-    image: "/assets/Board Images/Mr Maroga.jpg"
+    image: "/assets/Board Images_Updated/Mr Maroga.jpg"
   },
   {
     name: "Ms Danai Magugumela",
     role: "Board Member",
-    image: "/assets/Board Images/Ms Magugumela.jpg"
+    image: "/assets/Board Images_Updated/Ms Magugumela - Updated.jpg"
   },
   {
     name: "Mr Ike Rampedi",
     role: "CEO, Board Member",
-    image: "/assets/Board Images/Ike Rampedi.jpg"
+    image: "/assets/Board Images_Updated/Mr Rampedi - Updated.jpg"
   },
   {
     name: "Mr Ndlovu",
     role: "Board Member",
-    image: "/assets/Board Images/Mr Ndlovu.jpg"
+    image: "/assets/Board Images_Updated/Mr Ndlovu.jpg"
   },
   {
     name: "Ms Mofokeng",
     role: "Board Member",
-    image: "/assets/Board Images/Ms Mofokeng.jpg"
+    image: "/assets/Board Images_Updated/Ms Mofokeng - Updated.jpg"
   }
 ];
 
