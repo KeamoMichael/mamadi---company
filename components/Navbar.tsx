@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  setView: (view: 'home' | 'about') => void;
+  currentView: 'home' | 'about';
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
 
@@ -64,6 +69,26 @@ export const Navbar: React.FC = () => {
     setMobileOpenDropdown(prev => prev === name ? null : name);
   };
 
+  const handleNavClick = (itemName: string, subItemName?: string) => {
+    setIsOpen(false);
+    
+    if (itemName === 'About Us' || (subItemName && itemName === 'About Us')) {
+      setView('about');
+      if (subItemName) {
+        // Small timeout to allow state change before scrolling
+        setTimeout(() => {
+          const id = subItemName.toLowerCase().replace(/\s+/g, '-');
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    } else {
+      setView('home');
+    }
+  };
+
   return (
     <>
       <nav
@@ -72,7 +97,10 @@ export const Navbar: React.FC = () => {
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center select-none group cursor-pointer h-7 md:h-9">
+            <div 
+              onClick={() => setView('home')}
+              className="flex items-center select-none group cursor-pointer h-7 md:h-9"
+            >
               <img
                 src="/assets/mamadi_and_company_International_logo.png"
                 alt="Mamadi & Company Logo"
@@ -86,7 +114,13 @@ export const Navbar: React.FC = () => {
                 <div key={item.name} className="relative group">
                   <a
                     href="#"
-                    className="flex items-center gap-1 hover:text-brand-gold transition-colors py-3"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (!item.hasDropdown) handleNavClick(item.name);
+                    }}
+                    className={`flex items-center gap-1 hover:text-brand-gold transition-colors py-3 ${
+                        (item.name === 'About Us' && currentView === 'about') || (item.name !== 'About Us' && currentView === 'home') ? 'text-brand-gold' : ''
+                    }`}
                   >
                     {item.name}
                     {item.hasDropdown && (
@@ -102,6 +136,10 @@ export const Navbar: React.FC = () => {
                           <a
                             key={subItem}
                             href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleNavClick(item.name, subItem);
+                            }}
                             className="block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-brand-gold transition-colors border-l-2 border-transparent hover:border-brand-gold"
                           >
                             {subItem}
@@ -141,9 +179,15 @@ export const Navbar: React.FC = () => {
             <div key={item.name} className="border-b border-gray-100 pb-4">
               <div
                 className="flex items-center justify-between cursor-pointer"
-                onClick={() => item.hasDropdown ? toggleMobileDropdown(item.name) : setIsOpen(false)}
+                onClick={() => {
+                    if (item.hasDropdown) {
+                        toggleMobileDropdown(item.name);
+                    } else {
+                        handleNavClick(item.name);
+                    }
+                }}
               >
-                <span className={item.hasDropdown && mobileOpenDropdown === item.name ? 'text-brand-gold' : ''}>
+                <span className={(item.hasDropdown && mobileOpenDropdown === item.name) || (item.name === 'About Us' && currentView === 'about') ? 'text-brand-gold' : ''}>
                   {item.name}
                 </span>
                 {item.hasDropdown && (
@@ -163,7 +207,10 @@ export const Navbar: React.FC = () => {
                       key={subItem}
                       href="#"
                       className="block text-sm text-gray-500 py-1"
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(item.name, subItem);
+                      }}
                     >
                       {subItem}
                     </a>
