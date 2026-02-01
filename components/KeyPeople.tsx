@@ -24,13 +24,13 @@ const leadership: TeamMember[] = [
     image: "/assets/Board Images_Updated/Mr Rampedi - Updated.jpg"
   },
   {
-    name: "Mr Ndlovu",
-    role: "Board Member",
-    image: "/assets/Board Images_Updated/Mr Ndlovu.jpg"
+    name: "Mr Langton Ndlovu",
+    role: "Board Advisor | Finance & Tax",
+    image: "/assets/Board Images_Updated/Mr Ndlovu(02).jpg"
   },
   {
-    name: "Ms Mofokeng",
-    role: "Board Member",
+    name: "Ms Teboho Mofokeng",
+    role: "Board Advisor | Engineering & Technology",
     image: "/assets/Board Images_Updated/Ms Mofokeng - Updated.jpg"
   }
 ];
