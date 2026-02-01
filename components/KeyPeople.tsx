@@ -134,7 +134,7 @@ export const KeyPeople: React.FC = () => {
 
                 <div className="flex flex-col gap-1">
                   <h3 className="text-xl font-semibold text-brand-blue tracking-tight">{person.name}</h3>
-                  <p className="text-xs text-brand-gold font-medium uppercase tracking-wider">{person.role}</p>
+                  <p className="text-xs text-brand-gold font-medium">{person.role}</p>
                 </div>
               </div>
             ))}
