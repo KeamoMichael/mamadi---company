@@ -16,10 +16,10 @@ export const Hero: React.FC = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <button className="w-44 py-3.5 bg-brand-gold hover:bg-brand-blue text-white font-semibold tracking-wide transition-all duration-300 rounded-sm text-sm">
+          <button className="w-full sm:w-auto px-8 py-3.5 bg-brand-gold hover:bg-brand-blue text-white font-semibold tracking-wide transition-all duration-300 rounded-sm text-sm">
             Our Expertise
           </button>
-          <button className="w-44 py-3.5 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold tracking-wide transition-all duration-300 rounded-sm text-sm">
+          <button className="w-full sm:w-auto px-8 py-3.5 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold tracking-wide transition-all duration-300 rounded-sm text-sm">
             Contact Us
           </button>
         </div>
