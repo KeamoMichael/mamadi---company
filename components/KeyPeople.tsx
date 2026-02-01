@@ -76,11 +76,7 @@ export const KeyPeople: React.FC = () => {
 
         {/* Team Horizontal Scroll Container */}
         <div className="relative">
-          {/* Left Side Fading Edge and Arrow - Dynamic Visibility */}
-          <div
-            className={`absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/40 to-transparent z-10 pointer-events-none transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`}
-          ></div>
-
+          {/* Left Arrow Button */}
           {showLeftArrow && (
             <button
               onClick={scrollLeft}
@@ -95,9 +91,7 @@ export const KeyPeople: React.FC = () => {
             </button>
           )}
 
-          {/* Right Side Fading Edge and Arrow - Persistent Visibility */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/40 to-transparent z-10 pointer-events-none"></div>
-
+          {/* Right Arrow Button */}
           <button
             onClick={scrollRight}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-20 transition-all hover:scale-110 active:scale-95"
@@ -113,15 +107,24 @@ export const KeyPeople: React.FC = () => {
           <div
             ref={scrollRef}
             onScroll={handleScroll}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x px-12"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x px-12 transition-all duration-300"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitMaskImage: showLeftArrow
+                ? 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+                : 'linear-gradient(to right, black 85%, transparent)',
+              maskImage: showLeftArrow
+                ? 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+                : 'linear-gradient(to right, black 85%, transparent)'
+            }}
           >
             {leadership.map((person, index) => (
               <div
                 key={index}
                 className="flex flex-col flex-shrink-0 w-[280px] snap-start"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-6">
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-6 font-sans">
                   <img
                     src={person.image}
                     alt={person.name}
