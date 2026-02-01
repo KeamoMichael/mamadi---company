@@ -118,9 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                         e.preventDefault();
                         if (!item.hasDropdown) handleNavClick(item.name);
                     }}
-                    className={`flex items-center gap-1 hover:text-brand-gold transition-colors py-3 ${
-                        (item.name === 'About Us' && currentView === 'about') || (item.name !== 'About Us' && currentView === 'home') ? 'text-brand-gold' : ''
-                    }`}
+                    className="flex items-center gap-1 hover:text-brand-gold transition-colors py-3"
                   >
                     {item.name}
                     {item.hasDropdown && (
@@ -187,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                     }
                 }}
               >
-                <span className={(item.hasDropdown && mobileOpenDropdown === item.name) || (item.name === 'About Us' && currentView === 'about') ? 'text-brand-gold' : ''}>
+                <span className={item.hasDropdown && mobileOpenDropdown === item.name ? 'text-brand-gold' : ''}>
                   {item.name}
                 </span>
                 {item.hasDropdown && (
