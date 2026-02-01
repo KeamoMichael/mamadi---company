@@ -90,7 +90,7 @@ export const KeyPeople: React.FC = () => {
               <img
                 src="/assets/next-right arrow.png"
                 alt=""
-                className="w-8 h-8 object-contain rotate-180"
+                className="w-6 h-6 object-contain rotate-180"
               />
             </button>
           )}
@@ -106,7 +106,7 @@ export const KeyPeople: React.FC = () => {
             <img
               src="/assets/next-right arrow.png"
               alt=""
-              className="w-8 h-8 object-contain"
+              className="w-6 h-6 object-contain"
             />
           </button>
 
