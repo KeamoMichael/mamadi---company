@@ -60,6 +60,7 @@ export const Values: React.FC = () => {
           </div>
         ))}
       </div>
+      </div>
     </Section>
   );
 };
