@@ -172,7 +172,15 @@ export const Navbar: React.FC = () => {
               )}
             </div>
           ))}
-          <a href="#" className="text-brand-gold font-bold mt-4 pt-4" onClick={() => setIsOpen(false)}>Contact Us</a>
+          <div className="pt-6">
+            <a 
+              href="#" 
+              className="w-full block text-center px-5 py-3 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-300 rounded-sm font-semibold text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact Us
+            </a>
+          </div>
         </div>
       </div>
     </>
