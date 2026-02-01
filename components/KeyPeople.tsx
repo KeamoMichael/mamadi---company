@@ -39,9 +39,15 @@ export const KeyPeople: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = React.useState(false);
 
+  // Check initial scroll position on mount
+  React.useEffect(() => {
+    handleScroll();
+  }, []);
+
   const handleScroll = () => {
     if (scrollRef.current) {
-      setShowLeftArrow(scrollRef.current.scrollLeft > 10);
+      // Threshold of 20px to avoid accidental trigger
+      setShowLeftArrow(scrollRef.current.scrollLeft > 20);
     }
   };
 
@@ -70,25 +76,39 @@ export const KeyPeople: React.FC = () => {
 
         {/* Team Horizontal Scroll Container */}
         <div className="relative">
-          {/* Fading Edge Overlays */}
+          {/* Left Side Fading Edge and Arrow - Dynamic Visibility */}
           <div
-            className={`absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/40 to-transparent z-10 pointer-events-none transition-opacity duration-300 ${showLeftArrow ? 'opacity-100' : 'opacity-0'}`}
           ></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-          {/* Left Arrow Button */}
           {showLeftArrow && (
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 transition-all hover:scale-110 active:scale-95"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 transition-all hover:scale-110 active:scale-95"
+              aria-label="Scroll left"
             >
               <img
                 src="/assets/next-right arrow.png"
-                alt="Back"
-                className="w-10 h-10 object-contain rotate-180"
+                alt=""
+                className="w-8 h-8 object-contain rotate-180"
               />
             </button>
           )}
+
+          {/* Right Side Fading Edge and Arrow - Persistent Visibility */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/40 to-transparent z-10 pointer-events-none"></div>
+
+          <button
+            onClick={scrollRight}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 transition-all hover:scale-110 active:scale-95"
+            aria-label="Scroll right"
+          >
+            <img
+              src="/assets/next-right arrow.png"
+              alt=""
+              className="w-8 h-8 object-contain"
+            />
+          </button>
 
           <div
             ref={scrollRef}
@@ -116,18 +136,6 @@ export const KeyPeople: React.FC = () => {
               </div>
             ))}
           </div>
-
-          {/* Right Arrow Ticker Button */}
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 transition-all hover:scale-110 active:scale-95"
-          >
-            <img
-              src="/assets/next-right arrow.png"
-              alt="Next"
-              className="w-10 h-10 object-contain"
-            />
-          </button>
         </div>
       </div>
     </Section>
