@@ -38,6 +38,12 @@ const leadership: TeamMember[] = [
 export const KeyPeople: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
   const scrollRight = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
@@ -57,9 +63,22 @@ export const KeyPeople: React.FC = () => {
 
         {/* Team Horizontal Scroll Container */}
         <div className="relative">
+          {/* Left Arrow Button */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 transition-all hover:scale-110 active:scale-95"
+          >
+            <img
+              src="/assets/next (3).png"
+              alt="Back"
+              className="w-5 h-5 object-contain rotate-180"
+              style={{ filter: "invert(12%) sepia(35%) saturate(2466%) hue-rotate(205deg) brightness(95%) contrast(92%)" }}
+            />
+          </button>
+
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x"
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x px-4"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {leadership.map((person, index) => (
