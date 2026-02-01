@@ -34,29 +34,28 @@ export const Approach: React.FC = () => {
             </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
-          {/* Left: 3D Image */}
-          <div className="w-full lg:w-5/12 aspect-square bg-brand-beige overflow-hidden relative">
-            <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" 
-              alt="Architectural Planning" 
-              className="w-full h-full object-cover grayscale opacity-80 sepia-[.2]"
-            />
-            {/* Adding a subtle overlay to match the warm beige look */}
-            <div className="absolute inset-0 bg-brand-beige/30 mix-blend-multiply"></div>
-          </div>
+        {/* List */}
+        <div className="flex flex-col border-t border-gray-100">
+          {steps.map((step, index) => (
+            <div key={index} className="flex flex-col md:flex-row py-8 border-b border-gray-100 gap-6 md:gap-12 group hover:bg-gray-50/50 transition-colors duration-300">
+              {/* Left: Number & Title */}
+              <div className="md:w-5/12 flex items-baseline gap-6 shrink-0">
+                <span className="text-lg font-medium text-brand-blue/40">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-xl md:text-2xl font-medium text-brand-blue">
+                  {step.title}
+                </h3>
+              </div>
 
-          {/* Right: Steps List */}
-          <div className="w-full lg:w-7/12 flex flex-col gap-10 pt-4">
-            {steps.map((step, index) => (
-              <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-100 pb-8 last:border-0 last:pb-0">
-                <h4 className="text-sm font-semibold text-brand-blue">{step.title}</h4>
-                <p className="text-xs text-gray-500 leading-relaxed">
+              {/* Right: Description */}
+              <div className="md:w-7/12 flex items-center">
+                <p className="text-sm text-gray-500 leading-relaxed max-w-lg">
                   {step.description}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </Section>
