@@ -159,7 +159,7 @@ export const AboutUsPage: React.FC = () => {
                 </div>
 
                 {/* Map Area */}
-                <div className="w-full aspect-[4/3] md:aspect-[16/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
+                <div className="w-full aspect-square md:aspect-[16/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
                     <WorldMap />
                 </div>
             </div>
