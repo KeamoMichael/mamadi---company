@@ -1,7 +1,7 @@
 import React from 'react';
 import { Section } from './Section';
 import { Award, ShieldCheck, FileText, Users, Map, Globe } from 'lucide-react';
-import { AfricaMap } from './AfricaMap';
+import { WorldMap } from './WorldMap';
 
 export const AboutUsPage: React.FC = () => {
   return (
@@ -159,8 +159,8 @@ export const AboutUsPage: React.FC = () => {
                 </div>
 
                 {/* Map Area */}
-                <div className="w-full aspect-[4/3] md:aspect-[21/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
-                    <AfricaMap />
+                <div className="w-full aspect-[4/3] md:aspect-[16/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
+                    <WorldMap />
                 </div>
             </div>
         </Section>
