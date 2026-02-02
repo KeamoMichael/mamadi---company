@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section } from './Section';
 import { Award, ShieldCheck, FileText, Users, Map, Globe } from 'lucide-react';
+import { AfricaMap } from './AfricaMap';
 
 export const AboutUsPage: React.FC = () => {
   return (
@@ -142,48 +143,24 @@ export const AboutUsPage: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
-                        <div className="flex flex-col gap-4">
-                            <h3 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Local</h3>
+                        <div className="flex flex-col gap-6">
+                            <h1 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Local</h1>
                             <p className="text-sm text-brand-gold font-medium">South african roots</p>
                         </div>
-                        <div className="flex flex-col gap-4">
-                            <h3 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Regional</h3>
+                        <div className="flex flex-col gap-6">
+                            <h1 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Regional</h1>
                             <p className="text-sm text-brand-gold font-medium">Sadc presence</p>
                         </div>
-                        <div className="flex flex-col gap-4">
-                            <h3 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Pan-African</h3>
+                        <div className="flex flex-col gap-6">
+                            <h1 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Pan-African</h1>
                             <p className="text-sm text-brand-gold font-medium">Strategic growth</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Map Area */}
-                <div className="w-full aspect-video md:aspect-[21/9] bg-gray-50 border border-gray-100 rounded-sm overflow-hidden flex items-center justify-center relative group">
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/world-map.png')] opacity-[0.05] grayscale contrast-125"></div>
-                    
-                    <div className="text-center p-8 z-10">
-                        <Globe size={48} className="text-brand-gold/20 mx-auto mb-4" />
-                        <h4 className="text-brand-blue font-semibold mb-1">Continental Strategic Presence</h4>
-                        <p className="text-[10px] text-gray-400 uppercase tracking-widest">Visualizing Mamadi's expanding reach</p>
-                    </div>
-
-                    {/* Animated markers */}
-                    <div className="absolute top-[65%] left-[52%] flex flex-col items-center">
-                         <div className="w-3 h-3 bg-brand-gold rounded-full animate-ping absolute" />
-                         <div className="w-3 h-3 bg-brand-gold rounded-full relative" />
-                    </div>
-                    <div className="absolute top-[40%] left-[48%] flex flex-col items-center">
-                         <div className="w-2 h-2 bg-brand-blue rounded-full opacity-50" />
-                    </div>
-                    <div className="absolute top-[75%] left-[55%] flex flex-col items-center">
-                         <div className="w-2 h-2 bg-brand-blue rounded-full opacity-50" />
-                    </div>
-                    <div className="absolute top-[20%] left-[40%] flex flex-col items-center">
-                         <div className="w-1.5 h-1.5 bg-brand-gold/30 rounded-full" />
-                    </div>
-                    <div className="absolute top-[30%] left-[60%] flex flex-col items-center">
-                         <div className="w-1.5 h-1.5 bg-brand-gold/30 rounded-full" />
-                    </div>
+                <div className="w-full aspect-[4/3] md:aspect-[21/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
+                    <AfricaMap />
                 </div>
             </div>
         </Section>
