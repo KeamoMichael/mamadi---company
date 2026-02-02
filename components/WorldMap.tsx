@@ -75,7 +75,7 @@ export const WorldMap: React.FC = () => {
                 >
                   {/* High Res Background Image */}
                   <image 
-                    href="/About Us/MAP 10K RES_SITE.jpg" 
+                    href="/About%20Us/MAP%2010K%20RES_SITE.jpg" 
                     width="11292" 
                     height="5724" 
                     preserveAspectRatio="xMidYMid slice"
