@@ -3,20 +3,19 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Search, Plus, Minus, RotateCcw } from 'lucide-react';
 
 export const WorldMap: React.FC = () => {
-  // Hubs positions for the 11292 x 5724 coordinate system
-  // Adjusted based on geographic locations and high-res map layout
-  // 'align' property determines if text is left or right of the dot
+  // Hubs positions for the 5646 x 2862 coordinate system (Countries_SITE.jpg)
+  // Scaled down by 50% from the 11k version
   const hubs = [
-    { id: 'london', name: 'London', x: 5646, y: 1250, align: 'right' },
-    { id: 'nairobi', name: 'Kenya', x: 6736, y: 2860, align: 'right' },
-    { id: 'tanzania', name: 'Tanzania', x: 6736, y: 3080, align: 'right' },
-    { id: 'zambia', name: 'Zambia', x: 6524, y: 3350, align: 'left' },
-    { id: 'mozambique', name: 'Mozambique', x: 6950, y: 3550, align: 'right' },
-    { id: 'mauritius', name: 'Mauritius', x: 7430, y: 3650, align: 'right' },
-    { id: 'joburg', name: 'Johannesburg', x: 6524, y: 3780, align: 'left' },
-    { id: 'durban', name: 'Durban', x: 6620, y: 3950, align: 'right' },
-    { id: 'capetown', name: 'Cape Town', x: 6210, y: 4100, align: 'left' },
-    { id: 'singapore', name: 'Singapore', x: 8873, y: 2880, align: 'right' },
+    { id: 'london', name: 'London', x: 2823, y: 625, align: 'right' },
+    { id: 'nairobi', name: 'Kenya', x: 3368, y: 1430, align: 'right' },
+    { id: 'tanzania', name: 'Tanzania', x: 3368, y: 1540, align: 'right' },
+    { id: 'zambia', name: 'Zambia', x: 3262, y: 1675, align: 'left' },
+    { id: 'mozambique', name: 'Mozambique', x: 3475, y: 1775, align: 'right' },
+    { id: 'mauritius', name: 'Mauritius', x: 3715, y: 1825, align: 'right' },
+    { id: 'joburg', name: 'Johannesburg', x: 3262, y: 1890, align: 'left' },
+    { id: 'durban', name: 'Durban', x: 3310, y: 1975, align: 'right' },
+    { id: 'capetown', name: 'Cape Town', x: 3105, y: 2050, align: 'left' },
+    { id: 'singapore', name: 'Singapore', x: 4436, y: 1440, align: 'right' },
   ];
 
   return (
@@ -24,7 +23,7 @@ export const WorldMap: React.FC = () => {
       <TransformWrapper
         initialScale={1}
         minScale={1}
-        maxScale={15}
+        maxScale={12}
         centerOnInit={true}
         limitToBounds={true}
       >
@@ -67,17 +66,17 @@ export const WorldMap: React.FC = () => {
             </div>
 
             <TransformComponent wrapperClass="!w-full !h-full cursor-grab active:cursor-grabbing">
-              <div className="relative w-[11292px] h-[5724px] max-w-none">
+              <div className="relative w-[5646px] h-[2862px] max-w-none">
                 <svg
-                  viewBox="0 0 11292 5724"
+                  viewBox="0 0 5646 2862"
                   className="w-full h-full block"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   {/* High Res Background Image */}
                   <image 
-                    href="/About%20Us/MAP%2010K%20RES_SITE.jpg" 
-                    width="11292" 
-                    height="5724" 
+                    href="/About%20Us/Countries_SITE.jpg" 
+                    width="5646" 
+                    height="2862" 
                     preserveAspectRatio="xMidYMid slice"
                   />
 
@@ -88,13 +87,13 @@ export const WorldMap: React.FC = () => {
                       <circle 
                         cx={hub.x} 
                         cy={hub.y} 
-                        r="80" 
+                        r="40" 
                         stroke="#C69243" 
-                        strokeWidth="15" 
+                        strokeWidth="8" 
                         fill="none"
                         opacity="0.3"
                       >
-                        <animate attributeName="r" from="60" to="160" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="r" from="30" to="80" dur="2s" repeatCount="indefinite" />
                         <animate attributeName="opacity" from="0.4" to="0" dur="2s" repeatCount="indefinite" />
                       </circle>
 
@@ -102,18 +101,18 @@ export const WorldMap: React.FC = () => {
                       <circle 
                         cx={hub.x} 
                         cy={hub.y} 
-                        r="65" 
+                        r="32" 
                         fill="#C69243" 
                         className="drop-shadow-xl"
                       />
                       
                       {/* Text Label */}
                       <text
-                        x={hub.align === 'right' ? hub.x + 120 : hub.x - 120}
-                        y={hub.y + 45}
+                        x={hub.align === 'right' ? hub.x + 60 : hub.x - 60}
+                        y={hub.y + 22}
                         fill="#C69243"
                         textAnchor={hub.align === 'right' ? 'start' : 'end'}
-                        className="text-[180px] font-bold drop-shadow-lg select-none"
+                        className="text-[90px] font-bold drop-shadow-lg select-none"
                         style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                       >
                         {hub.name}
