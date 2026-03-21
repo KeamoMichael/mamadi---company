@@ -4,6 +4,45 @@ import { Award, ShieldCheck, FileText, Users, Map, Globe } from 'lucide-react';
 import { WorldMap } from './WorldMap';
 
 export const AboutUsPage: React.FC = () => {
+  const [activeSection, setActiveSection] = React.useState('who-we-are');
+  const navRef = React.useRef<HTMLDivElement>(null);
+
+  const sectionItems = [
+    { name: 'Who We Are',              id: 'who-we-are' },
+    { name: 'Leadership & Governance', id: 'leadership-&-governance' },
+    { name: 'Geographic Footprint',    id: 'geographic-footprint' },
+    { name: 'Strategy & Values',       id: 'strategy-&-values' },
+  ];
+
+  React.useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    sectionItems.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: '-140px 0px -50% 0px', threshold: 0 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
+  // Slide the sticky nav so the active link is fully in view
+  React.useEffect(() => {
+    if (!navRef.current) return;
+    const activeEl = navRef.current.querySelector(`[data-section="${activeSection}"]`) as HTMLElement;
+    if (!activeEl) return;
+    const isLast = activeSection === sectionItems[sectionItems.length - 1].id;
+    // For the last item scroll to the absolute end so trailing padding is always visible.
+    // For all others align the item's left edge to the natural 24px gutter.
+    const scrollTo = isLast
+      ? navRef.current.scrollWidth
+      : Math.max(0, activeEl.offsetLeft - 24);
+    navRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  }, [activeSection]);
+
   return (
     <div className="pt-20">
       {/* About Hero */}
@@ -24,20 +63,29 @@ export const AboutUsPage: React.FC = () => {
       </section>
 
       {/* Navigation for About Section (Internal) */}
-      <div className="sticky top-[72px] bg-white border-b border-gray-100 z-30 overflow-x-auto">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl flex gap-8 whitespace-nowrap">
-            {[
-              { name: 'Who We Are', id: 'who-we-are' },
-              { name: 'Leadership & Governance', id: 'leadership-&-governance' },
-              { name: 'Geographic Footprint', id: 'geographic-footprint' },
-              { name: 'Strategy & Values', id: 'strategy-&-values' }
-            ].map((item) => (
-                <a 
+      <div ref={navRef} className="sticky top-[72px] bg-white/95 backdrop-blur-sm border-b border-gray-100 z-30 overflow-x-auto scrollbar-none">
+        <div className="container mx-auto pl-6 md:px-12 lg:px-20 max-w-screen-2xl flex gap-10 whitespace-nowrap">
+            {sectionItems.map((item, index) => (
+                <a
                     key={item.id}
+                    data-section={item.id}
                     href={`#${item.id}`}
-                    className="py-4 text-sm font-semibold text-gray-500 hover:text-brand-gold transition-colors"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById(item.id);
+                        if (element) {
+                            const y = element.getBoundingClientRect().top + window.scrollY - 150;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                    }}
+                    className={`group py-6 text-sm font-semibold transition-colors relative ${
+                        activeSection === item.id ? 'text-brand-gold' : 'text-gray-500 hover:text-brand-blue'
+                    } ${index === sectionItems.length - 1 ? 'pr-4 md:pr-0' : ''}`}
                 >
-                    {item.name}
+                    <span>{item.name}</span>
+                    <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-brand-gold transform transition-transform origin-left duration-300 ${
+                        activeSection === item.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}></span>
                 </a>
             ))}
         </div>

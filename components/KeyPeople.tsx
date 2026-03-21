@@ -6,7 +6,7 @@ const leadership: TeamMember[] = [
   {
     name: "Mr Mabu Enos Mamadi",
     role: "Chairman of the Board",
-    image: "/assets/Board Images_Updated/Mr Mamadi - Updated.jpg"
+    image: "/assets/Chairman Image.jpg"
   },
   {
     name: "Mr Jacob Maroga",
@@ -26,7 +26,7 @@ const leadership: TeamMember[] = [
   {
     name: "Mr Langton Ndlovu",
     role: "Board Advisor | Finance & Tax",
-    image: "/assets/Board Images_Updated/Mr Ndlovu (02).jpg"
+    image: "/assets/Board Images_Updated/Mr Ndlovu_02.jpg"
   },
   {
     name: "Ms Teboho Mofokeng",
@@ -45,35 +45,36 @@ export const KeyPeople: React.FC = () => {
     handleScroll();
   }, []);
 
+  const getItemWidth = () => {
+    if (!scrollRef.current) return 304;
+    const firstChild = scrollRef.current.firstElementChild as HTMLElement;
+    return firstChild ? firstChild.offsetWidth + 24 : 304; // card + gap-6
+  };
+
   const handleScroll = () => {
     if (scrollRef.current) {
       const scrollLeft = scrollRef.current.scrollLeft;
-      // Calculate active index based on item width (280) + gap (24)
-      const itemWidth = 280 + 24;
-      const index = Math.round(scrollLeft / itemWidth);
+      const index = Math.round(scrollLeft / getItemWidth());
       setActiveIndex(index);
-      
-      // Threshold of 20px to avoid accidental trigger
       setShowLeftArrow(scrollLeft > 20);
     }
   };
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: -getItemWidth(), behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: getItemWidth(), behavior: 'smooth' });
     }
   };
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
-      const itemWidth = 280 + 24;
-      scrollRef.current.scrollTo({ left: index * itemWidth, behavior: 'smooth' });
+      scrollRef.current.scrollTo({ left: index * getItemWidth(), behavior: 'smooth' });
     }
   };
 
@@ -108,7 +109,7 @@ export const KeyPeople: React.FC = () => {
               <div
                 ref={scrollRef}
                 onScroll={handleScroll}
-                className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x flex-1 transition-all duration-300"
+                className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory flex-1 transition-all duration-300 px-[10vw] md:px-0"
                 style={{
                   scrollbarWidth: 'none',
                   msOverflowStyle: 'none'
@@ -117,7 +118,7 @@ export const KeyPeople: React.FC = () => {
                 {leadership.map((person, index) => (
                   <div
                     key={index}
-                    className="flex flex-col flex-shrink-0 w-[280px] snap-start"
+                    className="flex flex-col flex-shrink-0 w-[80vw] md:w-[280px] snap-center md:snap-start"
                   >
                     <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-6 font-sans">
                       <img
