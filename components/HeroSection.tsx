@@ -61,7 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
     if (!container) return;
 
     const viewportH  = window.innerHeight;
-    const baseH      = window.innerWidth >= 768 ? 400 : 200;
+    const baseH      = window.innerWidth >= 768 ? 400 : 80;
     const scrollable = container.offsetHeight - viewportH; // 600px
     if (scrollable <= 0) return;
 
@@ -134,18 +134,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
 
         {/* Hero text — fills white space above video, vertically centred */}
         {/* top-16 clears the fixed navbar on mobile; md:top-0 on desktop has enough room */}
-        <div className="absolute top-24 md:top-16 left-0 right-0 bottom-[200px] md:bottom-[400px] flex flex-col items-center justify-center">
+        <div className="absolute top-14 md:top-16 left-0 right-0 bottom-[80px] md:bottom-[400px] flex flex-col items-center justify-center pb-6 md:pb-0">
           <div className="container mx-auto px-6 md:px-12 text-center">
             <h1
               ref={heroH1Ref}
-              className="text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight mb-6 md:mb-8 leading-tight text-brand-blue"
+              className="text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight mb-3 md:mb-8 leading-tight text-brand-blue"
             >
               Engineering the Future of <br className="hidden md:block" />
               <span className="text-brand-gold">Infrastructure</span> in Africa and Beyond
             </h1>
             <p
               ref={heroPRef}
-              className="text-sm md:text-xl text-gray-500 max-w-3xl mx-auto mb-6 md:mb-12 leading-relaxed font-light"
+              className="text-sm md:text-xl text-gray-500 max-w-3xl mx-auto mb-4 md:mb-12 leading-relaxed font-light"
             >
               Mamadi &amp; Company is a multidisciplinary consulting firm delivering world-class
               engineering, environmental, and project management solutions. We bridge the gap
@@ -170,7 +170,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
         <div
           ref={videoContainerRef}
           className="absolute bottom-0 left-0 right-0 overflow-hidden"
-          style={{ height: window.innerWidth >= 768 ? '400px' : '200px' }}
+          style={{ height: window.innerWidth >= 768 ? '400px' : '80px' }}
         >
           {/* Video always 100vh tall, anchored at bottom — container clips upper portion */}
           <video
