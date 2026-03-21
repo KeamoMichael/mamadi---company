@@ -61,7 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
     if (!container) return;
 
     const viewportH  = window.innerHeight;
-    const baseH      = window.innerWidth >= 768 ? 400 : 80;
+    const baseH      = window.innerWidth >= 768 ? 400 : (window.innerHeight <= 720 ? 80 : 200);
     const scrollable = container.offsetHeight - viewportH; // 600px
     if (scrollable <= 0) return;
 
@@ -77,10 +77,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
       videoContainerRef.current.style.height = `${videoH}px`;
     }
 
-    // Hero content fades out part by part, top → bottom, each with blur
-    applyHeroFade(heroH1Ref,   0.00, 0.42, expandT);
-    applyHeroFade(heroPRef,    0.18, 0.56, expandT);
-    applyHeroFade(heroBtnsRef, 0.34, 0.68, expandT);
+    // Hero content fades out bottom → top, quickly before parallax is visible
+    applyHeroFade(heroBtnsRef, 0.00, 0.18, expandT);
+    applyHeroFade(heroPRef,    0.08, 0.26, expandT);
+    applyHeroFade(heroH1Ref,   0.16, 0.36, expandT);
 
     // Subtle video parallax drift
     if (videoRef.current) {
@@ -134,7 +134,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
 
         {/* Hero text — fills white space above video, vertically centred */}
         {/* top-16 clears the fixed navbar on mobile; md:top-0 on desktop has enough room */}
-        <div className="absolute top-14 md:top-16 left-0 right-0 bottom-[80px] md:bottom-[400px] flex flex-col items-center justify-center pb-6 md:pb-0">
+        <div
+          className="absolute top-16 left-0 right-0 flex flex-col items-center justify-center pb-6 md:pb-0"
+          style={{ bottom: window.innerWidth >= 768 ? '400px' : window.innerHeight <= 720 ? '80px' : '200px' }}
+        >
           <div className="container mx-auto px-6 md:px-12 text-center">
             <h1
               ref={heroH1Ref}
@@ -170,7 +173,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
         <div
           ref={videoContainerRef}
           className="absolute bottom-0 left-0 right-0 overflow-hidden"
-          style={{ height: window.innerWidth >= 768 ? '400px' : '80px' }}
+          style={{ height: window.innerWidth >= 768 ? '400px' : window.innerHeight <= 720 ? '80px' : '200px' }}
         >
           {/* Video always 100vh tall, anchored at bottom — container clips upper portion */}
           <video

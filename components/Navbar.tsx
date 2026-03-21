@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                 className="h-7 md:h-9 w-auto object-contain"
               />
               {/* Text — word-by-word masked slide-up with staggered delay */}
-              <div className="flex items-baseline gap-[0.3em]">
+              <div className="hidden [@media(min-width:360px)]:flex items-baseline gap-[0.3em]">
                 {[
                   { text: 'Mamadi',  color: '#1F2B49', delay: 0   },
                   { text: '&',       color: '#C69243', delay: 110 },
@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
 
             {/* Desktop Nav Links — slides to true center after logo text animates out */}
             <div
-              className="hidden lg:flex absolute left-1/2 items-center gap-6 xl:gap-8 text-sm font-semibold text-brand-blue whitespace-nowrap"
+              className="hidden lg:flex absolute left-1/2 items-center gap-3 xl:gap-7 text-xs xl:text-sm font-semibold text-brand-blue whitespace-nowrap"
               style={{
                 transform: logoTextHidden
                   ? 'translateX(-50%)'
