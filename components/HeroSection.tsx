@@ -11,13 +11,14 @@ const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
 
 const getHeroMediaHeight = () => {
   if (window.innerWidth >= 768) {
-    return window.innerHeight <= 720 ? 300 : 400;
+    return window.innerHeight <= 720 ? 180 : 400;
   }
 
   if (window.innerHeight <= 570) return 60;
   if (window.innerHeight <= 720) return 80;
   return 200;
 };
+
 
 // Quartic ease — holds near-zero velocity much longer than cubic for a more premium feel
 const quartEaseInOut = (t: number) =>

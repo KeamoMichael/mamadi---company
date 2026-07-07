@@ -3,7 +3,7 @@ import { FadeIn } from './FadeIn';
 
 export const Hero: React.FC = () => {
   return (
-    <div className="w-full bg-white pt-32 pb-16 md:pt-48 md:pb-24">
+    <div className="w-full bg-white pt-32 pb-16 md:pt-48 md:pb-24 xl:pb-40">
       <div className="container mx-auto px-6 md:px-12 text-center">
         <FadeIn>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight mb-8 leading-tight text-brand-blue">
