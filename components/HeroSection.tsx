@@ -11,7 +11,8 @@ const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
 
 const getHeroMediaHeight = () => {
   if (window.innerWidth >= 768) {
-    return window.innerHeight <= 720 ? 180 : 400;
+    // Always use 25% of viewport height on desktop — white section = ~75%
+    return Math.round(window.innerHeight * 0.25);
   }
 
   if (window.innerHeight <= 570) return 60;
