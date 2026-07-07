@@ -23,7 +23,7 @@ const values: ValueItem[] = [
 
 export const Values: React.FC = () => {
   return (
-    <Section label="// Our Core Values">
+    <Section label="Our Core Values">
       <div className="flex flex-col gap-12">
         {/* Intro Text */}
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">

@@ -10,17 +10,17 @@ export const InsightsPage: React.FC = () => {
     <div className="bg-white min-h-screen">
 
       {/* Page header */}
-      <div className="bg-brand-blue pt-36 pb-20 px-6 md:px-12 lg:px-20">
+      <div className="bg-brand-blue pt-36 pb-36 md:pb-44 px-6 md:px-12 lg:px-20">
         <div className="container mx-auto max-w-screen-2xl">
-          <p className="text-brand-gold text-xs font-semibold tracking-widest uppercase mb-5">
-            //In The Field
+          <p className="text-white text-sm font-normal tracking-[0.04em] mb-5">
+            In The Field
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight max-w-3xl">
             Latest Engagements<br />
-            <span className="text-brand-gold">&amp; Events</span>
+            <span className="text-white">&amp; Events</span>
           </h1>
           <p className="mt-6 text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
-            Mamadi & Company leadership and specialist teams are active across Africa and internationally — building partnerships, presenting research, and advancing sustainable infrastructure development.
+            Mamadi International leadership and specialist teams are active across Africa and internationally — building partnerships, presenting research, and advancing sustainable infrastructure development.
           </p>
         </div>
       </div>

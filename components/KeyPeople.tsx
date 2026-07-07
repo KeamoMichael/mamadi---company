@@ -79,7 +79,7 @@ export const KeyPeople: React.FC = () => {
   };
 
   return (
-    <Section label="// Mamadi Leadership">
+    <Section label="Mamadi Leadership">
       <div className="flex flex-col gap-12 relative group">
         {/* Intro Text */}
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 type View = 'home' | 'about' | 'projects' | 'contact' | 'insights';
@@ -8,15 +8,20 @@ interface NavbarProps {
   currentView: View;
 }
 
+const logoTextSegments = [
+  { name: 'Mamadi', src: '/assets/Mamadi text01.png', delay: 0 },
+  { name: 'International', src: '/assets/Mamadi text02.png', delay: 120 },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const [logoTextHidden, setLogoTextHidden] = useState(false);
-  const logoShouldHide = logoTextHidden && !isOpen;
 
   useEffect(() => {
     const onScroll = () => setLogoTextHidden(window.scrollY > 80);
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -110,35 +115,29 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
             {/* Logo */}
             <div
               onClick={() => setView('home')}
-              className="flex items-center gap-2.5 select-none cursor-pointer z-10"
+              className="flex items-center gap-2 select-none cursor-pointer z-10"
+              aria-label="Mamadi International"
             >
-              {/* Icon mark — always visible */}
               <img
                 src="/assets/cropped-mamadi_and_company_logo-1-e1712595837297.png"
-                alt="Mamadi & Company"
-                className="h-7 md:h-9 w-auto object-contain"
+                alt=""
+                aria-hidden="true"
+                className="h-4 md:h-5 w-auto object-contain"
               />
-              {/* Text — word-by-word masked slide-up with staggered delay */}
-              <div className="hidden [@media(min-width:360px)]:flex items-baseline gap-[0.3em]">
-                {[
-                  { text: 'Mamadi',  color: '#1F2B49', delay: 0   },
-                  { text: '&',       color: '#C69243', delay: 110 },
-                  { text: 'Company', color: '#1F2B49', delay: 220 },
-                ].map(({ text, color, delay }) => (
-                  <div key={text} className="overflow-hidden leading-none">
-                    <span
-                      className="block text-sm md:text-base"
+              <div className="hidden [@media(min-width:360px)]:flex h-2.5 md:h-3.5 items-center gap-0 overflow-hidden">
+                {logoTextSegments.map((segment) => (
+                  <span key={segment.name} className="block h-full overflow-hidden">
+                    <img
+                      src={segment.src}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-full w-auto object-contain"
                       style={{
-                        color,
-                        fontFamily: "'Figtree', sans-serif",
-                        fontWeight: 500,
-                        transform: logoShouldHide ? 'translateY(-120%)' : 'translateY(0)',
-                        transition: `transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) ${delay}ms`,
+                        transform: isOpen || !logoTextHidden ? 'translateY(0)' : 'translateY(-120%)',
+                        transition: `transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) ${segment.delay}ms`,
                       }}
-                    >
-                      {text}
-                    </span>
-                  </div>
+                    />
+                  </span>
                 ))}
               </div>
             </div>
@@ -151,8 +150,8 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                   ? 'translateX(-50%)'
                   : 'translateX(calc(-50% + 50px))',
                 transition: logoTextHidden
-                  ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1.1s'
-                  : 'transform 0.5s cubic-bezier(0.7, 0, 0.84, 0) 0s',
+                  ? 'transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.75s'
+                  : 'transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s',
               }}
             >
               {navItems.map((item) => (
@@ -328,3 +327,4 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
     </>
   );
 };
+

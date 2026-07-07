@@ -6,7 +6,7 @@ export const WorldMap: React.FC = () => {
       {/* Mobile Image - Square 1:1 aspect ratio container is handled by parent */}
       <img 
         src="/About%20Us/Countries_SITE%20(Mobile).jpg" 
-        alt="Mamadi & Company Geographic Footprint Mobile"
+        alt="Mamadi International Geographic Footprint Mobile"
         className="block md:hidden w-full h-full object-cover"
         onError={(e) => {
           console.error("Mobile map image failed to load");
@@ -17,7 +17,7 @@ export const WorldMap: React.FC = () => {
       {/* Desktop Image */}
       <img 
         src="/About%20Us/Countries_SITE.jpg" 
-        alt="Mamadi & Company Geographic Footprint"
+        alt="Mamadi International Geographic Footprint"
         className="hidden md:block w-full h-full object-cover"
         onError={(e) => {
           console.error("Desktop map image failed to load");

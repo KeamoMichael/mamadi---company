@@ -1,7 +1,6 @@
 import React from 'react';
 import { Section } from './Section';
 import { FadeIn } from './FadeIn';
-import { MapPin, Building2, Zap, Droplets, School, Leaf } from 'lucide-react';
 
 // Data Structure
 type Category = 'Water & Sanitation' | 'Social Infrastructure' | 'Energy & Power' | 'Environmental Services';
@@ -58,11 +57,13 @@ const projects: Project[] = [
   }
 ];
 
-const categories: { id: string; label: Category; icon: any }[] = [
-  { id: 'water-&-sanitation', label: 'Water & Sanitation', icon: Droplets },
-  { id: 'social-infrastructure', label: 'Social Infrastructure', icon: School },
-  { id: 'energy-&-power', label: 'Energy & Power', icon: Zap },
-  { id: 'environmental-services', label: 'Environmental Services', icon: Leaf },
+type ProjectIcon = 'water' | 'social' | 'energy' | 'environment';
+
+const categories: { id: string; label: Category; icon: ProjectIcon }[] = [
+  { id: 'water-&-sanitation', label: 'Water & Sanitation', icon: 'water' },
+  { id: 'social-infrastructure', label: 'Social Infrastructure', icon: 'social' },
+  { id: 'energy-&-power', label: 'Energy & Power', icon: 'energy' },
+  { id: 'environmental-services', label: 'Environmental Services', icon: 'environment' },
 ];
 
 export const ProjectsPage: React.FC = () => {
@@ -103,11 +104,11 @@ export const ProjectsPage: React.FC = () => {
     return (
         <div className="pt-20 min-h-screen bg-white">
              {/* Hero Section (Matched to AboutUsPage) */}
-            <section className="bg-brand-blue py-24 text-white">
+            <section className="bg-brand-blue pt-24 pb-36 md:pb-44 text-white">
                 <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
                 <div className="max-w-3xl">
-                    <span className="text-brand-gold font-medium tracking-wider text-sm mb-4 block uppercase">// Project Portfolio</span>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight">
+                    <span className="text-white font-normal tracking-[0.04em] text-sm mb-4 block">Project Portfolio</span>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight text-white">
                     Engineering a sustainable future.
                     </h1>
                     <p className="text-gray-300 text-lg leading-relaxed">
@@ -139,9 +140,12 @@ export const ProjectsPage: React.FC = () => {
                                 }
                             }}
                         >
-                            <cat.icon size={18} className={`transition-colors ${
-                                activeSection === cat.id ? 'text-brand-gold' : 'text-brand-gold/70 group-hover:text-brand-gold'
-                            }`} />
+                            <ProjectNavIcon
+                                variant={cat.icon}
+                                className={`transition-colors ${
+                                    activeSection === cat.id ? 'text-brand-gold' : 'text-brand-gold/70 group-hover:text-brand-gold'
+                                }`}
+                            />
                             <span>{cat.label}</span>
                             <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-brand-gold transform transition-transform origin-left duration-300 ${
                                 activeSection === cat.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
@@ -170,9 +174,6 @@ export const ProjectsPage: React.FC = () => {
                                                     Delivering specialized engineering solutions that address complex challenges in the {category.label.toLowerCase()} sector.
                                                 </p>
                                             </div>
-                                            <div className="hidden md:block text-brand-blue/10">
-                                                <category.icon size={64} strokeWidth={1} />
-                                            </div>
                                         </div>
                                     </FadeIn>
 
@@ -188,9 +189,10 @@ export const ProjectsPage: React.FC = () => {
                                                             <h3 className="text-2xl md:text-3xl font-semibold text-brand-blue leading-tight">
                                                                 {project.title}
                                                             </h3>
-                                                            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">
-                                                                <Building2 size={12} />
-                                                                <span>Client: {project.client}</span>
+                                                            <div className="text-sm font-medium text-brand-gold">
+                                                                <span className="text-brand-blue/55">Client</span>
+                                                                <span className="mx-2 text-brand-blue/25">/</span>
+                                                                <span>{project.client}</span>
                                                             </div>
                                                         </div>
                                                         <p className="text-base text-gray-500 leading-relaxed">
@@ -202,14 +204,14 @@ export const ProjectsPage: React.FC = () => {
                                                     <div className="lg:w-7/12 flex flex-col justify-end">
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                                             <div className="space-y-4">
-                                                                <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] block">Primary Location</span>
+                                                                <span className="text-sm font-semibold text-brand-gold tracking-normal block">Primary Location</span>
                                                                 <div className="flex items-center gap-2 text-brand-blue font-medium">
-                                                                    <MapPin size={18} className="text-brand-gold/60" />
+                                                                    <ProjectLocationIcon />
                                                                     <span>{project.location}</span>
                                                                 </div>
                                                             </div>
                                                             <div className="space-y-4">
-                                                                <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] block">Scope of Services</span>
+                                                                <span className="text-sm font-semibold text-brand-gold tracking-normal block">Scope of Services</span>
                                                                 <ul className="flex flex-wrap gap-x-6 gap-y-3">
                                                                     {project.services.map((s, i) => (
                                                                         <li key={i} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
@@ -234,3 +236,68 @@ export const ProjectsPage: React.FC = () => {
         </div>
     );
 };
+
+const iconBase = {
+    width: 18,
+    height: 18,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.25,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+};
+
+const ProjectNavIcon: React.FC<{ variant: ProjectIcon; className?: string }> = ({ variant, className }) => {
+    if (variant === 'water') {
+        return (
+            <svg {...iconBase} className={className} aria-hidden="true">
+                <path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                <path d="M4 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+            </svg>
+        );
+    }
+
+    if (variant === 'social') {
+        return (
+            <svg {...iconBase} className={className} aria-hidden="true">
+                <path d="M5 19V9l7-4 7 4v10" />
+                <path d="M8 19v-7h8v7" />
+                <path d="M10 15h4" />
+            </svg>
+        );
+    }
+
+    if (variant === 'energy') {
+        return (
+            <svg {...iconBase} className={className} aria-hidden="true">
+                <path d="M13 3 7 13h5l-1 8 6-11h-5l1-7Z" />
+            </svg>
+        );
+    }
+
+    return (
+        <svg {...iconBase} className={className} aria-hidden="true">
+            <path d="M5 15c7 .2 11-4 14-10" />
+            <path d="M5 15c1-6 6-9 14-10 0 9-5 14-14 10Z" />
+        </svg>
+    );
+};
+
+const ProjectLocationIcon: React.FC = () => (
+    <svg
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-brand-gold/65"
+        aria-hidden="true"
+    >
+        <path d="M12 21s6-6.1 6-11a6 6 0 0 0-12 0c0 4.9 6 11 6 11Z" />
+        <circle cx="12" cy="10" r="1.8" />
+    </svg>
+);

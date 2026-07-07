@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './Section';
-import { Award, ShieldCheck, FileText, Users, Map, Globe } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { WorldMap } from './WorldMap';
 
 export const AboutUsPage: React.FC = () => {
@@ -46,15 +46,15 @@ export const AboutUsPage: React.FC = () => {
   return (
     <div className="pt-20">
       {/* About Hero */}
-      <section className="bg-brand-blue py-24 text-white">
+      <section className="bg-brand-blue pt-24 pb-36 md:pb-44 text-white">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
           <div className="max-w-3xl">
-            <span className="text-brand-gold font-medium tracking-wider text-sm mb-4 block uppercase">// About Mamadi & Company</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight">
+            <span className="text-white font-normal tracking-[0.04em] text-sm mb-4 block">About Mamadi International</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight text-white">
               Leading with technical excellence and community impact.
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Established as a multidisciplinary firm, Mamadi & Company has grown into a 
+              Established as a multidisciplinary firm, Mamadi International has grown into a 
               trusted partner for infrastructure development across Africa, combining 
               international standards with deep local insights.
             </p>
@@ -93,10 +93,10 @@ export const AboutUsPage: React.FC = () => {
 
       {/* Who We Are Section */}
       <div id="who-we-are">
-        <Section label="// Who We Are">
+        <Section label="Who We Are">
             <div className="flex flex-col gap-8">
                 <p className="text-lg text-brand-blue font-medium leading-relaxed max-w-3xl">
-                    Mamadi & Company is an established, multidisciplinary engineering and consulting firm 
+                    Mamadi International is an established, multidisciplinary engineering and consulting firm 
                     dedicated to delivering technical excellence and sustainable infrastructure solutions.
                 </p>
                 <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
@@ -105,19 +105,32 @@ export const AboutUsPage: React.FC = () => {
                     deep local insights, ensuring every project yields long-term socio-economic value and 
                     measurable community impact.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                    <div className="p-6 bg-gray-50 border-l-2 border-brand-gold">
-                        <h4 className="font-bold text-brand-blue mb-2">Technical Excellence</h4>
-                        <p className="text-xs text-gray-500">Rigorous engineering standards and innovative problem-solving.</p>
-                    </div>
-                    <div className="p-6 bg-gray-50 border-l-2 border-brand-gold">
-                        <h4 className="font-bold text-brand-blue mb-2">Strategic Partnership</h4>
-                        <p className="text-xs text-gray-500">Collaborating with stakeholders to achieve shared developmental goals.</p>
-                    </div>
-                    <div className="p-6 bg-gray-50 border-l-2 border-brand-gold">
-                        <h4 className="font-bold text-brand-blue mb-2">Community Impact</h4>
-                        <p className="text-xs text-gray-500">Leaving a lasting positive legacy in the environments we touch.</p>
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
+                    {[
+                        {
+                            title: 'Technical Excellence',
+                            desc: 'Rigorous engineering standards and innovative problem-solving.'
+                        },
+                        {
+                            title: 'Strategic Partnership',
+                            desc: 'Collaborating with stakeholders to achieve shared developmental goals.'
+                        },
+                        {
+                            title: 'Community Impact',
+                            desc: 'Leaving a lasting positive legacy in the environments we touch.'
+                        }
+                    ].map((item, index) => (
+                        <div
+                            key={item.title}
+                            className={`relative py-2 md:px-8 ${index === 0 ? 'md:pl-0' : ''} ${index === 2 ? 'md:pr-0' : ''}`}
+                        >
+                            {index > 0 && (
+                                <span className="hidden md:block absolute left-0 top-1/2 h-16 w-px -translate-y-1/2 bg-brand-gold/45"></span>
+                            )}
+                            <h4 className="font-semibold text-brand-blue mb-2">{item.title}</h4>
+                            <p className="text-xs text-gray-500 leading-relaxed max-w-xs">{item.desc}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </Section>
@@ -125,7 +138,7 @@ export const AboutUsPage: React.FC = () => {
 
       {/* Leadership & Governance Section */}
       <div id="leadership-&-governance">
-        <Section label="// Leadership & Governance">
+        <Section label="Leadership & Governance">
             <div className="flex flex-col gap-12">
                 <div className="flex flex-col gap-6">
                     <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
@@ -173,12 +186,12 @@ export const AboutUsPage: React.FC = () => {
 
       {/* Geographic Footprint Section */}
       <div id="geographic-footprint">
-        <Section label="// Geographic Footprint">
+        <Section label="Geographic Footprint">
             <div className="flex flex-col gap-16">
                 <div className="flex flex-col gap-12">
                     <div className="flex flex-col gap-6 max-w-2xl">
                         <p className="text-sm text-gray-500 leading-relaxed">
-                            Headquartered in South Africa, Mamadi & Company maintains a strategic 
+                            Headquartered in South Africa, Mamadi International maintains a strategic 
                             regional presence with a growing footprint across the African continent. 
                             Our ability to mobilize technical expertise across diverse territories 
                             allows us to address complex infrastructure challenges in varying 
@@ -216,7 +229,7 @@ export const AboutUsPage: React.FC = () => {
 
       {/* Strategy & Values Section */}
       <div id="strategy-&-values">
-        <Section label="// Strategy & Values">
+        <Section label="Strategy & Values">
             <div className="flex flex-col gap-12">
                 <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
                     Our strategic direction is built on a foundation of innovation, sustainability, 
@@ -224,18 +237,21 @@ export const AboutUsPage: React.FC = () => {
                     redefine consulting engineering through digital transformation and community-centric design.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 md:divide-x md:divide-brand-gold/25">
                     {[
-                        { title: 'Integrity', desc: 'Upholding the highest ethical standards in every engagement.' },
-                        { title: 'Excellence', desc: 'Striving for technical precision and superior project delivery.' },
-                        { title: 'Reliability', desc: 'Being a consistent and trusted partner for our clients.' }
-                    ].map((value) => (
-                        <div key={value.title} className="p-8 border border-gray-100 hover:border-brand-gold transition-colors">
-                            <div className="w-10 h-10 bg-brand-beige flex items-center justify-center text-brand-gold mb-6">
-                                <Award size={20} />
+                        { title: 'Integrity', icon: 'integrity' as const, desc: 'Upholding the highest ethical standards in every engagement.' },
+                        { title: 'Excellence', icon: 'excellence' as const, desc: 'Striving for technical precision and superior project delivery.' },
+                        { title: 'Reliability', icon: 'reliability' as const, desc: 'Being a consistent and trusted partner for our clients.' }
+                    ].map((value, index) => (
+                        <div
+                            key={value.title}
+                            className={`flex flex-col gap-5 md:px-8 ${index === 0 ? 'md:pl-0' : ''} ${index === 2 ? 'md:pr-0' : ''}`}
+                        >
+                            <ValueIcon variant={value.icon} />
+                            <div>
+                                <h4 className="text-lg font-semibold text-brand-blue mb-3">{value.title}</h4>
+                                <p className="text-sm text-gray-500 leading-relaxed max-w-xs">{value.desc}</p>
                             </div>
-                            <h4 className="text-xl font-bold text-brand-blue mb-3">{value.title}</h4>
-                            <p className="text-sm text-gray-500 leading-relaxed">{value.desc}</p>
                         </div>
                     ))}
                 </div>
@@ -257,4 +273,48 @@ export const AboutUsPage: React.FC = () => {
       </div>
     </div>
   );
+};
+
+type ValueIconVariant = 'integrity' | 'excellence' | 'reliability';
+
+const ValueIcon: React.FC<{ variant: ValueIconVariant }> = ({ variant }) => {
+    const common = {
+        width: 28,
+        height: 28,
+        viewBox: '0 0 24 24',
+        fill: 'none',
+        stroke: 'currentColor',
+        strokeWidth: 1.15,
+        strokeLinecap: 'round' as const,
+        strokeLinejoin: 'round' as const,
+        className: 'text-brand-gold',
+        'aria-hidden': true,
+    };
+
+    if (variant === 'integrity') {
+        return (
+            <svg {...common}>
+                <path d="M12 3 5.5 5.8v5.6c0 4.1 2.7 7.6 6.5 9.1 3.8-1.5 6.5-5 6.5-9.1V5.8L12 3Z" />
+                <path d="m8.8 12.2 2.1 2.1 4.4-4.7" />
+            </svg>
+        );
+    }
+
+    if (variant === 'excellence') {
+        return (
+            <svg {...common}>
+                <path d="M12 4.5 14 9l4.8.4-3.6 3.1 1.1 4.7L12 14.7l-4.3 2.5 1.1-4.7-3.6-3.1L10 9l2-4.5Z" />
+                <path d="M12 9.2v3.1" />
+            </svg>
+        );
+    }
+
+    return (
+        <svg {...common}>
+            <path d="M5 12.5a7 7 0 0 1 11.9-5" />
+            <path d="M19 11.5a7 7 0 0 1-11.9 5" />
+            <path d="M17 4.5v3.3h-3.3" />
+            <path d="M7 19.5v-3.3h3.3" />
+        </svg>
+    );
 };

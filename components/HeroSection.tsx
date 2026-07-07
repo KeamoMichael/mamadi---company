@@ -9,6 +9,16 @@ const ATTRIBUTION = "— Steve Jobs";
 
 const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
 
+const getHeroMediaHeight = () => {
+  if (window.innerWidth >= 768) {
+    return window.innerHeight <= 720 ? 300 : 400;
+  }
+
+  if (window.innerHeight <= 570) return 60;
+  if (window.innerHeight <= 720) return 80;
+  return 200;
+};
+
 // Quartic ease — holds near-zero velocity much longer than cubic for a more premium feel
 const quartEaseInOut = (t: number) =>
   t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
@@ -61,7 +71,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
     if (!container) return;
 
     const viewportH  = window.innerHeight;
-    const baseH      = window.innerWidth >= 768 ? 400 : window.innerHeight <= 570 ? 60 : window.innerHeight <= 720 ? 80 : 200;
+    const baseH      = getHeroMediaHeight();
     const scrollable = container.offsetHeight - viewportH; // 600px
     if (scrollable <= 0) return;
 
@@ -135,22 +145,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
         {/* Hero text — fills white space above video, vertically centred */}
         {/* top-16 clears the fixed navbar on mobile; md:top-0 on desktop has enough room */}
         <div
-          className="absolute top-16 left-0 right-0 flex flex-col items-center justify-center pb-0 [@media(min-width:360px)]:pb-6 md:pb-0"
-          style={{ bottom: window.innerWidth >= 768 ? '400px' : window.innerHeight <= 570 ? '60px' : window.innerHeight <= 720 ? '80px' : '200px' }}
+          className="absolute top-20 md:top-28 [@media(min-width:1024px)_and_(max-height:720px)]:top-36 left-0 right-0 flex flex-col items-center justify-center pb-0 [@media(min-width:360px)]:pb-6 md:pb-0"
+          style={{ bottom: `${getHeroMediaHeight()}px` }}
         >
           <div className="container mx-auto px-6 md:px-12 text-center">
             <h1
               ref={heroH1Ref}
-              className="text-3xl [@media(min-width:360px)]:text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight mb-2 [@media(min-width:360px)]:mb-3 md:mb-8 leading-tight text-brand-blue"
+              className="text-3xl [@media(min-width:360px)]:text-4xl md:text-5xl lg:text-7xl [@media(min-width:1024px)_and_(max-height:720px)]:text-6xl font-semibold tracking-tight mb-2 [@media(min-width:360px)]:mb-3 md:mb-8 [@media(min-width:1024px)_and_(max-height:720px)]:mb-5 leading-tight text-brand-blue"
             >
               Engineering the Future of <br className="hidden md:block" />
               <span className="text-brand-gold">Infrastructure</span> in Africa and Beyond
             </h1>
             <p
               ref={heroPRef}
-              className="text-xs [@media(min-width:360px)]:text-sm md:text-xl text-gray-500 max-w-3xl mx-auto mb-2 [@media(min-width:360px)]:mb-4 md:mb-12 leading-relaxed font-light"
+              className="text-xs [@media(min-width:360px)]:text-sm md:text-xl [@media(min-width:1024px)_and_(max-height:720px)]:text-lg text-gray-500 max-w-3xl mx-auto mb-2 [@media(min-width:360px)]:mb-4 md:mb-12 [@media(min-width:1024px)_and_(max-height:720px)]:mb-7 leading-relaxed font-light"
             >
-              Mamadi &amp; Company is a multidisciplinary consulting firm delivering world-class
+              Mamadi International is a multidisciplinary consulting firm delivering world-class
               engineering, environmental, and project management solutions. We bridge the gap
               between technical excellence and sustainable community development.
             </p>
@@ -173,7 +183,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
         <div
           ref={videoContainerRef}
           className="absolute bottom-0 left-0 right-0 overflow-hidden"
-          style={{ height: window.innerWidth >= 768 ? '400px' : window.innerHeight <= 570 ? '60px' : window.innerHeight <= 720 ? '80px' : '200px' }}
+          style={{ height: `${getHeroMediaHeight()}px` }}
         >
           {/* Video always 100vh tall, anchored at bottom — container clips upper portion */}
           <video

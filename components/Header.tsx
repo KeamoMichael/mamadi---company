@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
             </h1>
             
             <p className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed">
-              Mamadi & Company is a multidisciplinary consulting firm delivering world-class 
+              Mamadi International is a multidisciplinary consulting firm delivering world-class 
               engineering, environmental, and project management solutions. We bridge the gap 
               between technical excellence and sustainable community development.
             </p>

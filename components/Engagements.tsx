@@ -18,9 +18,6 @@ export const Engagements: React.FC<EngagementsProps> = ({ setView }) => {
 
         {/* Section header */}
         <div className="mb-16 md:mb-20">
-          <p className="text-brand-gold text-xs font-semibold tracking-widest uppercase mb-4">
-            //In The Field
-          </p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-brand-blue tracking-tight leading-tight max-w-xl">
               Where We Are<br />

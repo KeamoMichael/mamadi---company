@@ -69,7 +69,7 @@ const Step: React.FC<{ step: ApproachStep; index: number }> = ({ step, index }) 
 
 export const Approach: React.FC = () => {
   return (
-    <Section label="// Our Methodology" className="pb-32">
+    <Section label="Our Methodology" className="pb-32">
       <div className="flex flex-col gap-16">
         {/* Intro Text */}
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">

@@ -18,6 +18,8 @@ export const Section: React.FC<SectionProps> = ({
   dark = false,
   fullWidthContent = false
 }) => {
+  const displayLabel = dark ? label?.replace(/^\/+\s*/, '') : label;
+
   return (
     <section className={`py-16 md:py-24 ${dark ? 'bg-brand-blue text-white' : 'bg-white text-brand-blue'} ${className}`}>
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
@@ -26,10 +28,10 @@ export const Section: React.FC<SectionProps> = ({
             
             {/* Left Column - Label */}
             <div className="md:w-1/4 flex flex-col gap-4 shrink-0">
-              {label && (
+              {displayLabel && (
                 <div className="flex items-start gap-2">
-                  <span className={`text-sm font-medium tracking-wide ${dark ? 'text-brand-gold' : 'text-brand-gold'}`}>
-                    {label}
+                  <span className={`text-sm font-normal tracking-[0.04em] ${dark ? 'text-white' : 'text-brand-gold'}`}>
+                    {displayLabel}
                   </span>
                 </div>
               )}

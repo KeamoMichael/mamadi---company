@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from './Section';
 import { FadeIn } from './FadeIn';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Printer, Mail, Clock } from 'lucide-react';
 import { WorldMap } from './WorldMap';
 
 export const ContactPage: React.FC = () => {
@@ -30,11 +30,11 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="pt-20 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-brand-blue py-24 text-white">
+      <section className="bg-brand-blue pt-24 pb-36 md:pb-44 text-white">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
           <div className="max-w-3xl">
-            <span className="text-brand-gold font-medium tracking-wider text-sm mb-4 block uppercase">// Get in Touch</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight">
+            <span className="text-white font-normal tracking-[0.04em] text-sm mb-4 block">Get In Touch</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight text-white">
               Partner with us for sustainable solutions.
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed">
@@ -56,36 +56,48 @@ export const ContactPage: React.FC = () => {
                             <h2 className="text-3xl font-semibold text-brand-blue">Head Office</h2>
                             
                             <div className="flex gap-4">
-                                <div className="mt-1 text-brand-gold">
-                                    <MapPin size={20} />
-                                </div>
+                                <ContactIcon>
+                                    <MapPin size={16} strokeWidth={1.5} />
+                                </ContactIcon>
                                 <div className="flex flex-col gap-1">
                                     <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Physical Address</h4>
                                     <p className="text-gray-600 leading-relaxed">
-                                        Building 4, Albury Park<br />
-                                        Magalieszicht Avenue<br />
-                                        Dunkeld West, Johannesburg<br />
-                                        South Africa, 2196
+                                        22 Invicta Road<br />
+                                        Thandanani Office Park<br />
+                                        Midview, Carlswald<br />
+                                        1685
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex gap-4">
-                                <div className="mt-1 text-brand-gold">
-                                    <Phone size={20} />
-                                </div>
+                                <ContactIcon>
+                                    <Phone size={16} strokeWidth={1.5} />
+                                </ContactIcon>
                                 <div className="flex flex-col gap-1">
                                     <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Telephone</h4>
-                                    <a href="tel:+27110000000" className="text-gray-600 hover:text-brand-blue transition-colors">
-                                        +27 (0) 11 888 8888
+                                    <a href="tel:+27115328659" className="text-gray-600 hover:text-brand-blue transition-colors">
+                                        Tel | +27 11 532 8659
                                     </a>
                                 </div>
                             </div>
 
                             <div className="flex gap-4">
-                                <div className="mt-1 text-brand-gold">
-                                    <Mail size={20} />
+                                <ContactIcon>
+                                    <Printer size={16} strokeWidth={1.5} />
+                                </ContactIcon>
+                                <div className="flex flex-col gap-1">
+                                    <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Fax</h4>
+                                    <p className="text-gray-600">
+                                        Fax | +27 11 532 840
+                                    </p>
                                 </div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <ContactIcon>
+                                    <Mail size={16} strokeWidth={1.5} />
+                                </ContactIcon>
                                 <div className="flex flex-col gap-1">
                                     <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Email</h4>
                                     <a href="mailto:info@mamadi.co.za" className="text-gray-600 hover:text-brand-blue transition-colors">
@@ -95,9 +107,9 @@ export const ContactPage: React.FC = () => {
                             </div>
 
                             <div className="flex gap-4">
-                                <div className="mt-1 text-brand-gold">
-                                    <Clock size={20} />
-                                </div>
+                                <ContactIcon>
+                                    <Clock size={16} strokeWidth={1.5} />
+                                </ContactIcon>
                                 <div className="flex flex-col gap-1">
                                     <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Business Hours</h4>
                                     <p className="text-gray-600">
@@ -221,7 +233,7 @@ export const ContactPage: React.FC = () => {
         {/* Map Section */}
         <section className="h-[400px] w-full bg-gray-200 relative">
              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.567087854614!2d28.03156637628885!3d-26.12658425895741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950cd2a6e97491%3A0x7d6c6e76d9f0f90!2sAlbury%20Park!5e0!3m2!1sen!2sza!4v1709635000000!5m2!1sen!2sza" 
+                src="https://www.google.com/maps?q=22%20Invicta%20Road%2C%20Thandanani%20Office%20Park%2C%20Midview%2C%20Carlswald%2C%201685&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0, filter: 'grayscale(100%) contrast(1.2)' }} 
@@ -235,3 +247,9 @@ export const ContactPage: React.FC = () => {
     </div>
   );
 };
+
+const ContactIcon: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand-gold/25 text-brand-gold">
+        {children}
+    </div>
+);

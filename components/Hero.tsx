@@ -12,7 +12,7 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="text-base md:text-xl text-gray-500 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-            Mamadi & Company is a multidisciplinary consulting firm delivering world-class 
+            Mamadi International is a multidisciplinary consulting firm delivering world-class 
             engineering, environmental, and project management solutions. We bridge the gap 
             between technical excellence and sustainable community development.
           </p>
