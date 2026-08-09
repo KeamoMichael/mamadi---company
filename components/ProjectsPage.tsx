@@ -170,7 +170,7 @@ export const ProjectsPage: React.FC = () => {
              {/* Hero Section (Matched to AboutUsPage) */}
             <section
                 className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
-                style={{ backgroundImage: "url('/assets/Hero Section Images/Our Projects-Hero Section03.jpg')" }}
+                style={{ backgroundImage: "url('/assets/Hero Section Images/Our Projects-Hero Section03.webp')" }}
             >
                 <div className="absolute inset-0 bg-brand-blue/70" />
                 <div className="container relative mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">

@@ -21,7 +21,7 @@ const sectors: Sector[] = [
     name: 'Transportation',
     label: 'Transport Business',
     icon: 'transport',
-    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/cover-modern-bridge-pexels-13185335.jpg',
+    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/cover-modern-bridge-pexels-13185335.webp',
     imagePosition: 'center 54%',
     intro: 'Planning and delivering transport infrastructure that supports safe, efficient movement and long-term economic growth.',
     services: [
@@ -36,7 +36,7 @@ const sectors: Sector[] = [
     name: 'Water and Environment',
     label: 'Water, Environment & Sustainability Business',
     icon: 'water',
-    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-kelly-16562858.jpg',
+    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-kelly-16562858.webp',
     imagePosition: 'center 48%',
     intro: 'Integrated water, environmental and climate services for resilient infrastructure, responsible industry and sustainable communities.',
     services: [
@@ -58,7 +58,7 @@ const sectors: Sector[] = [
     name: 'Technology and Innovation',
     label: 'Technology & Innovation Business',
     icon: 'technology',
-    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-alejandro-de-roa-649065356-30226728.jpg',
+    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-alejandro-de-roa-649065356-30226728.webp',
     imagePosition: 'center 42%',
     intro: 'Technology-led solutions that strengthen infrastructure management, connect information and support more intelligent decision-making.',
     services: [
@@ -73,7 +73,7 @@ const sectors: Sector[] = [
     name: 'Energy and Power',
     label: 'Energy Business',
     icon: 'energy',
-    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-quang-nguyen-vinh-222549-35105442.jpg',
+    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-quang-nguyen-vinh-222549-35105442.webp',
     imagePosition: 'center 48%',
     intro: 'Supporting energy generation, transition and efficiency through integrated engineering, advisory and investment-driven infrastructure solutions.',
     services: [
@@ -91,7 +91,7 @@ const sectors: Sector[] = [
     name: 'Engineering and Management',
     label: 'Infrastructure & Capital Projects',
     icon: 'engineering',
-    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-igorejov-17658153.jpg',
+    image: '/Mamadi%20Sectors/pexels-mamadi-sector-picks/pexels-igorejov-17658153.webp',
     imagePosition: 'center 48%',
     intro: 'End-to-end professional services for infrastructure and capital projects across public and private-sector environments.',
     services: [

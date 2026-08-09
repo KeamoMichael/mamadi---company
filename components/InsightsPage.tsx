@@ -12,7 +12,7 @@ export const InsightsPage: React.FC = () => {
       {/* Page header */}
       <section
         className="relative overflow-hidden bg-brand-blue bg-cover bg-center px-6 pt-36 pb-36 text-white md:px-12 md:pb-44 lg:px-20"
-        style={{ backgroundImage: "url('/assets/pexels-contact-building.jpg')" }}
+        style={{ backgroundImage: "url('/assets/pexels-contact-building.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/75" />
         <div className="container relative mx-auto max-w-screen-2xl">
@@ -47,6 +47,8 @@ export const InsightsPage: React.FC = () => {
                 <img
                   src={event.image}
                   alt={event.title}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = FALLBACK;
                   }}

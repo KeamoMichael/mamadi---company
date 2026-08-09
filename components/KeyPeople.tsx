@@ -6,77 +6,77 @@ const leadership: TeamMember[] = [
   {
     name: "Mabu Mamadi",
     role: "Chairman | Mamadi International",
-    image: "/assets/Director Images/Mabu.jpg"
+    image: "/assets/Director Images/Mabu.webp"
   },
   {
     name: "Dr Tendai Sawunyama",
     role: "Operations Director | Africa",
-    image: "/assets/Director Images/Dr Tendai.jpg"
+    image: "/assets/Director Images/Dr Tendai.webp"
   },
   {
     name: "Avnish Gupta",
     role: "CEO | Mamadi India",
-    image: "/assets/Director Images/Avish Gupta.jpg"
+    image: "/assets/Director Images/Avish Gupta.webp"
   },
   {
     name: "Ike Rampedi",
     role: "CEO | Mamadi SA",
-    image: "/assets/Director Images/Ike.jpg"
+    image: "/assets/Director Images/Ike.webp"
   },
   {
     name: "Victor Kongo",
     role: "Regional Director | East Africa (Kenya)",
-    image: "/assets/Director Images/Victor.jpg"
+    image: "/assets/Director Images/Victor.webp"
   },
   {
     name: "Seokhoon Ko",
     role: "Finance and Infrastructure Planning: Specialist (UK)",
-    image: "/assets/Director Images/Seokhoon Ko.jpg"
+    image: "/assets/Director Images/Seokhoon Ko.webp"
   },
   {
     name: "Valentine Chadyiwa",
     role: "EPC Director",
-    image: "/assets/Director Images/Valentine.jpg"
+    image: "/assets/Director Images/Valentine.webp"
   },
   {
     name: "Silver Mucavele",
     role: "CEO | Mamadi Mozambique",
-    image: "/assets/Director Images/Silver Mucavele.jpg"
+    image: "/assets/Director Images/Silver Mucavele.webp"
   },
   {
     name: "Manfield Mandigora",
     role: "CEO | Mamadi USA",
-    image: "/assets/Director Images/Manfield Mandigora.jpg"
+    image: "/assets/Director Images/Manfield Mandigora.webp"
   },
   {
     name: "Sandra Govere",
     role: "CEO | BluePoint Finance",
-    image: "/assets/Director Images/Sandra.jpg"
+    image: "/assets/Director Images/Sandra.webp"
   },
   {
     name: "Kgaugelo Mokwena",
     role: "Executive Personal Assistant to Chairman",
-    image: "/assets/Director Images/Kgaugelo Mokwena.jpg"
+    image: "/assets/Director Images/Kgaugelo Mokwena.webp"
   },
   {
     name: "Thokozani Magwaza",
     role: "Regional Director | Central and West Africa (Ghana)",
-    image: "/assets/Director Images/Thokozani Magwaza.jpg"
+    image: "/assets/Director Images/Thokozani Magwaza.webp"
   },
   {
     name: "Adv. Emmanuel Tem",
     role: "Senior Consultant",
-    image: "/assets/Director Images/Adv. Emmanuel Tem.jpg"
+    image: "/assets/Director Images/Adv. Emmanuel Tem.webp"
   },
   {
     name: "Osborne Muvingi",
     role: "Senior Investment Officer | Africa",
-    image: "/assets/Director Images/Osborne Muvingi.jpg"
+    image: "/assets/Director Images/Osborne Muvingi.webp"
   },
   {
     name: "Zvikomborero Hoko",
     role: "Excellence Director | Africa (Zimbabwe)",
-    image: "/assets/Director Images/Zvikomborero Hoko.jpg"
+    image: "/assets/Director Images/Zvikomborero Hoko.webp"
   }
 ];
 
@@ -169,6 +169,8 @@ export const KeyPeople: React.FC = () => {
                       <img
                         src={person.image}
                         alt={person.name}
+                        loading={index < 3 ? 'eager' : 'lazy'}
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </div>

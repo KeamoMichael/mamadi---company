@@ -67,7 +67,7 @@ export const ContactPage: React.FC = () => {
       {/* Hero Section */}
       <section
         className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
-        style={{ backgroundImage: "url('/assets/officeBuilding.jpg')" }}
+        style={{ backgroundImage: "url('/assets/officeBuilding.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/75" />
         <div className="container relative mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">

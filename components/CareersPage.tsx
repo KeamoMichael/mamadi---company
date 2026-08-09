@@ -153,7 +153,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ setView }) => {
     <main className="pt-20">
       <section
         className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
-        style={{ backgroundImage: "url('/assets/Hero Section Images/Vacancies-Hero Section.jpeg')" }}
+        style={{ backgroundImage: "url('/assets/Hero Section Images/Vacancies-Hero Section.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/70" />
         <div className="container relative mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">

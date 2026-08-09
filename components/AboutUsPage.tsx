@@ -80,7 +80,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
       {/* About Hero */}
       <section
         className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
-        style={{ backgroundImage: "url('/assets/Hero Section Images/About Us-Hero Section.jpg')" }}
+        style={{ backgroundImage: "url('/assets/Hero Section Images/About Us-Hero Section.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/70" />
         <div className="container relative mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">
@@ -294,7 +294,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                 {/* Map Area */}
                 <div className="w-full aspect-square md:aspect-[16/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
                     <img
-                      src="/assets/mamadi-global-locations_A4.png"
+                      src="/assets/mamadi-global-locations_A4.webp"
                       alt="Mamadi International global locations"
                       className="h-full w-full object-cover object-center md:hidden"
                       loading="lazy"
