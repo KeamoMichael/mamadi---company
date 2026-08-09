@@ -1,11 +1,43 @@
 import React from 'react';
 import { Section } from './Section';
-import { ShieldCheck } from 'lucide-react';
 import { WorldMap } from './WorldMap';
+import { useNavbarHeight } from './useNavbarHeight';
 
-export const AboutUsPage: React.FC = () => {
+const groupChairman = { name: 'Mr Mabu Mamadi', role: 'Executive Chairman', area: 'Global' };
+
+const executiveLeadership = [
+  { name: 'Mr Manifield Mandigora', role: 'Chief Executive Officer', area: 'Mamadi USA' },
+  { name: 'Mr Avnish Gupta', role: 'Chief Executive Officer', area: 'Mamadi India' },
+  { name: 'Mr Ike Rampedi', role: 'Chief Executive Officer', area: 'Mamadi & Company South Africa' },
+  { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'Group delivery' },
+];
+
+const operationsDirector = { name: 'Dr Tendai Sawunyama', role: 'Operations Director', area: 'Africa' };
+
+const africaOperations = [
+  { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations' },
+  { name: 'Silver Mucavele', role: 'Director', area: 'Mozambique' },
+  { name: 'Thokozani Magwaza', role: 'Regional Director', area: 'Central & West Africa · Ghana' },
+  { name: 'Dr Victor Kongo', role: 'Regional Director', area: 'East Africa · Kenya' },
+  { name: 'Mr Zvikomborero Hoko', role: 'Excellence Director', area: 'Southern Africa · Zimbabwe' },
+];
+
+const specialistFunctions = [
+  { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'Group services' },
+  { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', area: 'United Kingdom' },
+  { name: 'Gustave Mizero', role: 'Projects Engineer', area: 'Engineering delivery' },
+  { name: 'Ms Lucia Mogale', role: 'Senior Project Administrator', area: 'Project support' },
+  { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment' },
+];
+
+type AboutUsPageProps = {
+  setView: (view: 'projects') => void;
+};
+
+export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
   const [activeSection, setActiveSection] = React.useState('who-we-are');
   const navRef = React.useRef<HTMLDivElement>(null);
+  const navbarHeight = useNavbarHeight();
 
   const sectionItems = [
     { name: 'Who We Are',              id: 'who-we-are' },
@@ -46,16 +78,20 @@ export const AboutUsPage: React.FC = () => {
   return (
     <div className="pt-20">
       {/* About Hero */}
-      <section className="bg-brand-blue pt-24 pb-36 md:pb-44 text-white">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
+      <section
+        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
+        style={{ backgroundImage: "url('/assets/Hero Section Images/About Us-Hero Section.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-brand-blue/70" />
+        <div className="container relative mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">
           <div className="max-w-3xl">
             <span className="text-white font-normal tracking-[0.04em] text-sm mb-4 block">About Mamadi International</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight text-white">
               Leading with technical excellence and community impact.
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Established as a multidisciplinary firm, Mamadi International has grown into a 
-              trusted partner for infrastructure development across Africa, combining 
+              Established as a multidisciplinary firm, Mamadi International has grown into a
+              trusted partner for infrastructure development across Africa, combining
               international standards with deep local insights.
             </p>
           </div>
@@ -63,7 +99,11 @@ export const AboutUsPage: React.FC = () => {
       </section>
 
       {/* Navigation for About Section (Internal) */}
-      <div ref={navRef} className="sticky top-[72px] bg-white/95 backdrop-blur-sm border-b border-gray-100 z-30 overflow-x-auto scrollbar-none">
+      <div
+        ref={navRef}
+        style={{ top: navbarHeight }}
+        className="sticky bg-white border-b border-gray-100 z-30 overflow-x-auto scrollbar-none"
+      >
         <div className="container mx-auto pl-6 md:px-12 lg:px-20 max-w-screen-2xl flex gap-10 whitespace-nowrap">
             {sectionItems.map((item, index) => (
                 <a
@@ -139,48 +179,92 @@ export const AboutUsPage: React.FC = () => {
       {/* Leadership & Governance Section */}
       <div id="leadership-&-governance">
         <Section label="Leadership & Governance">
-            <div className="flex flex-col gap-12">
-                <div className="flex flex-col gap-6">
-                    <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                        Our organization is anchored by a robust governance framework and strategic 
-                        oversight provided by an experienced Board of Directors and Executive Management 
-                        team. We uphold the highest standards of ethics, transparency, and accountability 
-                        across all operations.
-                    </p>
-                    <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                        As a Level 1 B-BBEE contributor, our leadership is committed to driving economic 
-                        transformation and fostering an inclusive corporate culture that empowers the 
-                        next generation of technical professionals.
-                    </p>
+          <div className="flex flex-col gap-12 md:gap-16">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-brand-blue md:text-4xl">
+                Leadership across the Mamadi Group.
+              </h2>
+              <p className="max-w-xl text-sm leading-relaxed text-gray-500 lg:justify-self-end">
+                Our organisational structure brings together group executives, regional directors,
+                operational leadership, and specialist expertise across Africa and international markets.
+              </p>
+            </div>
+
+            <div className="border-t border-brand-gold/45">
+              <div className="grid gap-8 py-10 md:grid-cols-[0.8fr_1.2fr] md:items-end md:py-14">
+                <div>
+                  <span className="text-sm text-brand-gold">Group leadership</span>
+                  <p className="mt-3 text-sm text-gray-400">{groupChairman.role} · {groupChairman.area}</p>
+                </div>
+                <h3 className="text-3xl font-semibold tracking-tight text-brand-blue md:text-5xl">
+                  {groupChairman.name}
+                </h3>
+              </div>
+
+              <div className="border-t border-gray-100 py-10 md:py-12">
+                <h3 className="mb-9 text-sm font-medium text-brand-gold">Executive leadership</h3>
+                <div className="grid gap-y-9 sm:grid-cols-2 md:divide-x md:divide-brand-gold/25 xl:grid-cols-4">
+                  {executiveLeadership.map((leader, index) => (
+                    <article
+                      key={leader.name}
+                      className={`md:px-7 ${index === 0 ? 'md:pl-0' : ''} ${index === executiveLeadership.length - 1 ? 'md:pr-0' : ''}`}
+                    >
+                      <p className="text-xs leading-relaxed text-gray-400">{leader.area}</p>
+                      <h4 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
+                      <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-8 border-y border-gray-100 py-10 md:grid-cols-[0.8fr_1.2fr] md:items-center md:py-12">
+                <div>
+                  <span className="text-sm text-brand-gold">Africa operations</span>
+                  <p className="mt-3 text-xs text-gray-400">Continental oversight and delivery</p>
+                </div>
+                <div className="border-l-2 border-brand-gold pl-6 md:pl-8">
+                  <h3 className="text-2xl font-semibold tracking-tight text-brand-blue">{operationsDirector.name}</h3>
+                  <p className="mt-2 text-sm text-gray-500">{operationsDirector.role} · {operationsDirector.area}</p>
+                </div>
+              </div>
+
+              <div className="grid gap-14 pt-12 lg:grid-cols-2 lg:gap-20">
+                <div>
+                  <h3 className="border-b border-brand-gold/35 pb-4 text-sm font-medium text-brand-gold">
+                    Regional & operational leadership
+                  </h3>
+                  <div className="divide-y divide-gray-100">
+                    {africaOperations.map((leader) => (
+                      <article key={leader.name} className="grid gap-2 py-6 sm:grid-cols-[1fr_1.2fr] sm:gap-6">
+                        <div>
+                          <h4 className="text-base font-semibold tracking-tight text-brand-blue">{leader.name}</h4>
+                          <p className="mt-1 text-xs text-gray-400">{leader.area}</p>
+                        </div>
+                        <p className="text-xs font-medium leading-relaxed text-gray-500 sm:text-right">{leader.role}</p>
+                      </article>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="bg-brand-blue p-10 text-white rounded-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="border-b border-brand-gold/35 pb-4 text-sm font-medium text-brand-gold">
+                    Specialist functions
+                  </h3>
+                  <div className="divide-y divide-gray-100">
+                    {specialistFunctions.map((leader) => (
+                      <article key={leader.name} className="grid gap-2 py-6 sm:grid-cols-[1fr_1.2fr] sm:gap-6">
                         <div>
-                            <h3 className="text-2xl font-semibold mb-6">Strategic Oversight</h3>
-                            <ul className="space-y-4">
-                                {['Robust Governance Framework', 'Ethical Leadership', 'Transparency & Accountability', 'Risk Management'].map(point => (
-                                    <li key={point} className="flex items-center gap-3 text-sm text-gray-300">
-                                        <ShieldCheck size={18} className="text-brand-gold" />
-                                        {point}
-                                    </li>
-                                ))}
-                            </ul>
+                          <h4 className="text-base font-semibold tracking-tight text-brand-blue">{leader.name}</h4>
+                          <p className="mt-1 text-xs text-gray-400">{leader.area}</p>
                         </div>
-                        <div>
-                            <h3 className="text-2xl font-semibold mb-6">Transformation</h3>
-                            <p className="text-sm text-gray-300 leading-relaxed mb-6">
-                                Our commitment to B-BBEE Level 1 status reflects our dedication to 
-                                meaningful economic participation and the professional development 
-                                of previously disadvantaged individuals.
-                            </p>
-                            <div className="inline-block px-4 py-2 border border-brand-gold text-brand-gold text-xs font-bold uppercase tracking-widest">
-                                B-BBEE Level 1 Contributor
-                            </div>
-                        </div>
-                    </div>
+                        <p className="text-xs font-medium leading-relaxed text-gray-500 sm:text-right">{leader.role}</p>
+                      </article>
+                    ))}
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </Section>
       </div>
 
@@ -190,38 +274,34 @@ export const AboutUsPage: React.FC = () => {
             <div className="flex flex-col gap-16">
                 <div className="flex flex-col gap-12">
                     <div className="flex flex-col gap-6 max-w-2xl">
+                        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-brand-blue">
+                            Mamadi Global Presence
+                        </h2>
                         <p className="text-sm text-gray-500 leading-relaxed">
-                            Headquartered in South Africa, Mamadi International maintains a strategic 
-                            regional presence with a growing footprint across the African continent. 
-                            Our ability to mobilize technical expertise across diverse territories 
-                            allows us to address complex infrastructure challenges in varying 
+                            Headquartered in South Africa, Mamadi International maintains a strategic
+                            regional presence with a growing footprint across the African continent.
+                            Our ability to mobilize technical expertise across diverse territories
+                            allows us to address complex infrastructure challenges in varying
                             regulatory and environmental contexts.
                         </p>
                         <p className="text-sm text-gray-500 leading-relaxed">
-                            We are committed to regional integration and delivering excellence 
+                            We are committed to regional integration and delivering excellence
                             wherever our clients require sophisticated engineering and consulting solutions.
                         </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
-                        <div className="flex flex-col gap-6">
-                            <h1 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Local</h1>
-                            <p className="text-sm text-brand-gold font-medium">South african roots</p>
-                        </div>
-                        <div className="flex flex-col gap-6">
-                            <h1 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Regional</h1>
-                            <p className="text-sm text-brand-gold font-medium">Sadc presence</p>
-                        </div>
-                        <div className="flex flex-col gap-6">
-                            <h1 className="text-5xl md:text-6xl font-bold text-brand-blue tracking-tighter">Pan-African</h1>
-                            <p className="text-sm text-brand-gold font-medium">Strategic growth</p>
-                        </div>
                     </div>
                 </div>
 
                 {/* Map Area */}
                 <div className="w-full aspect-square md:aspect-[16/9] rounded-sm overflow-hidden border border-gray-100 shadow-sm">
-                    <WorldMap />
+                    <img
+                      src="/assets/mamadi-global-locations_A4.png"
+                      alt="Mamadi International global locations"
+                      className="h-full w-full object-cover object-center md:hidden"
+                      loading="lazy"
+                    />
+                    <div className="hidden h-full w-full md:block">
+                      <WorldMap />
+                    </div>
                 </div>
             </div>
         </Section>
@@ -264,9 +344,16 @@ export const AboutUsPage: React.FC = () => {
                             lives through innovative and sustainable infrastructure solutions.
                         </p>
                     </div>
-                    <button className="px-8 py-3 bg-brand-blue text-white hover:bg-brand-blue/90 transition-all text-sm font-semibold">
+                    <a
+                      href="/projects"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setView('projects');
+                      }}
+                      className="px-8 py-3 bg-brand-blue text-white hover:bg-brand-blue/90 transition-all text-sm font-semibold"
+                    >
                         View Our Projects
-                    </button>
+                    </a>
                 </div>
             </div>
         </Section>

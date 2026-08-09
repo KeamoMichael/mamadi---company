@@ -10,20 +10,24 @@ export const InsightsPage: React.FC = () => {
     <div className="bg-white min-h-screen">
 
       {/* Page header */}
-      <div className="bg-brand-blue pt-36 pb-36 md:pb-44 px-6 md:px-12 lg:px-20">
-        <div className="container mx-auto max-w-screen-2xl">
+      <section
+        className="relative overflow-hidden bg-brand-blue bg-cover bg-center px-6 pt-36 pb-36 text-white md:px-12 md:pb-44 lg:px-20"
+        style={{ backgroundImage: "url('/assets/pexels-contact-building.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-brand-blue/75" />
+        <div className="container relative mx-auto max-w-screen-2xl">
           <p className="text-white text-sm font-normal tracking-[0.04em] mb-5">
-            In The Field
+            Mamadi In Motion
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight max-w-3xl">
-            Latest Engagements<br />
-            <span className="text-white">&amp; Events</span>
+            Progress across our<br />
+            <span className="text-white">global network.</span>
           </h1>
           <p className="mt-6 text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
-            Mamadi International leadership and specialist teams are active across Africa and internationally — building partnerships, presenting research, and advancing sustainable infrastructure development.
+            A curated record of Mamadi International’s recent expansion, partnerships and technology-led engineering initiatives across Africa and international markets.
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Events */}
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl py-20 md:py-28">
@@ -47,6 +51,7 @@ export const InsightsPage: React.FC = () => {
                     (e.currentTarget as HTMLImageElement).src = FALLBACK;
                   }}
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: event.imagePosition ?? 'center' }}
                 />
               </div>
 
@@ -58,12 +63,7 @@ export const InsightsPage: React.FC = () => {
               >
                 {/* Meta */}
                 <div className="flex items-center gap-4 flex-wrap">
-                  <span
-                    className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm
-                      ${event.tag === 'Upcoming'
-                        ? 'bg-brand-gold text-white'
-                        : 'bg-brand-blue/5 text-brand-blue'}`}
-                  >
+                  <span className="border border-brand-gold bg-brand-gold px-3 py-1.5 text-xs font-medium text-white">
                     {event.tag}
                   </span>
                   <span className="flex items-center gap-1.5 text-xs text-gray-400">
@@ -79,9 +79,6 @@ export const InsightsPage: React.FC = () => {
                 <h2 className="text-2xl md:text-3xl font-semibold text-brand-blue leading-snug tracking-tight">
                   {event.title}
                 </h2>
-
-                {/* Gold divider */}
-                <div className="w-10 h-0.5 bg-brand-gold" />
 
                 <p className="text-sm md:text-base text-gray-500 leading-relaxed">
                   {event.description}

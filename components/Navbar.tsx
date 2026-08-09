@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
-type View = 'home' | 'about' | 'projects' | 'contact' | 'insights';
+type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies';
 
 interface NavbarProps {
   setView: (view: View) => void;
@@ -10,8 +10,41 @@ interface NavbarProps {
 
 const logoTextSegments = [
   { name: 'Mamadi', src: '/assets/Mamadi text01.png', delay: 0 },
-  { name: 'International', src: '/assets/Mamadi text02.png', delay: 120 },
 ];
+
+const navHref = (itemName: string) => ({
+  'Mamadi Sectors': '/sectors',
+  'Our Projects': '/projects',
+  Insights: '/insights',
+  Careers: '/careers',
+  'About Us': '/about',
+}[itemName] || '/');
+
+const sectionHref = (itemName: string, subItemName: string) => {
+  const sectionIds: Record<string, Record<string, string>> = {
+    'Mamadi Sectors': {
+      Transportation: 'transportation',
+      'Water and Environment': 'water-and-environment',
+      'Technology and Innovation': 'technology-and-innovation',
+      'Energy and Power': 'energy-and-power',
+      'Engineering and Management': 'engineering-and-management',
+    },
+    'Our Projects': {
+      'Water & Sanitation': 'water-&-sanitation',
+      Energy: 'energy',
+      Environmental: 'environmental',
+      Sustainability: 'sustainability',
+    },
+    'About Us': {
+      'Who We Are': 'who-we-are',
+      'Leadership & Governance': 'leadership-&-governance',
+      'Geographic Footprint': 'geographic-footprint',
+      'Strategy & Values': 'strategy-&-values',
+    },
+  };
+  const section = sectionIds[itemName]?.[subItemName];
+  return section ? `${navHref(itemName)}#${section}` : navHref(itemName);
+};
 
 export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,25 +60,24 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
 
   const navItems = [
     {
-      name: 'Mamadi Divisions',
+      name: 'Mamadi Sectors',
       hasDropdown: true,
       items: [
-        'Civil Engineering',
-        'Project Management',
-        'Environmental Services',
-        'Town Planning',
-        'Electrical Engineering'
+        'Transportation',
+        'Water and Environment',
+        'Technology and Innovation',
+        'Energy and Power',
+        'Engineering and Management'
       ]
     },
-    { name: 'Our Projects', hasDropdown: false },
     {
-      name: 'Public Participation',
+      name: 'Our Projects',
       hasDropdown: true,
       items: [
-        'Stakeholder Engagement',
-        'Social Facilitation',
-        'Community Surveys',
-        'Conflict Resolution'
+        'Water & Sanitation',
+        'Energy',
+        'Environmental',
+        'Sustainability'
       ]
     },
     { name: 'Insights', hasDropdown: false },
@@ -53,10 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
       name: 'Careers',
       hasDropdown: true,
       items: [
-        'Working at Mamadi',
-        'Vacancies',
-        'Graduate Program',
-        'Bursaries'
+        'Vacancies'
       ]
     },
     {
@@ -77,14 +106,55 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
 
   const handleNavClick = (itemName: string, subItemName?: string) => {
     setIsOpen(false);
+
+    if (itemName === 'Mamadi Sectors') {
+      setView('sectors');
+      if (subItemName) {
+        setTimeout(() => {
+          const sectorSectionIds: Record<string, string> = {
+            Transportation: 'transportation',
+            'Water and Environment': 'water-and-environment',
+            'Technology and Innovation': 'technology-and-innovation',
+            'Energy and Power': 'energy-and-power',
+            'Engineering and Management': 'engineering-and-management',
+          };
+          const element = document.getElementById(sectorSectionIds[subItemName]);
+          if (element) {
+            const y = element.getBoundingClientRect().top + window.scrollY - 150;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }, 100);
+      }
+      return;
+    }
     
     if (itemName === 'Our Projects') {
       setView('projects');
+      if (subItemName) {
+        setTimeout(() => {
+          const projectSectionIds: Record<string, string> = {
+            'Water & Sanitation': 'water-&-sanitation',
+            Energy: 'energy',
+            Environmental: 'environmental',
+            Sustainability: 'sustainability',
+          };
+          const element = document.getElementById(projectSectionIds[subItemName]);
+          if (element) {
+            const y = element.getBoundingClientRect().top + window.scrollY - 150;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }, 100);
+      }
       return;
     }
 
     if (itemName === 'Insights') {
       setView('insights');
+      return;
+    }
+
+    if (itemName === 'Careers') {
+      setView('vacancies');
       return;
     }
 
@@ -108,23 +178,28 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
   return (
     <>
       <nav
+        id="site-navbar"
         className="fixed z-50 top-0 left-0 w-full bg-white py-4 border-b border-gray-100"
       >
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
           <div className="relative flex items-center justify-between">
             {/* Logo */}
-            <div
-              onClick={() => setView('home')}
+            <a
+              href="/"
+              onClick={(event) => {
+                event.preventDefault();
+                setView('home');
+              }}
               className="flex items-center gap-2 select-none cursor-pointer z-10"
-              aria-label="Mamadi International"
+              aria-label="Mamadi"
             >
               <img
                 src="/assets/cropped-mamadi_and_company_logo-1-e1712595837297.png"
                 alt=""
                 aria-hidden="true"
-                className="h-4 md:h-5 w-auto object-contain"
+                className="h-5 md:h-6 w-auto object-contain"
               />
-              <div className="hidden [@media(min-width:360px)]:flex h-2.5 md:h-3.5 items-center gap-0 overflow-hidden">
+              <div className="hidden [@media(min-width:360px)]:flex h-3.5 md:h-4 items-center gap-0 overflow-hidden">
                 {logoTextSegments.map((segment) => (
                   <span key={segment.name} className="block h-full overflow-hidden">
                     <img
@@ -140,7 +215,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                   </span>
                 ))}
               </div>
-            </div>
+            </a>
 
             {/* Desktop Nav Links — slides to true center after logo text animates out */}
             <div
@@ -157,16 +232,18 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
                   <a
-                    href="#"
+                    href={navHref(item.name)}
                     onClick={(e) => {
                         e.preventDefault();
-                        if (!item.hasDropdown) handleNavClick(item.name);
+                        handleNavClick(item.name);
                     }}
                     className={`flex items-center gap-1 transition-colors py-3 ${
                       (item.name === 'Our Projects' && currentView === 'projects') ||
+                      (item.name === 'Mamadi Sectors' && currentView === 'sectors') ||
                       (item.name === 'About Us' && currentView === 'about') ||
-                      (item.name === 'Insights' && currentView === 'insights')
-                        ? 'text-brand-gold font-bold'
+                      (item.name === 'Insights' && currentView === 'insights') ||
+                      (item.name === 'Careers' && currentView === 'vacancies')
+                        ? 'text-brand-gold'
                         : 'hover:text-brand-gold'
                     }`}
                   >
@@ -183,13 +260,14 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                         {item.items.map((subItem) => (
                           <a
                             key={subItem}
-                            href="#"
+                            href={sectionHref(item.name, subItem)}
                             onClick={(e) => {
                                 e.preventDefault();
                                 handleNavClick(item.name, subItem);
                             }}
-                            className="block px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-brand-gold transition-colors border-l-2 border-transparent hover:border-brand-gold"
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-brand-gold transition-colors border-l-2 border-transparent hover:border-brand-gold"
                           >
+                            {item.name === 'Our Projects' && <ProjectMenuIcon category={subItem} />}
                             {subItem}
                           </a>
                         ))}
@@ -203,7 +281,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
             {/* Right side: Contact Us (desktop) + Mobile Menu Button */}
             <div className="flex items-center gap-4 z-10">
               <a
-                href="#"
+                href="/contact"
                 onClick={(e) => {
                     e.preventDefault();
                     setView('contact');
@@ -217,10 +295,34 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                 Contact Us
               </a>
               <button
-                className="lg:hidden text-brand-blue p-2"
-                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                className="lg:hidden flex h-10 w-10 items-center justify-center text-brand-blue"
+                aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation"
+                onClick={() => setIsOpen((open) => !open)}
               >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                <span className="relative block h-6 w-6" aria-hidden="true">
+                  {[0, 1, 2].map((line) => {
+                    const closedY = line === 0 ? -5.5 : line === 2 ? 5.5 : 0;
+                    const rotation = line === 0 ? 45 : line === 2 ? -45 : 0;
+
+                    return (
+                      <span
+                        key={line}
+                        className="absolute left-1/2 top-1/2 block h-0.5 w-6 rounded-full bg-current"
+                        style={{
+                          opacity: isOpen && line === 1 ? 0 : 1,
+                          transform: isOpen
+                            ? `translate(-50%, -50%) rotate(${rotation}deg) scaleX(${line === 1 ? 0 : 1})`
+                            : `translate(-50%, calc(-50% + ${closedY}px)) rotate(0deg) scaleX(1)`,
+                          transition: 'transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 150ms ease',
+                          transformOrigin: 'center',
+                        }}
+                      />
+                    );
+                  })}
+                </span>
               </button>
             </div>
           </div>
@@ -229,6 +331,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
 
       {/* Mobile Overlay */}
       <div
+        id="mobile-navigation"
         className={`
           fixed inset-0 bg-white z-40 transition-transform duration-300 lg:hidden overflow-y-auto
           ${isOpen ? 'translate-x-0' : 'translate-x-full'} 
@@ -248,23 +351,29 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                   : `opacity 0.22s ease ${(navItems.length - 1 - index) * 35}ms, transform 0.22s ease ${(navItems.length - 1 - index) * 35}ms`,
               }}
             >
-              <div
-                className="flex items-center justify-between cursor-pointer"
-                onClick={() => {
-                    if (item.hasDropdown) {
-                        toggleMobileDropdown(item.name);
-                    } else {
-                        handleNavClick(item.name);
-                    }
-                }}
-              >
-                <span className={item.hasDropdown && mobileOpenDropdown === item.name ? 'text-brand-gold' : ''}>
+              <div className="flex items-center justify-between">
+                <a
+                  href={navHref(item.name)}
+                  className={`flex-1 cursor-pointer text-left ${item.hasDropdown && mobileOpenDropdown === item.name ? 'text-brand-gold' : ''}`}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleNavClick(item.name);
+                  }}
+                >
                   {item.name}
-                </span>
+                </a>
                 {item.hasDropdown && (
-                  mobileOpenDropdown === item.name
-                    ? <ChevronUp size={16} className="text-brand-gold" />
-                    : <ChevronDown size={16} />
+                  <button
+                    type="button"
+                    aria-label={`${mobileOpenDropdown === item.name ? 'Close' : 'Open'} ${item.name} sections`}
+                    aria-expanded={mobileOpenDropdown === item.name}
+                    className="cursor-pointer p-2"
+                    onClick={() => toggleMobileDropdown(item.name)}
+                  >
+                    {mobileOpenDropdown === item.name
+                      ? <ChevronUp size={16} className="text-brand-gold" />
+                      : <ChevronDown size={16} />}
+                  </button>
                 )}
               </div>
 
@@ -278,8 +387,8 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                     return (
                     <a
                       key={subItem}
-                      href="#"
-                      className="block text-sm text-gray-500 py-1"
+                      href={sectionHref(item.name, subItem)}
+                      className="flex items-center gap-3 text-sm text-gray-500 py-1"
                       style={{
                         opacity: isThisOpen ? 1 : 0,
                         transform: isThisOpen ? 'translateX(0)' : 'translateX(-14px)',
@@ -292,6 +401,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                           handleNavClick(item.name, subItem);
                       }}
                     >
+                      {item.name === 'Our Projects' && <ProjectMenuIcon category={subItem} />}
                       {subItem}
                     </a>
                     );
@@ -311,7 +421,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
             }}
           >
             <a
-              href="#"
+              href="/contact"
               className="w-full block text-center px-5 py-3 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-300 rounded-sm font-semibold text-sm"
               onClick={(e) => {
                   e.preventDefault();
@@ -328,3 +438,52 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
   );
 };
 
+const ProjectMenuIcon: React.FC<{ category: string }> = ({ category }) => {
+  const common = {
+    width: 17,
+    height: 17,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.35,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    className: 'shrink-0 text-brand-gold',
+    'aria-hidden': true,
+  };
+
+  if (category === 'Water & Sanitation') {
+    return (
+      <svg {...common}>
+        <path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+        <path d="M4 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+      </svg>
+    );
+  }
+
+  if (category === 'Energy') {
+    return (
+      <svg {...common}>
+        <path d="M13 3 7 13h5l-1 8 6-11h-5l1-7Z" />
+      </svg>
+    );
+  }
+
+  if (category === 'Sustainability') {
+    return (
+      <svg {...common}>
+        <path d="M7 7a7 7 0 0 1 11 2" />
+        <path d="m18 5 .5 4-4-.5" />
+        <path d="M17 17a7 7 0 0 1-11-2" />
+        <path d="m6 19-.5-4 4 .5" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...common}>
+      <path d="M5 15c7 .2 11-4 14-10" />
+      <path d="M5 15c1-6 6-9 14-10 0 9-5 14-14 10Z" />
+    </svg>
+  );
+};

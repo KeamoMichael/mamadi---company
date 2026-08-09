@@ -1,0 +1,76 @@
+@keyframes project-path-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+.project-icon-awaiting {
+  opacity: 0;
+}
+
+.project-icon-water,
+.project-icon-energy,
+.project-icon-environment,
+.project-icon-sustainability {
+  opacity: 1;
+  stroke-width: 1.25;
+}
+
+/* Water: draw the two flowing lines one after the other. */
+.project-icon-water path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: project-path-draw 850ms ease-out 150ms forwards;
+}
+
+.project-icon-water path:nth-child(2) {
+  animation-delay: 400ms;
+}
+
+/* Energy: trace the complete lightning bolt in one decisive movement. */
+.project-icon-energy path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: project-path-draw 1.05s cubic-bezier(0.22, 1, 0.36, 1) 150ms forwards;
+}
+
+/* Environment: establish the leaf silhouette, then reveal its inner vein. */
+.project-icon-environment path:nth-child(2) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: project-path-draw 1s ease-out 150ms forwards;
+}
+
+.project-icon-environment path:nth-child(1) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: project-path-draw 600ms ease-out 650ms forwards;
+}
+
+/* Sustainability: assemble the circular cycle clockwise, segment by segment. */
+.project-icon-sustainability path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: project-path-draw 500ms ease-out 150ms forwards;
+}
+
+.project-icon-sustainability path:nth-child(2) { animation-delay: 420ms; }
+.project-icon-sustainability path:nth-child(3) { animation-delay: 690ms; }
+.project-icon-sustainability path:nth-child(4) { animation-delay: 960ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .project-icon-awaiting,
+  .project-icon-water,
+  .project-icon-energy,
+  .project-icon-environment,
+  .project-icon-sustainability {
+    opacity: 1;
+  }
+
+  .project-icon-water path,
+  .project-icon-energy path,
+  .project-icon-environment path,
+  .project-icon-sustainability path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

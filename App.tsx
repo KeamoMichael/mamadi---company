@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -13,9 +13,37 @@ import { AboutUsPage } from './components/AboutUsPage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { ContactPage } from './components/ContactPage';
 import { InsightsPage } from './components/InsightsPage';
+import { CareersPage } from './components/CareersPage';
+import { SectorsPage } from './components/SectorsPage';
+import { Seo } from './components/Seo';
+
+type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies';
+
+const viewPaths: Record<View, string> = {
+  home: '/',
+  about: '/about',
+  projects: '/projects',
+  sectors: '/sectors',
+  contact: '/contact',
+  insights: '/insights',
+  vacancies: '/careers',
+};
+
+const getViewFromPath = (): View => {
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  return (Object.entries(viewPaths).find(([, route]) => route === path)?.[0] as View) || 'home';
+};
 
 function App() {
-  const [view, setView] = useState<'home' | 'about' | 'projects' | 'contact' | 'insights'>('home');
+  const [view, setCurrentView] = useState<View>(getViewFromPath);
+
+  const setView = useCallback((nextView: View) => {
+    const nextPath = viewPaths[nextView];
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({ view: nextView }, '', nextPath);
+    }
+    setCurrentView(nextView);
+  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -35,8 +63,15 @@ function App() {
     window.scrollTo(0, 0);
   }, [view]);
 
+  useEffect(() => {
+    const handlePopState = () => setCurrentView(getViewFromPath());
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-brand-blue font-sans selection:bg-brand-gold selection:text-white">
+      <Seo view={view} />
       <Navbar setView={setView} currentView={view} />
       
       {view === 'home' && (
@@ -51,13 +86,17 @@ function App() {
         </>
       )}
 
-      {view === 'about' && <AboutUsPage />}
+      {view === 'about' && <AboutUsPage setView={setView} />}
       
       {view === 'projects' && <ProjectsPage />}
+
+      {view === 'sectors' && <SectorsPage />}
 
       {view === 'contact' && <ContactPage />}
 
       {view === 'insights' && <InsightsPage />}
+
+      {view === 'vacancies' && <CareersPage setView={setView} />}
 
       <Footer setView={setView} />
     </div>

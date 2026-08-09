@@ -4,34 +4,79 @@ import { TeamMember } from '../types';
 
 const leadership: TeamMember[] = [
   {
-    name: "Mr Mabu Enos Mamadi",
-    role: "Chairman of the Board",
-    image: "/assets/Chairman Image.jpg"
+    name: "Mabu Mamadi",
+    role: "Chairman | Mamadi International",
+    image: "/assets/Director Images/Mabu.jpg"
   },
   {
-    name: "Mr Jacob Maroga",
-    role: "Board Member",
-    image: "/assets/Board Images_Updated/Mr Maroga.jpg"
+    name: "Dr Tendai Sawunyama",
+    role: "Operations Director | Africa",
+    image: "/assets/Director Images/Dr Tendai.jpg"
   },
   {
-    name: "Ms Danai Magugumela",
-    role: "Board Member",
-    image: "/assets/Board Images_Updated/Ms Magugumela - Updated.jpg"
+    name: "Avnish Gupta",
+    role: "CEO | Mamadi India",
+    image: "/assets/Director Images/Avish Gupta.jpg"
   },
   {
-    name: "Mr Ike Rampedi",
-    role: "CEO, Board Member",
-    image: "/assets/Board Images_Updated/Mr Rampedi - Updated.jpg"
+    name: "Ike Rampedi",
+    role: "CEO | Mamadi SA",
+    image: "/assets/Director Images/Ike.jpg"
   },
   {
-    name: "Mr Langton Ndlovu",
-    role: "Board Advisor | Finance & Tax",
-    image: "/assets/Board Images_Updated/Mr Ndlovu_02.jpg"
+    name: "Victor Kongo",
+    role: "Regional Director | East Africa (Kenya)",
+    image: "/assets/Director Images/Victor.jpg"
   },
   {
-    name: "Ms Teboho Mofokeng",
-    role: "Board Advisor | Engineering & Technology",
-    image: "/assets/Board Images_Updated/Ms Mofokeng - Updated.jpg"
+    name: "Seokhoon Ko",
+    role: "Finance and Infrastructure Planning: Specialist (UK)",
+    image: "/assets/Director Images/Seokhoon Ko.jpg"
+  },
+  {
+    name: "Valentine Chadyiwa",
+    role: "EPC Director",
+    image: "/assets/Director Images/Valentine.jpg"
+  },
+  {
+    name: "Silver Mucavele",
+    role: "CEO | Mamadi Mozambique",
+    image: "/assets/Director Images/Silver Mucavele.jpg"
+  },
+  {
+    name: "Manfield Mandigora",
+    role: "CEO | Mamadi USA",
+    image: "/assets/Director Images/Manfield Mandigora.jpg"
+  },
+  {
+    name: "Sandra Govere",
+    role: "CEO | BluePoint Finance",
+    image: "/assets/Director Images/Sandra.jpg"
+  },
+  {
+    name: "Kgaugelo Mokwena",
+    role: "Executive Personal Assistant to Chairman",
+    image: "/assets/Director Images/Kgaugelo Mokwena.jpg"
+  },
+  {
+    name: "Thokozani Magwaza",
+    role: "Regional Director | Central and West Africa (Ghana)",
+    image: "/assets/Director Images/Thokozani Magwaza.jpg"
+  },
+  {
+    name: "Adv. Emmanuel Tem",
+    role: "Senior Consultant",
+    image: "/assets/Director Images/Adv. Emmanuel Tem.jpg"
+  },
+  {
+    name: "Osborne Muvingi",
+    role: "Senior Investment Officer | Africa",
+    image: "/assets/Director Images/Osborne Muvingi.jpg"
+  },
+  {
+    name: "Zvikomborero Hoko",
+    role: "Excellence Director | Africa (Zimbabwe)",
+    image: "/assets/Director Images/Zvikomborero Hoko.jpg"
   }
 ];
 
@@ -130,7 +175,9 @@ export const KeyPeople: React.FC = () => {
 
                     <div className="flex flex-col gap-1">
                       <h3 className="text-xl font-semibold text-brand-blue tracking-tight">{person.name}</h3>
-                      <p className="text-xs text-brand-gold font-medium">{person.role}</p>
+                      {person.role && (
+                        <p className="text-xs text-brand-gold font-medium">{person.role}</p>
+                      )}
                     </div>
                   </div>
                 ))}

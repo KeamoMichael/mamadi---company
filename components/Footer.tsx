@@ -1,27 +1,29 @@
 import React from 'react';
-import { Facebook, Twitter, Linkedin, Instagram, ChevronRight } from 'lucide-react';
+import { ChevronRight, Instagram } from 'lucide-react';
+import { headOffice } from '../data/contact';
 
 interface FooterProps {
-  setView: (view: 'home' | 'about' | 'projects' | 'contact' | 'insights') => void;
+  setView: (view: 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ setView }) => {
   const currentYear = new Date().getFullYear();
+  const headOfficeMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(headOffice.mapAddress)}`;
 
   const services = [
-    { label: 'Civil Engineering',       view: 'projects' as const },
-    { label: 'Project Management',      view: 'projects' as const },
-    { label: 'Environmental Services',  view: 'projects' as const },
-    { label: 'Town Planning',           view: 'projects' as const },
-    { label: 'Electrical Engineering',  view: 'projects' as const },
+    { label: 'Transportation',              view: 'sectors' as const, section: 'transportation' },
+    { label: 'Water and Environment',       view: 'sectors' as const, section: 'water-and-environment' },
+    { label: 'Technology and Innovation',   view: 'sectors' as const, section: 'technology-and-innovation' },
+    { label: 'Energy and Power',            view: 'sectors' as const, section: 'energy-and-power' },
+    { label: 'Engineering and Management',  view: 'sectors' as const, section: 'engineering-and-management' },
   ];
 
   const company = [
-    { label: 'About Us',   view: 'about'   as const },
-    { label: 'Leadership', view: 'about'   as const },
-    { label: 'Careers',    view: 'contact' as const },
-    { label: 'Insights',   view: 'insights' as const },
-    { label: 'Contact Us', view: 'contact' as const },
+    { label: 'About Us',   view: 'about' as const, href: '/about' },
+    { label: 'Leadership', view: 'about' as const, href: '/about#leadership-&-governance' },
+    { label: 'Careers',    view: 'vacancies' as const, href: '/careers' },
+    { label: 'Insights',   view: 'insights' as const, href: '/insights' },
+    { label: 'Contact Us', view: 'contact' as const, href: '/contact' },
   ];
 
   return (
@@ -31,21 +33,38 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
           
           {/* Brand Column */}
           <div className="flex flex-col gap-6">
-            <div className="w-fit">
-                <img 
-                src="/assets/Mamadi International - Official Logo.png" 
-                alt="Mamadi International" 
+            <div className="flex w-fit items-center gap-2" aria-label="Mamadi">
+              <img
+                src="/assets/cropped-mamadi_and_company_logo-1-e1712595837297.png"
+                alt=""
+                aria-hidden="true"
                 className="h-5 md:h-6 w-auto object-contain"
-                />
+              />
+              <img
+                src="/assets/Mamadi text01.png"
+                alt="Mamadi"
+                className="h-3.5 md:h-4 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
               We are a multi-disciplinary infrastructure development and consulting firm committed to excellence and sustainable community growth.
             </p>
             <div className="flex items-center gap-4 mt-2">
-              <SocialIcon icon={<Linkedin size={18} />} href="#" />
-              <SocialIcon icon={<Twitter size={18} />} href="#" />
-              <SocialIcon icon={<Facebook size={18} />} href="#" />
-              <SocialIcon icon={<Instagram size={18} />} href="#" />
+              <SocialIcon
+                icon={<SocialBrandIcon brand="x" />}
+                href="https://x.com/MamadiInternati?s=20"
+                label="Follow Mamadi International on X"
+              />
+              <SocialIcon
+                icon={<SocialBrandIcon brand="facebook" />}
+                href="https://www.facebook.com/profile.php?id=61592327621760"
+                label="Follow Mamadi International on Facebook"
+              />
+              <SocialIcon
+                icon={<Instagram size={18} />}
+                href="https://www.instagram.com/mamadi.international?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                label="Follow Mamadi International on Instagram"
+              />
             </div>
           </div>
 
@@ -55,10 +74,21 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
             <ul className="space-y-3">
               {services.map((item) => (
                 <li key={item.label}>
-                  <button onClick={() => setView(item.view)} className="text-gray-500 hover:text-brand-gold text-sm flex items-center gap-2 group transition-colors">
+                  <a
+                    href={`/sectors#${item.section}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setView(item.view);
+                      setTimeout(() => {
+                        const element = document.getElementById(item.section);
+                        if (element) element.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }}
+                    className="text-gray-500 hover:text-brand-gold text-sm flex items-center gap-2 group transition-colors"
+                  >
                     <ChevronRight size={14} className="text-brand-gold/50 group-hover:text-brand-gold transition-colors" />
                     {item.label}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -70,10 +100,17 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
             <ul className="space-y-3">
               {company.map((item) => (
                 <li key={item.label}>
-                  <button onClick={() => setView(item.view)} className="text-gray-500 hover:text-brand-gold text-sm flex items-center gap-2 group transition-colors">
+                  <a
+                    href={item.href}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setView(item.view);
+                    }}
+                    className="text-gray-500 hover:text-brand-gold text-sm flex items-center gap-2 group transition-colors"
+                  >
                     <ChevronRight size={14} className="text-brand-gold/50 group-hover:text-brand-gold transition-colors" />
                     {item.label}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -82,36 +119,59 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
           {/* Contact Info */}
           <div className="flex flex-col gap-6">
             <h4 className="text-white font-bold text-sm uppercase tracking-widest">Connect</h4>
-            <div className="flex flex-col gap-4 text-sm text-gray-400">
-              <div className="flex items-start gap-3">
+            <div className="flex flex-col gap-3 text-sm text-gray-400">
+              <a
+                href={headOfficeMapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Mamadi's Midrand head office in Google Maps"
+                title="Open in Google Maps"
+                className="flex cursor-pointer items-start gap-3 text-inherit no-underline hover:text-inherit"
+              >
                 <FooterContactIcon>
                   <MinimalFooterIcon variant="location" />
                 </FooterContactIcon>
                 <span>
-                  22 Invicta Road<br />
-                  Thandanani Office Park<br />
-                  Midview, Carlswald<br />
-                  1685
+                  {headOffice.addressLines.map((line, index) => (
+                    <React.Fragment key={line}>
+                      {line}{index < headOffice.addressLines.length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
                 </span>
-              </div>
-              <div className="flex items-center gap-3">
+              </a>
+              <a
+                href="tel:+27115328659"
+                aria-label="Call Mamadi on +27 11 532 8659"
+                title="Call Mamadi"
+                className="flex cursor-pointer items-center gap-3 text-inherit no-underline hover:text-inherit"
+              >
                 <FooterContactIcon>
                   <MinimalFooterIcon variant="phone" />
                 </FooterContactIcon>
                 <span>Tel | +27 11 532 8659</span>
-              </div>
-              <div className="flex items-center gap-3">
+              </a>
+              <a
+                href="tel:+275328400"
+                aria-label="Call Mamadi's fax number on +27 532 8400"
+                title="Contact Mamadi by fax"
+                className="flex cursor-pointer items-center gap-3 text-inherit no-underline hover:text-inherit"
+              >
                 <FooterContactIcon>
                   <MinimalFooterIcon variant="fax" />
                 </FooterContactIcon>
-                <span>Fax | +27 11 532 840</span>
-              </div>
-              <div className="flex items-center gap-3">
+                <span>Fax | +27 532 8400</span>
+              </a>
+              <a
+                href="mailto:info@mamadi.co.za"
+                aria-label="Email Mamadi at info@mamadi.co.za"
+                title="Email Mamadi"
+                className="flex cursor-pointer items-center gap-3 text-inherit no-underline hover:text-inherit"
+              >
                 <FooterContactIcon>
                   <MinimalFooterIcon variant="mail" />
                 </FooterContactIcon>
                 <span>info@mamadi.co.za</span>
-              </div>
+              </a>
             </div>
           </div>
 
@@ -120,10 +180,16 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
           <p>&copy; {currentYear} Mamadi International. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-brand-blue transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-brand-blue transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-brand-blue transition-colors">PAIA Manual</a>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+            <span className="cursor-default">
+              Privacy Notice
+            </span>
+            <span className="cursor-default">
+              Website Terms
+            </span>
+            <span className="cursor-default">
+              PAIA Access
+            </span>
           </div>
         </div>
       </div>
@@ -132,16 +198,32 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
 };
 
 // Helper Component for Social Icons
-const SocialIcon: React.FC<{ icon: React.ReactNode; href: string }> = ({ icon, href }) => {
+const SocialIcon: React.FC<{ icon: React.ReactNode; href: string; label: string }> = ({ icon, href, label }) => {
   return (
     <a 
-      href={href} 
-      className="w-8 h-8 rounded-full bg-brand-blue/5 flex items-center justify-center text-brand-blue hover:bg-brand-blue hover:text-white transition-all duration-300"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="w-8 h-8 rounded-full bg-brand-blue flex items-center justify-center text-white hover:bg-brand-blue/90 transition-all duration-300"
     >
       {icon}
     </a>
   );
 };
+
+type SocialBrand = 'x' | 'facebook';
+
+const socialBrandPaths: Record<SocialBrand, string> = {
+  x: 'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z',
+  facebook: 'M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.438H7.078v-3.489h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.973h-1.513c-1.49 0-1.956.931-1.956 1.887v2.261h3.328l-.532 3.489h-2.796V24C19.612 23.094 24 18.1 24 12.073Z',
+};
+
+const SocialBrandIcon: React.FC<{ brand: SocialBrand }> = ({ brand }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d={socialBrandPaths[brand]} />
+  </svg>
+);
 
 const FooterContactIcon: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span className="flex h-7 w-7 shrink-0 items-center justify-center text-brand-gold">

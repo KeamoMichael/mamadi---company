@@ -27,20 +27,22 @@ export const Section: React.FC<SectionProps> = ({
           <div className="flex flex-col md:flex-row gap-12 md:gap-8">
             
             {/* Left Column - Label */}
-            <div className="md:w-1/4 flex flex-col gap-4 shrink-0">
-              {displayLabel && (
-                <div className="flex items-start gap-2">
-                  <span className={`text-sm font-normal tracking-[0.04em] ${dark ? 'text-white' : 'text-brand-gold'}`}>
-                    {displayLabel}
-                  </span>
-                </div>
-              )}
-              {labelSubtitle && (
-                <p className={`text-sm max-w-[160px] leading-relaxed ${dark ? 'text-gray-300' : 'text-gray-500'}`}>
-                  {labelSubtitle}
-                </p>
-              )}
-            </div>
+            {!fullWidthContent && (
+              <div className="md:w-1/4 flex flex-col gap-4 shrink-0">
+                {displayLabel && (
+                  <div className="flex items-start gap-2">
+                    <span className={`text-sm font-normal tracking-[0.04em] ${dark ? 'text-white' : 'text-brand-gold'}`}>
+                      {displayLabel}
+                    </span>
+                  </div>
+                )}
+                {labelSubtitle && (
+                  <p className={`text-sm max-w-[160px] leading-relaxed ${dark ? 'text-gray-300' : 'text-gray-500'}`}>
+                    {labelSubtitle}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Right Column - Content */}
             <div className={`flex-grow ${fullWidthContent ? 'w-full' : 'md:w-3/4'}`}>

@@ -6,37 +6,63 @@ export interface Event {
   title: string;
   description: string;
   image: string;
+  imagePosition?: string;
 }
 
 export const events: Event[] = [
   {
     id: 1,
-    tag: 'Upcoming',
-    location: 'Gurugram, India',
-    date: 'March 28, 2026',
-    title: 'Launching the Global Center of Excellence for Engineering Design (GCEED)',
+    tag: 'Global Expansion',
+    location: 'Washington, D.C., United States',
+    date: 'July 2026',
+    title: 'Mamadi has launched in the United States',
     description:
-      'Mamadi International is establishing the Global Center of Excellence for Engineering Design (GCEED), based in Gurugram, India — a landmark step in our international expansion. The GCEED is designed to centralise engineering design and innovation at a world-class level, heighten adherence to international design standards, build deep engineering excellence across our disciplines, and establish globally recognised engineering practices that set the benchmark for infrastructure delivery across emerging and developed markets.',
-    image: '/assets/events/india-forum.jpg',
+      'Mamadi International has officially launched in Washington, D.C., extending its global footprint into the United States. The new presence creates a platform for cross-border partnerships, engineering collaboration and infrastructure advisory work connecting the United States, Africa and Mamadi’s wider international network.',
+    image: '/Insights/July/07%20July/BG%20Image.jpg',
+    imagePosition: 'center',
   },
   {
     id: 2,
-    tag: 'Recent',
-    location: 'Nairobi, Kenya',
-    date: 'February 2026',
-    title: 'African Union Urban Development Summit',
+    tag: 'Digital Infrastructure',
+    location: 'Global',
+    date: 'July 2026',
+    title: 'Engineering the infrastructure behind artificial intelligence',
     description:
-      'Mamadi International executives participated in the AU Urban Development Summit, engaging with government stakeholders on integrated township planning and sustainable energy infrastructure across East Africa.',
-    image: '/assets/events/nairobi-summit.jpg',
+      'Mamadi is strengthening its engineering offering for AI-ready and compute-intensive data centres. The work brings together multidisciplinary design, utilities, power, cooling and infrastructure coordination—from early concept development through commissioning.',
+    image: '/Insights/Data%20Centres.jpeg',
+    imagePosition: 'center',
   },
   {
     id: 3,
-    tag: 'Recent',
-    location: 'Cape Town, South Africa',
-    date: 'January 2026',
-    title: 'Southern Africa Water & Sanitation Symposium',
+    tag: 'International Partnership',
+    location: 'Mikkeli, Finland',
+    date: 'June 2026',
+    title: 'Building an innovation and technology partnership in Finland',
     description:
-      'Our environmental engineering team presented case studies on community-scale water treatment solutions, highlighting our work in underserved municipalities across the Southern African Development Community.',
-    image: '/assets/events/capetown-water.jpg',
+      'Mamadi leadership met with Finnish catalytic organisations in Mikkeli to advance cooperation around innovation, technology and sustainable infrastructure. The engagement supports Mamadi’s ambition to connect international expertise with infrastructure opportunities across its operating markets.',
+    image: '/Insights/June/08%20June/Finland%20Photos/WhatsApp%20Image%202026-06-09%20at%2020.29.15.jpeg',
+    imagePosition: 'center 42%',
+  },
+  {
+    id: 4,
+    tag: 'Centre of Excellence',
+    location: 'Gurgaon, India',
+    date: 'March 2026',
+    title: 'Mamadi India advances its Global Centre of Excellence',
+    description:
+      'The Gurgaon-based centre is being developed as a specialist platform for engineering design, artificial intelligence and robotics. It is intended to deepen technical capability, strengthen international design standards and connect multidisciplinary expertise across Mamadi’s global operations.',
+    image: '/Insights/Gurgaon%20India.jpg',
+    imagePosition: 'center',
+  },
+  {
+    id: 5,
+    tag: 'Innovation',
+    location: 'Singapore',
+    date: 'March 2026',
+    title: 'Establishing an AI and robotics innovation centre in Singapore',
+    description:
+      'Mamadi’s Singapore initiative focuses on applied artificial intelligence and robotics for engineering and infrastructure. The centre extends the company’s innovation network into Asia and supports the development of technology-led solutions for complex project environments.',
+    image: '/Insights/Singapore.jpg',
+    imagePosition: 'center',
   },
 ];

@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
+import { Mouse } from 'lucide-react';
 
 const QUOTE_LINES = [
   "The people who are crazy enough",
@@ -16,8 +17,8 @@ const getHeroMediaHeight = () => {
   }
 
   if (window.innerHeight <= 570) return 60;
-  if (window.innerHeight <= 720) return 80;
-  return 200;
+  if (window.innerHeight <= 720) return 60;
+  return 120;
 };
 
 
@@ -43,6 +44,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
   const line3Ref         = useRef<HTMLParagraphElement>(null);
   const attrRef          = useRef<HTMLParagraphElement>(null);
   const rafRef           = useRef<number | null>(null);
+  const slowScrollRef    = useRef<number | null>(null);
+  const [showScrollButton, setShowScrollButton] = useState(true);
+  const [scrollButtonOnDark, setScrollButtonOnDark] = useState(false);
 
   const applyHeroFade = (
     ref: React.RefObject<HTMLElement>,
@@ -77,13 +81,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
     const scrollable = container.offsetHeight - viewportH; // 600px
     if (scrollable <= 0) return;
 
-    const scrolled  = -container.getBoundingClientRect().top;
+    const rect      = container.getBoundingClientRect();
+    const scrolled  = -rect.top;
     const progress  = clamp(scrolled / scrollable);
+    setShowScrollButton(rect.top < viewportH && rect.bottom >= viewportH - 4);
 
     // Phase 1: expansion (progress 0 → 0.5) — quartic ease holds near-zero longer
     const expandT = clamp(progress / 0.5);
     const eased   = quartEaseInOut(expandT);
     const videoH  = baseH + (viewportH - baseH) * eased;
+    const buttonOffsetFromBottom = window.innerWidth >= 768 ? 32 : 24;
+    setScrollButtonOnDark(videoH > buttonOffsetFromBottom + 64);
 
     if (videoContainerRef.current) {
       videoContainerRef.current.style.height = `${videoH}px`;
@@ -125,14 +133,67 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
     rafRef.current = requestAnimationFrame(update);
   }, [update]);
 
+  const stopSlowScroll = useCallback(() => {
+    if (slowScrollRef.current) {
+      cancelAnimationFrame(slowScrollRef.current);
+      slowScrollRef.current = null;
+    }
+  }, []);
+
+  const scrollPastHero = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    stopSlowScroll();
+
+    const startY = window.scrollY;
+    const targetY = startY + container.getBoundingClientRect().bottom;
+    const distance = targetY - startY;
+    const duration = 9000;
+    const startedAt = performance.now();
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (now: number) => {
+      const t = clamp((now - startedAt) / duration);
+      window.scrollTo(0, startY + distance * easeInOutCubic(t));
+
+      if (t < 1) {
+        slowScrollRef.current = requestAnimationFrame(step);
+      } else {
+        slowScrollRef.current = null;
+        setShowScrollButton(false);
+      }
+    };
+
+    slowScrollRef.current = requestAnimationFrame(step);
+  }, [stopSlowScroll]);
+
   useEffect(() => {
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     update(); // set initial state on mount
     return () => {
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      stopSlowScroll();
     };
-  }, [onScroll, update]);
+  }, [onScroll, stopSlowScroll, update]);
+
+  useEffect(() => {
+    const cancelOnUserInput = () => stopSlowScroll();
+
+    window.addEventListener('wheel', cancelOnUserInput, { passive: true });
+    window.addEventListener('touchstart', cancelOnUserInput, { passive: true });
+    window.addEventListener('keydown', cancelOnUserInput);
+
+    return () => {
+      window.removeEventListener('wheel', cancelOnUserInput);
+      window.removeEventListener('touchstart', cancelOnUserInput);
+      window.removeEventListener('keydown', cancelOnUserInput);
+    };
+  }, [stopSlowScroll]);
 
   return (
     // Outer scroll driver — 100vh (pinned scene) + 900px (larger zone = slower, more cinematic)
@@ -143,40 +204,61 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
         className="sticky top-0 overflow-hidden bg-white"
         style={{ height: '100vh' }}
       >
+        <button
+          type="button"
+          onClick={scrollPastHero}
+          aria-label="Click to scroll"
+          className={`fixed left-1/2 bottom-6 md:bottom-8 z-40 -translate-x-1/2 flex flex-col items-center justify-center gap-1.5 transition-all duration-500 hover:text-brand-gold focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-gold ${
+            showScrollButton ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+          } ${scrollButtonOnDark ? 'text-white' : 'text-brand-blue'}`}
+        >
+          <Mouse className="h-4 w-4 md:h-5 md:w-5" strokeWidth={1.6} />
+          <span className="text-[9px] font-semibold uppercase leading-none tracking-[0.16em] md:text-[10px]">
+            click to scroll
+          </span>
+        </button>
 
         {/* Hero text — fills white space above video, vertically centred */}
         {/* top-16 clears the fixed navbar on mobile; md:top-0 on desktop has enough room */}
         <div
-          className="absolute top-20 md:top-28 [@media(min-width:1024px)_and_(max-height:720px)]:top-36 left-0 right-0 flex flex-col items-center justify-center pb-0 [@media(min-width:360px)]:pb-6 md:pb-0"
+          className="absolute top-28 [@media(max-width:767px)_and_(max-height:720px)]:top-20 md:top-28 [@media(min-width:1024px)_and_(max-height:720px)]:top-36 left-0 right-0 flex flex-col items-center justify-center pb-14 [@media(max-width:767px)_and_(max-height:720px)]:pb-8 md:pb-0"
           style={{ bottom: `${getHeroMediaHeight()}px` }}
         >
           <div className="container mx-auto px-6 md:px-12 text-center">
             <h1
               ref={heroH1Ref}
-              className="text-3xl [@media(min-width:360px)]:text-4xl md:text-5xl lg:text-7xl [@media(min-width:1024px)_and_(max-height:720px)]:text-6xl font-semibold tracking-tight mb-2 [@media(min-width:360px)]:mb-3 md:mb-8 [@media(min-width:1024px)_and_(max-height:720px)]:mb-5 leading-tight text-brand-blue"
+              className="text-4xl md:text-5xl font-semibold tracking-tight mb-5 md:mb-10 [@media(min-width:1024px)_and_(max-height:720px)]:mb-6 leading-tight text-brand-blue"
             >
               Engineering the Future of <br className="hidden md:block" />
               <span className="text-brand-gold">Infrastructure</span> in Africa and Beyond
             </h1>
             <p
               ref={heroPRef}
-              className="text-xs [@media(min-width:360px)]:text-sm md:text-xl [@media(min-width:1024px)_and_(max-height:720px)]:text-lg text-gray-500 max-w-3xl mx-auto mb-2 [@media(min-width:360px)]:mb-4 md:mb-12 [@media(min-width:1024px)_and_(max-height:720px)]:mb-7 leading-relaxed font-light"
+              className="text-sm md:text-base text-gray-500 max-w-3xl mx-auto mb-6 md:mb-14 [@media(min-width:1024px)_and_(max-height:720px)]:mb-8 leading-relaxed font-normal"
             >
               Mamadi International is a multidisciplinary consulting firm delivering world-class
               engineering, environmental, and project management solutions. We bridge the gap
               between technical excellence and sustainable community development.
             </p>
             <div ref={heroBtnsRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              <button
-                onClick={() => setView('projects')}
+              <a
+                href="/projects"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setView('projects');
+                }}
                 className="w-full sm:w-auto px-8 py-3.5 bg-brand-gold hover:bg-brand-blue text-white font-semibold tracking-wide transition-all duration-300 rounded-sm text-sm">
                 Our Expertise
-              </button>
-              <button
-                onClick={() => setView('contact')}
+              </a>
+              <a
+                href="/contact"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setView('contact');
+                }}
                 className="w-full sm:w-auto px-8 py-3.5 border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold tracking-wide transition-all duration-300 rounded-sm text-sm">
                 Contact Us
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -206,7 +288,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
               <p
                 key={i}
                 ref={ref}
-                className="text-white font-light text-left text-3xl md:text-3xl lg:text-4xl w-full max-w-2xl leading-tight tracking-tight md:tracking-[0.01em]"
+                className="text-white font-normal text-left text-3xl md:text-3xl lg:text-4xl w-full max-w-2xl leading-tight tracking-tight md:tracking-[0.01em]"
                 style={{ opacity: 0, transform: 'translateY(16px)', filter: 'blur(10px)' }}
               >
                 {QUOTE_LINES[i]}

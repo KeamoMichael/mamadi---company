@@ -1,76 +1,140 @@
 import React from 'react';
 import { Section } from './Section';
 import { FadeIn } from './FadeIn';
+import { useNavbarHeight } from './useNavbarHeight';
 
-// Data Structure
-type Category = 'Water & Sanitation' | 'Social Infrastructure' | 'Energy & Power' | 'Environmental Services';
+type Category = 'Water & Sanitation' | 'Energy' | 'Environmental' | 'Sustainability';
 
-interface Project {
+export interface Project {
   title: string;
-  client: string;
-  location: string;
-  services: string[];
+  location?: string;
+  value?: string;
   category: Category;
-  description: string;
 }
 
-const projects: Project[] = [
+export const projects: Project[] = [
   {
-    title: "Gauteng Schools Rehabilitation Programme",
-    client: "Independent Development Trust (IDT)",
-    location: "Gauteng, South Africa",
-    category: "Social Infrastructure",
-    services: ["Project Management", "Construction Supervision", "Quality Assurance"],
-    description: "A comprehensive rehabilitation initiative to upgrade educational facilities, ensuring safe and conducive learning environments across the province."
+    title: 'Upgrade and Refurbishment of Olifantspoort and Ebenezer Water Schemes',
+    location: 'South Africa',
+    value: '$1.1 Billion USD',
+    category: 'Water & Sanitation',
   },
   {
-    title: "Upgrading of Water & Sanitation Infrastructure",
-    client: "City of Ekurhuleni",
-    location: "Ekurhuleni, South Africa",
-    category: "Water & Sanitation",
-    services: ["Civil Engineering", "Hydraulic Modeling", "Contract Administration"],
-    description: "Large-scale municipal infrastructure upgrade aimed at improving water reliability and sanitation standards for growing urban communities."
+    title: 'Implementation of the New Ncandu Dam, Water Treatment Works and Associated Infrastructure',
+    location: 'Amajuba District, KwaZulu-Natal, South Africa',
+    value: '$188 Million USD',
+    category: 'Water & Sanitation',
   },
   {
-    title: "Construction of Strategic Reservoirs & Pipelines",
-    client: "Rand Water",
-    location: "Zwartkopjes, South Africa",
-    category: "Water & Sanitation",
-    services: ["Structural Engineering", "Project Controls", "Site Engineering"],
-    description: "Critical bulk water infrastructure development to secure long-term water supply resilience for the region."
+    title: 'Impedle WWTP, Richmond/Greater Indalene Sanitation Scheme and Khambathini WWTP Supply Scheme to the SEZ',
+    location: 'South Africa',
+    value: '$352 Million USD',
+    category: 'Water & Sanitation',
   },
   {
-    title: "Environmental Impact Assessment for Transmission Lines",
-    client: "Eskom Holdings SOC Ltd",
-    location: "Various Locations, SA",
-    category: "Environmental Services",
-    services: ["EIA Studies", "Public Participation", "Environmental Management Plans"],
-    description: "Conducting rigorous environmental assessments to facilitate the expansion of the national power grid while preserving ecological integrity."
+    title: 'New Glass Plant Pre-Feasibility Study',
+    location: 'Melbourne, Australia',
+    value: '$176 Million USD',
+    category: 'Water & Sanitation',
   },
   {
-    title: "Electrification of Rural Households",
-    client: "Department of Energy",
-    location: "Limpopo & Mpumalanga",
-    category: "Energy & Power",
-    services: ["Electrical Engineering", "Network Planning", "Community Liaison"],
-    description: "A high-impact electrification program connecting remote rural households to the national grid, fostering economic development and social equity."
-  }
+    title: 'Bankable Feasibility Study for a 136MWp Solar PV Project',
+    location: 'Rustenburg, South Africa',
+    value: '$176 Million USD',
+    category: 'Energy',
+  },
+  {
+    title: 'Bid Windows 5 and 6 of the Renewable Energy Independent Power Producer Procurement Programme',
+    location: 'South Africa',
+    value: '$2.9 Million USD',
+    category: 'Energy',
+  },
+  {
+    title: 'Transaction Advisory for Renewable Energy Interventions in Government Buildings',
+    location: 'South Africa',
+    value: '$2.5 Million USD',
+    category: 'Energy',
+  },
+  {
+    title: 'Development of the Shell Downstream South Africa Climate Change Report',
+    location: 'South Africa',
+    value: '$10,000 USD',
+    category: 'Environmental',
+  },
+  {
+    title: 'Feasibility Study for a Waste Buy-Back Centre Facility',
+    value: '$21,000 USD',
+    category: 'Environmental',
+  },
+  {
+    title: 'Air Quality Impact Assessment for the Proposed Extension of the Shell Polokwane Fuel Depot',
+    location: 'Polokwane, South Africa',
+    value: '$50,000 USD',
+    category: 'Environmental',
+  },
+  {
+    title: 'Development of Environmental Management Plans for Bethlehem and Ermelo Depots',
+    location: 'Bethlehem and Ermelo, South Africa',
+    category: 'Environmental',
+  },
+  {
+    title: "Quantifying the Impact of Sasol's Offsetting Interventions for Sasolburg and Secunda Operations",
+    location: 'Sasolburg and Secunda, South Africa',
+    category: 'Environmental',
+  },
+  {
+    title: 'Development of a National Framework for Weather, Water and Climate Services for Zambia',
+    location: 'Zambia',
+    value: '$100,000 USD',
+    category: 'Sustainability',
+  },
+  {
+    title: 'Low-Carbon and Climate-Resilient Industrial Development — Phase II',
+    location: 'Egypt, Kenya, Senegal and South Africa',
+    value: '$15,000 USD',
+    category: 'Sustainability',
+  },
+  {
+    title: 'Guidelines for a National Framework for Weather, Water and Climate Services for WMO',
+    location: 'International',
+    value: '$20,000 USD',
+    category: 'Sustainability',
+  },
+  {
+    title: 'Mpumalanga Climate Change Response Strategy and Implementation Plan for the Agricultural Sector',
+    location: 'Mpumalanga, South Africa',
+    value: '$100,000 USD',
+    category: 'Sustainability',
+  },
 ];
 
-type ProjectIcon = 'water' | 'social' | 'energy' | 'environment';
+export const getProjectSlug = (title: string) => title
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/(^-|-$)/g, '');
 
-const categories: { id: string; label: Category; icon: ProjectIcon }[] = [
-  { id: 'water-&-sanitation', label: 'Water & Sanitation', icon: 'water' },
-  { id: 'social-infrastructure', label: 'Social Infrastructure', icon: 'social' },
-  { id: 'energy-&-power', label: 'Energy & Power', icon: 'energy' },
-  { id: 'environmental-services', label: 'Environmental Services', icon: 'environment' },
+type ProjectIcon = 'water' | 'energy' | 'environment' | 'sustainability';
+
+const categories: { id: string; label: Category; icon: ProjectIcon; description: string }[] = [
+  { id: 'water-&-sanitation', label: 'Water & Sanitation', icon: 'water', description: 'Bulk water, treatment, sanitation and industrial feasibility projects.' },
+  { id: 'energy', label: 'Energy', icon: 'energy', description: 'Renewable energy feasibility, procurement and transaction advisory projects.' },
+  { id: 'environmental', label: 'Environmental', icon: 'environment', description: 'Climate reporting, waste feasibility, air quality and environmental management programmes.' },
+  { id: 'sustainability', label: 'Sustainability', icon: 'sustainability', description: 'Climate services, low-carbon development and regional response strategies.' },
 ];
+
+const categoryIconAnimations: Record<ProjectIcon, string> = {
+  water: 'project-icon-water',
+  energy: 'project-icon-energy',
+  environment: 'project-icon-environment',
+  sustainability: 'project-icon-sustainability',
+};
 
 export const ProjectsPage: React.FC = () => {
     const getProjectsByCategory = (catLabel: string) => projects.filter(p => p.category === catLabel);
 
     const [activeSection, setActiveSection] = React.useState(categories[0].id);
     const navRef = React.useRef<HTMLDivElement>(null);
+    const navbarHeight = useNavbarHeight();
 
     React.useEffect(() => {
         const observers: IntersectionObserver[] = [];
@@ -104,16 +168,20 @@ export const ProjectsPage: React.FC = () => {
     return (
         <div className="pt-20 min-h-screen bg-white">
              {/* Hero Section (Matched to AboutUsPage) */}
-            <section className="bg-brand-blue pt-24 pb-36 md:pb-44 text-white">
-                <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-screen-2xl">
+            <section
+                className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
+                style={{ backgroundImage: "url('/assets/Hero Section Images/Our Projects-Hero Section03.jpg')" }}
+            >
+                <div className="absolute inset-0 bg-brand-blue/70" />
+                <div className="container relative mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">
                 <div className="max-w-3xl">
                     <span className="text-white font-normal tracking-[0.04em] text-sm mb-4 block">Project Portfolio</span>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 leading-tight text-white">
                     Engineering a sustainable future.
                     </h1>
                     <p className="text-gray-300 text-lg leading-relaxed">
-                    From critical water infrastructure to social development and energy solutions, 
-                    our portfolio demonstrates the breadth of our technical expertise and our 
+                    From critical water infrastructure to social development and energy solutions,
+                    our portfolio demonstrates the breadth of our technical expertise and our
                     commitment to excellence across Africa.
                     </p>
                 </div>
@@ -121,14 +189,18 @@ export const ProjectsPage: React.FC = () => {
             </section>
 
             {/* Sticky Navigation */}
-            <div ref={navRef} className="sticky top-[72px] bg-white/95 backdrop-blur-sm border-b border-gray-100 z-30 overflow-x-auto scrollbar-none">
+            <div
+                ref={navRef}
+                style={{ top: navbarHeight }}
+                className="sticky bg-white border-b border-gray-100 z-30 overflow-x-auto scrollbar-none"
+            >
                 <div className="container mx-auto pl-6 md:px-12 lg:px-20 max-w-screen-2xl flex items-center gap-10 whitespace-nowrap">
                     {categories.map((cat, index) => (
                         <a
                             key={cat.id}
                             data-section={cat.id}
                             href={`#${cat.id}`}
-                            className={`group flex items-center gap-3 py-6 text-sm font-semibold transition-colors relative ${
+                            className={`group flex items-center gap-3 pt-8 pb-6 text-sm font-semibold transition-colors relative ${
                                 activeSection === cat.id ? 'text-brand-gold' : 'text-gray-500 hover:text-brand-blue'
                             } ${index === categories.length - 1 ? 'pr-4 md:pr-0' : ''}`}
                             onClick={(e) => {
@@ -163,67 +235,63 @@ export const ProjectsPage: React.FC = () => {
 
                     return (
                         <div id={category.id} key={category.id} className="border-b border-gray-100 last:border-0 scroll-mt-40">
-                            <Section className="py-20 md:py-32">
-                                <div className="flex flex-col gap-16">
-                                    {/* Category Header */}
+                            <Section className="py-20 md:py-32" fullWidthContent>
+                                <div className="grid gap-12 md:grid-cols-[minmax(220px,0.28fr)_minmax(0,0.72fr)] md:gap-10 lg:grid-cols-[minmax(260px,0.26fr)_minmax(0,0.74fr)] lg:gap-16">
                                     <FadeIn>
-                                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-l-4 border-brand-gold pl-6">
-                                            <div>
-                                                <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-2">{category.label}</h2>
-                                                <p className="text-gray-500 max-w-xl">
-                                                    Delivering specialized engineering solutions that address complex challenges in the {category.label.toLowerCase()} sector.
-                                                </p>
+                                        <div className="pt-6 md:sticky md:top-40">
+                                            <div className="flex items-start gap-4">
+                                                <AnimatedProjectIcon
+                                                    variant={category.icon}
+                                                />
+                                                <h2 className="text-3xl font-semibold leading-tight tracking-tight text-brand-blue lg:text-4xl">
+                                                    {category.label}
+                                                </h2>
                                             </div>
+                                            <p className="mt-5 max-w-xs pl-12 text-sm leading-relaxed text-gray-500">
+                                                {category.description}
+                                            </p>
                                         </div>
                                     </FadeIn>
 
-                                    {/* Projects List for this Category */}
-                                    <div className="flex flex-col gap-24">
+                                    <div className="flex flex-col">
                                         {categoryProjects.map((project, idx) => (
                                             <FadeIn key={idx} delay={idx * 100}>
-                                                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 pb-16 border-b border-gray-100 last:border-0 last:pb-0">
-                                                    
-                                                    {/* Project Title & Desc */}
-                                                    <div className="lg:w-5/12 flex flex-col gap-6">
-                                                        <div className="space-y-4">
-                                                            <h3 className="text-2xl md:text-3xl font-semibold text-brand-blue leading-tight">
-                                                                {project.title}
-                                                            </h3>
-                                                            <div className="text-sm font-medium text-brand-gold">
-                                                                <span className="text-brand-blue/55">Client</span>
-                                                                <span className="mx-2 text-brand-blue/25">/</span>
-                                                                <span>{project.client}</span>
-                                                            </div>
-                                                        </div>
-                                                        <p className="text-base text-gray-500 leading-relaxed">
-                                                            {project.description}
-                                                        </p>
+                                                <article
+                                                  id={getProjectSlug(project.title)}
+                                                  className={`scroll-mt-40 grid gap-8 border-b border-gray-100 py-14 md:py-16 lg:grid-cols-[minmax(245px,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12 xl:gap-16 ${idx === 0 ? 'pt-6 md:pt-6' : ''}`}
+                                                >
+                                                    <div>
+                                                        <span className="mb-3 block text-xs font-medium text-brand-gold">Project value</span>
+                                                        {project.value ? (
+                                                          <p className="text-3xl font-semibold leading-none tracking-tight text-brand-blue md:text-4xl xl:text-[2.65rem]">
+                                                            {project.value}
+                                                          </p>
+                                                        ) : (
+                                                          <p className="text-sm text-gray-400">Not stated in the reference</p>
+                                                        )}
                                                     </div>
 
-                                                    {/* Details */}
-                                                    <div className="lg:w-7/12 flex flex-col justify-end">
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                                            <div className="space-y-4">
-                                                                <span className="text-sm font-semibold text-brand-gold tracking-normal block">Primary Location</span>
-                                                                <div className="flex items-center gap-2 text-brand-blue font-medium">
+                                                    <div>
+                                                        <span className="mb-3 block text-xs font-medium text-gray-400">Selected experience</span>
+                                                        <h3 className="text-xl font-medium leading-snug text-brand-blue md:text-2xl">
+                                                            <a
+                                                              href={`/projects#${getProjectSlug(project.title)}`}
+                                                              className="hover:text-brand-gold transition-colors"
+                                                            >
+                                                              {project.title}
+                                                            </a>
+                                                        </h3>
+                                                        {project.location && (
+                                                              <div className="mt-6 space-y-2">
+                                                                <span className="block text-xs font-medium text-gray-400">Location</span>
+                                                                <div className="flex items-center gap-2 text-sm font-medium leading-relaxed text-brand-blue">
                                                                     <ProjectLocationIcon />
                                                                     <span>{project.location}</span>
                                                                 </div>
-                                                            </div>
-                                                            <div className="space-y-4">
-                                                                <span className="text-sm font-semibold text-brand-gold tracking-normal block">Scope of Services</span>
-                                                                <ul className="flex flex-wrap gap-x-6 gap-y-3">
-                                                                    {project.services.map((s, i) => (
-                                                                        <li key={i} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
-                                                                            <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
-                                                                            {s}
-                                                                        </li>
-                                                                    ))}
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+                                                              </div>
+                                                        )}
                                                     </div>
-                                                </div>
+                                                </article>
                                             </FadeIn>
                                         ))}
                                     </div>
@@ -248,22 +316,55 @@ const iconBase = {
     strokeLinejoin: 'round' as const,
 };
 
+const AnimatedProjectIcon: React.FC<{ variant: ProjectIcon }> = ({ variant }) => {
+    const iconRef = React.useRef<HTMLSpanElement>(null);
+    const [isVisible, setIsVisible] = React.useState(false);
+
+    React.useEffect(() => {
+        const element = iconRef.current;
+        if (!element) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.7 }
+        );
+
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <span ref={iconRef} className="flex h-10 w-10 shrink-0 items-center justify-center">
+            <ProjectNavIcon
+                variant={variant}
+                className={`h-10 w-10 text-brand-gold ${isVisible ? categoryIconAnimations[variant] : 'project-icon-awaiting'}`}
+            />
+        </span>
+    );
+};
+
 const ProjectNavIcon: React.FC<{ variant: ProjectIcon; className?: string }> = ({ variant, className }) => {
     if (variant === 'water') {
         return (
             <svg {...iconBase} className={className} aria-hidden="true">
-                <path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
-                <path d="M4 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                <path pathLength="1" d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
+                <path pathLength="1" d="M4 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
             </svg>
         );
     }
 
-    if (variant === 'social') {
+    if (variant === 'sustainability') {
         return (
             <svg {...iconBase} className={className} aria-hidden="true">
-                <path d="M5 19V9l7-4 7 4v10" />
-                <path d="M8 19v-7h8v7" />
-                <path d="M10 15h4" />
+                <path pathLength="1" d="M7 7a7 7 0 0 1 11 2" />
+                <path pathLength="1" d="m18 5 .5 4-4-.5" />
+                <path pathLength="1" d="M17 17a7 7 0 0 1-11-2" />
+                <path pathLength="1" d="m6 19-.5-4 4 .5" />
             </svg>
         );
     }
@@ -271,15 +372,15 @@ const ProjectNavIcon: React.FC<{ variant: ProjectIcon; className?: string }> = (
     if (variant === 'energy') {
         return (
             <svg {...iconBase} className={className} aria-hidden="true">
-                <path d="M13 3 7 13h5l-1 8 6-11h-5l1-7Z" />
+                <path pathLength="1" d="M13 3 7 13h5l-1 8 6-11h-5l1-7Z" />
             </svg>
         );
     }
 
     return (
         <svg {...iconBase} className={className} aria-hidden="true">
-            <path d="M5 15c7 .2 11-4 14-10" />
-            <path d="M5 15c1-6 6-9 14-10 0 9-5 14-14 10Z" />
+            <path pathLength="1" d="M5 15c7 .2 11-4 14-10" />
+            <path pathLength="1" d="M5 15c1-6 6-9 14-10 0 9-5 14-14 10Z" />
         </svg>
     );
 };
