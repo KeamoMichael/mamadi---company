@@ -16,6 +16,7 @@
 - Updated every URL in `sitemap.xml` to the production domain.
 - Updated the sitemap reference in `robots.txt`.
 - Added Vercel SPA rewrites so direct routes such as `/about` and `/projects` return HTTP 200 instead of 404.
+- Added a host-specific `X-Robots-Tag: noindex` response header to the Vercel hostname so only the branded domain is eligible for Google indexing.
 - Verified the live homepage, About page, Projects page, robots file, and sitemap.
 
 ## Google Search Console setup
