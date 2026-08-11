@@ -8,8 +8,8 @@ const siteUrl = 'https://mamadi-company.vercel.app';
 const pageSeo: Record<View, { path: string; title: string; description: string }> = {
   home: {
     path: '/',
-    title: 'Mamadi International | Engineering & Infrastructure Consulting',
-    description: 'Mamadi International delivers multidisciplinary engineering, infrastructure, environmental, energy and project advisory solutions across Africa and international markets.',
+    title: 'Mamadi International | Engineering & Infrastructure Consultancy',
+    description: 'Mamadi International is a multidisciplinary engineering and infrastructure consultancy delivering advisory, environmental, energy and project solutions across Africa and international markets.',
   },
   about: {
     path: '/about',
