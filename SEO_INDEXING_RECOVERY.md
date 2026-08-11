@@ -25,7 +25,10 @@
 - Added and verified the initial Vercel URL-prefix property using an HTML meta tag; the branded `https://www.mamadiinternational.com/` property is the primary property going forward.
 - Submitted `sitemap.xml`; Search Console accepted the submission.
 - The initial sitemap table briefly reported `Couldn't fetch`, but Search Console has now processed it successfully and discovered all 7 submitted pages.
-- The homepage indexing request reached Google's live-URL test, but Google returned `Quota exceeded`. Retry the homepage and remaining priority URLs after the daily quota resets.
+- The earlier Vercel-property homepage request returned `Quota exceeded`; the branded-domain request below was accepted successfully.
+- Added and verified the primary URL-prefix property for `https://www.mamadiinternational.com/`.
+- Submitted the branded-domain sitemap and confirmed that Google discovered the branded homepage from it.
+- Requested indexing for `https://www.mamadiinternational.com/`; Google accepted it into the priority crawl queue.
 
 1. Open https://search.google.com/search-console.
 2. Add a **URL-prefix property** for:
