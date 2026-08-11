@@ -2,9 +2,9 @@
 
 ## Production website
 
-- Website: https://mamadi-company.vercel.app/
-- Sitemap: https://mamadi-company.vercel.app/sitemap.xml
-- Robots file: https://mamadi-company.vercel.app/robots.txt
+- Website: https://www.mamadiinternational.com/
+- Sitemap: https://www.mamadiinternational.com/sitemap.xml
+- Robots file: https://www.mamadiinternational.com/robots.txt
 
 ## Technical fixes completed
 
@@ -22,7 +22,7 @@
 
 ### Status on 11 August 2026
 
-- Added and verified the URL-prefix property for `https://mamadi-company.vercel.app/` using an HTML meta tag.
+- Added and verified the initial Vercel URL-prefix property using an HTML meta tag; the branded `https://www.mamadiinternational.com/` property is the primary property going forward.
 - Submitted `sitemap.xml`; Search Console accepted the submission.
 - The initial sitemap table briefly reported `Couldn't fetch`, but Search Console has now processed it successfully and discovered all 7 submitted pages.
 - The homepage indexing request reached Google's live-URL test, but Google returned `Quota exceeded`. Retry the homepage and remaining priority URLs after the daily quota resets.
@@ -30,7 +30,7 @@
 1. Open https://search.google.com/search-console.
 2. Add a **URL-prefix property** for:
 
-   `https://mamadi-company.vercel.app/`
+   `https://www.mamadiinternational.com/`
 
 3. Complete Google ownership verification.
 4. If Google provides an HTML verification meta tag, add it to `index.html`, deploy it, and click **Verify** in Search Console.
@@ -45,13 +45,13 @@
 
 Use **URL Inspection** and request indexing for these URLs, beginning with the homepage:
 
-1. https://mamadi-company.vercel.app/
-2. https://mamadi-company.vercel.app/about
-3. https://mamadi-company.vercel.app/projects
-4. https://mamadi-company.vercel.app/sectors
-5. https://mamadi-company.vercel.app/contact
-6. https://mamadi-company.vercel.app/insights
-7. https://mamadi-company.vercel.app/careers
+1. https://www.mamadiinternational.com/
+2. https://www.mamadiinternational.com/about
+3. https://www.mamadiinternational.com/projects
+4. https://www.mamadiinternational.com/sectors
+5. https://www.mamadiinternational.com/contact
+6. https://www.mamadiinternational.com/insights
+7. https://www.mamadiinternational.com/careers
 
 For each URL:
 
@@ -64,15 +64,15 @@ For each URL:
 
 - Check the **Page indexing** report for crawl or canonical errors.
 - Check the **Sitemaps** report for discovered URLs and processing errors.
-- Search Google periodically for `site:mamadi-company.vercel.app` and `"Mamadi International"`.
+- Search Google periodically for `site:www.mamadiinternational.com` and `"Mamadi International"`.
 - Do not repeatedly request indexing for the same URL; it does not make crawling faster.
 - Google discovery and ranking may take several days or weeks after a new launch.
 
 ## Recommended domain improvement
 
-Connect a branded domain or subdomain, such as `international.mamadi.co.za`, when available. After connecting it:
+The branded domain is now connected. Keep the following configuration in place:
 
-1. Replace all canonical and sitemap URLs with the branded domain.
-2. Permanently redirect the Vercel hostname to the branded domain.
-3. Add and verify the branded property in Search Console.
-4. Submit the branded sitemap and request indexing again.
+1. Keep all canonical and sitemap URLs on `https://www.mamadiinternational.com`.
+2. Permanently redirect the Vercel hostname to the branded domain when possible.
+3. Use the branded property as the primary Search Console property.
+4. Submit the branded sitemap and request indexing on the branded URLs.

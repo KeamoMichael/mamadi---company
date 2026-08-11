@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mamadi-company.vercel.app/sitemap.xml
+Sitemap: https://www.mamadiinternational.com/sitemap.xml
