@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies';
+type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application';
 
 interface NavbarProps {
   setView: (view: View) => void;
@@ -10,6 +10,7 @@ interface NavbarProps {
 
 const logoTextSegments = [
   { name: 'Mamadi', src: '/assets/Mamadi text01.png', delay: 0 },
+  { name: 'International', src: '/assets/Mamadi text02.png', delay: 90 },
 ];
 
 const navHref = (itemName: string) => ({
@@ -49,13 +50,33 @@ const sectionHref = (itemName: string, subItemName: string) => {
 export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
+  const [desktopOpenDropdown, setDesktopOpenDropdown] = useState<string | null>(null);
   const [logoTextHidden, setLogoTextHidden] = useState(false);
+  const desktopNavRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setLogoTextHidden(window.scrollY > 80);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (desktopNavRef.current && !desktopNavRef.current.contains(event.target as Node)) {
+        setDesktopOpenDropdown(null);
+      }
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setDesktopOpenDropdown(null);
+    };
+
+    document.addEventListener('pointerdown', closeOnOutsideClick);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsideClick);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
   }, []);
 
   const navItems = [
@@ -106,6 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
 
   const handleNavClick = (itemName: string, subItemName?: string) => {
     setIsOpen(false);
+    setDesktopOpenDropdown(null);
 
     if (itemName === 'Mamadi Sectors') {
       setView('sectors');
@@ -191,7 +213,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                 setView('home');
               }}
               className="flex items-center gap-2 select-none cursor-pointer z-10"
-              aria-label="Mamadi"
+              aria-label="Mamadi International"
             >
               <img
                 src="/assets/cropped-mamadi_and_company_logo-1-e1712595837297.png"
@@ -199,7 +221,7 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                 aria-hidden="true"
                 className="h-5 md:h-6 w-auto object-contain"
               />
-              <div className="hidden [@media(min-width:360px)]:flex h-3.5 md:h-4 items-center gap-0 overflow-hidden">
+              <div className="hidden [@media(min-width:360px)]:flex h-3.5 items-center gap-0 overflow-hidden md:h-4">
                 {logoTextSegments.map((segment) => (
                   <span key={segment.name} className="block h-full overflow-hidden">
                     <img
@@ -219,43 +241,54 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
 
             {/* Desktop Nav Links — slides to true center after logo text animates out */}
             <div
+              ref={desktopNavRef}
               className="hidden lg:flex absolute left-1/2 items-center gap-3 xl:gap-7 text-xs xl:text-sm font-semibold text-brand-blue whitespace-nowrap"
               style={{
                 transform: logoTextHidden
                   ? 'translateX(-50%)'
-                  : 'translateX(calc(-50% + 50px))',
+                  : 'translateX(calc(-50% + 96px))',
                 transition: logoTextHidden
                   ? 'transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.75s'
                   : 'transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s',
               }}
             >
               {navItems.map((item) => (
-                <div key={item.name} className="relative group">
+                <div key={item.name} className="relative">
                   <a
                     href={navHref(item.name)}
                     onClick={(e) => {
-                        e.preventDefault();
+                      e.preventDefault();
+                      if (item.hasDropdown) {
+                        setDesktopOpenDropdown((open) => open === item.name ? null : item.name);
+                      } else {
                         handleNavClick(item.name);
+                      }
                     }}
+                    aria-expanded={item.hasDropdown ? desktopOpenDropdown === item.name : undefined}
                     className={`flex items-center gap-1 transition-colors py-3 ${
                       (item.name === 'Our Projects' && currentView === 'projects') ||
                       (item.name === 'Mamadi Sectors' && currentView === 'sectors') ||
                       (item.name === 'About Us' && currentView === 'about') ||
                       (item.name === 'Insights' && currentView === 'insights') ||
-                      (item.name === 'Careers' && currentView === 'vacancies')
+                      (item.name === 'Careers' && (currentView === 'vacancies' || currentView === 'application'))
                         ? 'text-brand-gold'
                         : 'hover:text-brand-gold'
                     }`}
                   >
                     {item.name}
                     {item.hasDropdown && (
-                      <ChevronDown size={14} className="mt-0.5 text-brand-blue/60 group-hover:text-brand-gold transition-colors group-hover:rotate-180 duration-200" />
+                      <ChevronDown
+                        size={14}
+                        className={`mt-0.5 transition-all duration-200 ${desktopOpenDropdown === item.name ? 'rotate-180 text-brand-gold' : 'text-brand-blue/60'}`}
+                      />
                     )}
                   </a>
 
                   {/* Desktop Dropdown */}
                   {item.hasDropdown && item.items && (
-                    <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 w-56">
+                    <div
+                      className={`absolute top-full left-0 w-56 pt-2 transition-all duration-200 ${desktopOpenDropdown === item.name ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-2 opacity-0'}`}
+                    >
                       <div className="bg-white shadow-xl rounded-none border border-gray-100 overflow-hidden py-2">
                         {item.items.map((subItem) => (
                           <a
@@ -357,7 +390,11 @@ export const Navbar: React.FC<NavbarProps> = ({ setView, currentView }) => {
                   className={`flex-1 cursor-pointer text-left ${item.hasDropdown && mobileOpenDropdown === item.name ? 'text-brand-gold' : ''}`}
                   onClick={(event) => {
                     event.preventDefault();
-                    handleNavClick(item.name);
+                    if (item.hasDropdown) {
+                      toggleMobileDropdown(item.name);
+                    } else {
+                      handleNavClick(item.name);
+                    }
                   }}
                 >
                   {item.name}

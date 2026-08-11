@@ -3,7 +3,7 @@ import { ChevronRight, Instagram } from 'lucide-react';
 import { headOffice } from '../data/contact';
 
 interface FooterProps {
-  setView: (view: 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies') => void;
+  setView: (view: 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ setView }) => {
@@ -33,19 +33,11 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
           
           {/* Brand Column */}
           <div className="flex flex-col gap-6">
-            <div className="flex w-fit items-center gap-2" aria-label="Mamadi">
-              <img
-                src="/assets/cropped-mamadi_and_company_logo-1-e1712595837297.png"
-                alt=""
-                aria-hidden="true"
-                className="h-5 md:h-6 w-auto object-contain"
-              />
-              <img
-                src="/assets/Mamadi text01.png"
-                alt="Mamadi"
-                className="h-3.5 md:h-4 w-auto object-contain"
-              />
-            </div>
+            <img
+              src="/assets/Mamadi International - Official Logo.png"
+              alt="Mamadi International"
+              className="h-auto w-full max-w-[260px] object-contain object-left"
+            />
             <p className="text-gray-500 text-sm leading-relaxed">
               We are a multi-disciplinary infrastructure development and consulting firm committed to excellence and sustainable community growth.
             </p>
@@ -190,6 +182,14 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
             <span className="cursor-default">
               PAIA Access
             </span>
+            <a
+              href="https://www.flaticon.com/free-icons/flags"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-brand-blue"
+            >
+              Flag icons by Magnific via Flaticon
+            </a>
           </div>
         </div>
       </div>

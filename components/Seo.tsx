@@ -1,7 +1,7 @@
 import React from 'react';
 import { getProjectSlug, projects } from './ProjectsPage';
 
-type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies';
+type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application';
 
 const siteUrl = 'https://mamadi.co.za';
 
@@ -40,6 +40,11 @@ const pageSeo: Record<View, { path: string; title: string; description: string }
     path: '/careers',
     title: 'Careers at Mamadi International | Current Vacancies',
     description: 'Explore career opportunities at Mamadi International and join a multidisciplinary engineering and infrastructure consulting team.',
+  },
+  application: {
+    path: '/careers/apply',
+    title: 'Apply for a Career at Mamadi International',
+    description: 'Submit an application for a current career opportunity at Mamadi International.',
   },
 };
 

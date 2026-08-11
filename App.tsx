@@ -14,10 +14,11 @@ import { ProjectsPage } from './components/ProjectsPage';
 import { ContactPage } from './components/ContactPage';
 import { InsightsPage } from './components/InsightsPage';
 import { CareersPage } from './components/CareersPage';
+import { CareerApplicationPage } from './components/CareerApplicationPage';
 import { SectorsPage } from './components/SectorsPage';
 import { Seo } from './components/Seo';
 
-type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies';
+type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application';
 
 const viewPaths: Record<View, string> = {
   home: '/',
@@ -27,6 +28,7 @@ const viewPaths: Record<View, string> = {
   contact: '/contact',
   insights: '/insights',
   vacancies: '/careers',
+  application: '/careers/apply',
 };
 
 const getViewFromPath = (): View => {
@@ -36,6 +38,9 @@ const getViewFromPath = (): View => {
 
 function App() {
   const [view, setCurrentView] = useState<View>(getViewFromPath);
+  const [selectedApplicationRole, setSelectedApplicationRole] = useState(
+    () => new URLSearchParams(window.location.search).get('position') || '',
+  );
 
   const setView = useCallback((nextView: View) => {
     const nextPath = viewPaths[nextView];
@@ -43,6 +48,13 @@ function App() {
       window.history.pushState({ view: nextView }, '', nextPath);
     }
     setCurrentView(nextView);
+  }, []);
+
+  const openApplication = useCallback((roleTitle: string) => {
+    const nextPath = `/careers/apply?position=${encodeURIComponent(roleTitle)}`;
+    window.history.pushState({ view: 'application', roleTitle }, '', nextPath);
+    setSelectedApplicationRole(roleTitle);
+    setCurrentView('application');
   }, []);
 
   useEffect(() => {
@@ -64,7 +76,10 @@ function App() {
   }, [view]);
 
   useEffect(() => {
-    const handlePopState = () => setCurrentView(getViewFromPath());
+    const handlePopState = () => {
+      setCurrentView(getViewFromPath());
+      setSelectedApplicationRole(new URLSearchParams(window.location.search).get('position') || '');
+    };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
@@ -96,7 +111,15 @@ function App() {
 
       {view === 'insights' && <InsightsPage />}
 
-      {view === 'vacancies' && <CareersPage setView={setView} />}
+      {view === 'vacancies' && <CareersPage onApply={openApplication} />}
+
+      {view === 'application' && (
+        <CareerApplicationPage
+          initialRole={selectedApplicationRole}
+          onBackToVacancies={() => setView('vacancies')}
+          onContact={() => setView('contact')}
+        />
+      )}
 
       <Footer setView={setView} />
     </div>

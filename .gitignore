@@ -21,6 +21,7 @@ dist-ssr
 .idea
 .DS_Store
 Thumbs.db
+public/FORM.JPG
 *.suo
 *.ntvs*
 *.njsproj

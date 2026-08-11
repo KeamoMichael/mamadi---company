@@ -3,31 +3,57 @@ import { Section } from './Section';
 import { WorldMap } from './WorldMap';
 import { useNavbarHeight } from './useNavbarHeight';
 
-const groupChairman = { name: 'Mr Mabu Mamadi', role: 'Executive Chairman', area: 'Global' };
+const groupChairman = {
+  name: 'Mr Mabu Mamadi',
+  role: 'Executive Chairman',
+  area: 'Global',
+  image: '/assets/Director Images/Mabu.webp',
+};
 
-const executiveLeadership = [
-  { name: 'Mr Manifield Mandigora', role: 'Chief Executive Officer', area: 'Mamadi USA' },
-  { name: 'Mr Avnish Gupta', role: 'Chief Executive Officer', area: 'Mamadi India' },
-  { name: 'Mr Ike Rampedi', role: 'Chief Executive Officer', area: 'Mamadi & Company South Africa' },
-  { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'Group delivery' },
+const operationsDirector = {
+  name: 'Dr Tendai Sawunyama',
+  role: 'Operations Director',
+  area: 'Africa',
+  image: '/assets/Director Images/Dr Tendai.webp',
+};
+
+const continentalLeadership = [
+  { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'International delivery', image: '/assets/Director Images/Valentine.webp' },
+  { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations', image: '/assets/Director Images/Kgaugelo Mokwena.webp' },
 ];
 
-const operationsDirector = { name: 'Dr Tendai Sawunyama', role: 'Operations Director', area: 'Africa' };
-
-const africaOperations = [
-  { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations' },
-  { name: 'Silver Mucavele', role: 'Director', area: 'Mozambique' },
-  { name: 'Thokozani Magwaza', role: 'Regional Director', area: 'Central & West Africa · Ghana' },
-  { name: 'Dr Victor Kongo', role: 'Regional Director', area: 'East Africa · Kenya' },
-  { name: 'Mr Zvikomborero Hoko', role: 'Excellence Director', area: 'Southern Africa · Zimbabwe' },
+const countryLeadership = [
+  { country: 'South Africa', flagImage: '/assets/flaticon-country-flags/south-africa.png', flagEmoji: '', entity: 'Mamadi South Africa', descriptor: 'Mamadi & Company South Africa', leaders: [
+    { name: 'Mr Ike Rampedi', role: 'Chief Executive Officer', image: '/assets/Director Images/Ike.webp' },
+  ] },
+  { country: 'United States', flagImage: '/assets/flaticon-country-flags/usa.png', flagEmoji: '', entity: 'Mamadi USA', descriptor: '', leaders: [
+    { name: 'Mr Manfield Mandigora', role: 'Chief Executive Officer', image: '/assets/Director Images/Manfield Mandigora.webp' },
+  ] },
+  { country: 'India', flagImage: '/assets/flaticon-country-flags/india.png', flagEmoji: '', entity: 'Mamadi India', descriptor: '', leaders: [
+    { name: 'Mr Avnish Gupta', role: 'Chief Executive Officer', image: '/assets/Director Images/Avish Gupta.webp' },
+  ] },
+  { country: 'United Kingdom', flagImage: '/assets/flaticon-country-flags/united-kingdom.jpg', flagEmoji: '', entity: 'Mamadi UK', descriptor: 'United Kingdom office', leaders: [
+    { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', image: '/assets/Director Images/Seokhoon Ko.webp' },
+  ] },
+  { country: 'Mozambique', flagImage: '/assets/flaticon-country-flags/mozambique.png', flagEmoji: '', entity: 'Mamadi Mozambique', descriptor: 'Mozambique operations', leaders: [
+    { name: 'Silver Mucavele', role: 'Director', image: '/assets/Director Images/Silver Mucavele.webp' },
+  ] },
+  { country: 'Ghana', flagImage: '/assets/flaticon-country-flags/ghana-rectangular.png', flagEmoji: '', paddedFlag: true, entity: 'Mamadi Ghana', descriptor: 'Central & West Africa', leaders: [
+    { name: 'Thokozani Magwaza', role: 'Regional Director', image: '/assets/Director Images/Thokozani Magwaza.webp' },
+  ] },
+  { country: 'Kenya', flagImage: '/assets/flaticon-country-flags/kenya.png', flagEmoji: '', entity: 'Mamadi Kenya', descriptor: 'East Africa', leaders: [
+    { name: 'Dr Victor Kongo', role: 'Regional Director', image: '/assets/Director Images/Victor.webp' },
+  ] },
+  { country: 'Zimbabwe', flagImage: '/assets/flaticon-country-flags/zimbabwe-rectangular.png', flagEmoji: '', paddedFlag: true, entity: 'Mamadi Zimbabwe', descriptor: 'Southern Africa', leaders: [
+    { name: 'Mr Zvikomborero Hoko', role: 'Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.webp' },
+  ] },
 ];
 
 const specialistFunctions = [
-  { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'Group services' },
-  { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', area: 'United Kingdom' },
+  { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'International services', image: '/assets/Director Images/Adv. Emmanuel Tem.webp' },
   { name: 'Gustave Mizero', role: 'Projects Engineer', area: 'Engineering delivery' },
   { name: 'Ms Lucia Mogale', role: 'Senior Project Administrator', area: 'Project support' },
-  { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment' },
+  { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment', image: '/assets/Director Images/Osborne Muvingi.webp' },
 ];
 
 type AboutUsPageProps = {
@@ -182,34 +208,58 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
           <div className="flex flex-col gap-12 md:gap-16">
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
               <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-brand-blue md:text-4xl">
-                Leadership across the Mamadi Group.
+                Leadership across Mamadi International.
               </h2>
               <p className="max-w-xl text-sm leading-relaxed text-gray-500 lg:justify-self-end">
-                Our organisational structure brings together group executives, regional directors,
+                Our organisational structure brings together international executives, regional directors,
                 operational leadership, and specialist expertise across Africa and international markets.
               </p>
             </div>
 
             <div className="border-t border-brand-gold/45">
-              <div className="grid gap-8 py-10 md:grid-cols-[0.8fr_1.2fr] md:items-end md:py-14">
+              <article className="grid gap-7 py-10 md:grid-cols-[160px_1fr] md:items-end md:gap-10 md:py-14">
+                <LeadershipPortrait
+                  image={groupChairman.image}
+                  name={groupChairman.name}
+                  className="w-full max-w-[160px]"
+                />
                 <div>
-                  <span className="text-sm text-brand-gold">Group leadership</span>
+                  <span className="text-sm text-brand-gold">International leadership</span>
                   <p className="mt-3 text-sm text-gray-400">{groupChairman.role} · {groupChairman.area}</p>
+                  <h3 className="mt-5 text-3xl font-semibold tracking-tight text-brand-blue md:text-5xl">
+                    {groupChairman.name}
+                  </h3>
                 </div>
-                <h3 className="text-3xl font-semibold tracking-tight text-brand-blue md:text-5xl">
-                  {groupChairman.name}
-                </h3>
-              </div>
+              </article>
+
+              <article className="grid gap-7 border-t border-gray-100 py-10 md:grid-cols-[160px_1fr] md:items-center md:gap-10 md:py-12">
+                <LeadershipPortrait
+                  image={operationsDirector.image}
+                  name={operationsDirector.name}
+                  className="w-full max-w-[160px]"
+                />
+                <div className="border-l-2 border-brand-gold pl-6 md:pl-8">
+                  <span className="text-sm font-medium text-brand-gold">Africa operations</span>
+                  <p className="mt-3 text-xs text-gray-400">Continental oversight and delivery</p>
+                  <h3 className="mt-5 text-2xl font-semibold tracking-tight text-brand-blue md:text-3xl">
+                    {operationsDirector.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-500">{operationsDirector.role} · {operationsDirector.area}</p>
+                </div>
+              </article>
 
               <div className="border-t border-gray-100 py-10 md:py-12">
-                <h3 className="mb-9 text-sm font-medium text-brand-gold">Executive leadership</h3>
-                <div className="grid gap-y-9 sm:grid-cols-2 md:divide-x md:divide-brand-gold/25 xl:grid-cols-4">
-                  {executiveLeadership.map((leader, index) => (
-                    <article
-                      key={leader.name}
-                      className={`md:px-7 ${index === 0 ? 'md:pl-0' : ''} ${index === executiveLeadership.length - 1 ? 'md:pr-0' : ''}`}
-                    >
-                      <p className="text-xs leading-relaxed text-gray-400">{leader.area}</p>
+                <div className="mb-9 max-w-2xl">
+                  <h3 className="text-sm font-medium text-brand-gold">International & continental leadership</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                    Roles that support Mamadi International and its operations across multiple countries.
+                  </p>
+                </div>
+                <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
+                  {continentalLeadership.map((leader) => (
+                    <article key={leader.name}>
+                      <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
+                      <p className="mt-5 text-xs leading-relaxed text-gray-400">{leader.area}</p>
                       <h4 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
                       <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
                     </article>
@@ -217,50 +267,74 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                 </div>
               </div>
 
-              <div className="grid gap-8 border-y border-gray-100 py-10 md:grid-cols-[0.8fr_1.2fr] md:items-center md:py-12">
-                <div>
-                  <span className="text-sm text-brand-gold">Africa operations</span>
-                  <p className="mt-3 text-xs text-gray-400">Continental oversight and delivery</p>
+              <div className="border-t border-gray-100 py-10 md:py-12">
+                <div className="mb-9 max-w-2xl">
+                  <h3 className="text-sm font-medium text-brand-gold">Country & regional leadership</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                    Each leader below is shown under the country or regional entity they represent.
+                  </p>
                 </div>
-                <div className="border-l-2 border-brand-gold pl-6 md:pl-8">
-                  <h3 className="text-2xl font-semibold tracking-tight text-brand-blue">{operationsDirector.name}</h3>
-                  <p className="mt-2 text-sm text-gray-500">{operationsDirector.role} · {operationsDirector.area}</p>
+                <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
+                  {countryLeadership.map((group) => (
+                    <section key={group.country}>
+                      {group.leaders.map((leader) => (
+                        <article key={leader.name}>
+                          <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
+                          <div className="mt-5 flex h-5 items-center gap-3">
+                            {group.flagImage ? (
+                              <span className="block h-5 w-8 shrink-0 overflow-hidden">
+                                <img
+                                  src={group.flagImage}
+                                  alt={`Flag of ${group.country}`}
+                                  className={group.paddedFlag
+                                    ? 'h-8 w-8 max-w-none -translate-y-1.5 object-contain'
+                                    : 'h-5 w-8 object-cover object-left'}
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </span>
+                            ) : (
+                              <span role="img" aria-label={`Flag of ${group.country}`} className="text-xl leading-none">
+                                {group.flagEmoji}
+                              </span>
+                            )}
+                            <p className="text-xs font-medium leading-relaxed text-gray-400">{group.entity}</p>
+                          </div>
+                          <h4 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
+                          <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
+                          {group.descriptor && (
+                            <p className="mt-2 text-xs leading-relaxed text-gray-400">{group.descriptor}</p>
+                          )}
+                        </article>
+                      ))}
+                    </section>
+                  ))}
                 </div>
               </div>
 
-              <div className="grid gap-14 pt-12 lg:grid-cols-2 lg:gap-20">
-                <div>
-                  <h3 className="border-b border-brand-gold/35 pb-4 text-sm font-medium text-brand-gold">
-                    Regional & operational leadership
-                  </h3>
-                  <div className="divide-y divide-gray-100">
-                    {africaOperations.map((leader) => (
-                      <article key={leader.name} className="grid gap-2 py-6 sm:grid-cols-[1fr_1.2fr] sm:gap-6">
-                        <div>
-                          <h4 className="text-base font-semibold tracking-tight text-brand-blue">{leader.name}</h4>
-                          <p className="mt-1 text-xs text-gray-400">{leader.area}</p>
-                        </div>
-                        <p className="text-xs font-medium leading-relaxed text-gray-500 sm:text-right">{leader.role}</p>
-                      </article>
-                    ))}
-                  </div>
+              <div className="border-t border-gray-100 pt-12">
+                <h3 className="border-b border-brand-gold/35 pb-4 text-sm font-medium text-brand-gold">
+                  International specialist functions
+                </h3>
+                <div className="mt-9 grid gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
+                  {specialistFunctions.filter((leader) => leader.image).map((leader) => (
+                    <article key={leader.name}>
+                      <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
+                      <h4 className="mt-5 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
+                      <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-gray-400">{leader.area}</p>
+                    </article>
+                  ))}
                 </div>
-
-                <div>
-                  <h3 className="border-b border-brand-gold/35 pb-4 text-sm font-medium text-brand-gold">
-                    Specialist functions
-                  </h3>
-                  <div className="divide-y divide-gray-100">
-                    {specialistFunctions.map((leader) => (
-                      <article key={leader.name} className="grid gap-2 py-6 sm:grid-cols-[1fr_1.2fr] sm:gap-6">
-                        <div>
-                          <h4 className="text-base font-semibold tracking-tight text-brand-blue">{leader.name}</h4>
-                          <p className="mt-1 text-xs text-gray-400">{leader.area}</p>
-                        </div>
-                        <p className="text-xs font-medium leading-relaxed text-gray-500 sm:text-right">{leader.role}</p>
-                      </article>
-                    ))}
-                  </div>
+                <div className="mt-12 grid gap-x-12 sm:grid-cols-2">
+                  {specialistFunctions.filter((leader) => !leader.image).map((leader) => (
+                    <article key={leader.name} className="border-t border-brand-gold/45 py-6">
+                      <span className="text-xs font-medium tracking-wide text-gray-400">Specialist Function</span>
+                      <h4 className="mt-4 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
+                      <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-gray-400">{leader.area}</p>
+                    </article>
+                  ))}
                 </div>
               </div>
             </div>
@@ -278,7 +352,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                             Mamadi Global Presence
                         </h2>
                         <p className="text-sm text-gray-500 leading-relaxed">
-                            Headquartered in South Africa, Mamadi International maintains a strategic
+                            Headquartered in Dubai, Mamadi International maintains a strategic
                             regional presence with a growing footprint across the African continent.
                             Our ability to mobilize technical expertise across diverse territories
                             allows us to address complex infrastructure challenges in varying
@@ -358,6 +432,35 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
             </div>
         </Section>
       </div>
+    </div>
+  );
+};
+
+const LeadershipPortrait: React.FC<{ image?: string; name: string; className?: string }> = ({ image, name, className = '' }) => {
+  if (image) {
+    return (
+      <img
+        src={image}
+        alt={name}
+        loading="lazy"
+        decoding="async"
+        className={`aspect-[3/4] bg-gray-100 object-cover ${className}`}
+      />
+    );
+  }
+
+  return (
+    <div
+      className={`flex aspect-[3/4] items-center justify-center bg-brand-blue ${className}`}
+      aria-label={`${name} portrait pending`}
+    >
+      <img
+        src="/assets/cropped-mamadi_and_company_logo-1-e1712595837297.png"
+        alt=""
+        aria-hidden="true"
+        className="h-auto w-[46%]"
+        style={{ filter: 'brightness(1.4) saturate(1.08)' }}
+      />
     </div>
   );
 };
