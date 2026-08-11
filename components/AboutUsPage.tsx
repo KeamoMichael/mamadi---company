@@ -1,4 +1,5 @@
 import React from 'react';
+import { Gauge, HandHeart, Lightbulb, ShieldCheck, UsersRound } from 'lucide-react';
 import { Section } from './Section';
 import { WorldMap } from './WorldMap';
 import { useNavbarHeight } from './useNavbarHeight';
@@ -384,50 +385,66 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
       {/* Strategy & Values Section */}
       <div id="strategy-&-values">
         <Section label="Strategy & Values">
-            <div className="flex flex-col gap-12">
-                <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                    Our strategic direction is built on a foundation of innovation, sustainability, 
-                    and technical integrity. We are driven by a growth mindset that seeks to 
-                    redefine consulting engineering through digital transformation and community-centric design.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 md:divide-x md:divide-brand-gold/25">
-                    {[
-                        { title: 'Integrity', icon: 'integrity' as const, desc: 'Upholding the highest ethical standards in every engagement.' },
-                        { title: 'Excellence', icon: 'excellence' as const, desc: 'Striving for technical precision and superior project delivery.' },
-                        { title: 'Reliability', icon: 'reliability' as const, desc: 'Being a consistent and trusted partner for our clients.' }
-                    ].map((value, index) => (
-                        <div
-                            key={value.title}
-                            className={`flex flex-col gap-5 md:px-8 ${index === 0 ? 'md:pl-0' : ''} ${index === 2 ? 'md:pr-0' : ''}`}
-                        >
-                            <ValueIcon variant={value.icon} />
-                            <div>
-                                <h4 className="text-lg font-semibold text-brand-blue mb-3">{value.title}</h4>
-                                <p className="text-sm text-gray-500 leading-relaxed max-w-xs">{value.desc}</p>
-                            </div>
+            <div className="flex flex-col gap-14 md:gap-16">
+                <div className="grid gap-8 md:grid-cols-2">
+                    <article className="flex flex-col">
+                        <div className="flex flex-1 flex-col items-start border border-brand-blue bg-brand-blue p-7 md:p-8">
+                            <span className="text-sm font-normal tracking-[0.04em] text-brand-gold">01 / Vision</span>
+                            <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-white md:text-xl">
+                                Global leader in providing innovative integrated solutions for sustainable infrastructure development
+                            </p>
                         </div>
-                    ))}
+                    </article>
+                    <article className="flex flex-col">
+                        <div className="flex flex-1 flex-col items-start bg-brand-beige/40 p-7 md:p-8">
+                            <span className="text-sm font-normal tracking-[0.04em] text-brand-blue">02 / Mission</span>
+                            <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-brand-blue md:text-xl">
+                                Transforming lives through delivering world-class infrastructure solutions
+                            </p>
+                        </div>
+                    </article>
                 </div>
 
-                <div className="mt-8 p-10 border border-brand-blue/10 bg-brand-beige/30 flex flex-col md:flex-row gap-8 items-center justify-between">
-                    <div className="max-w-xl">
-                        <h4 className="text-lg font-bold text-brand-blue mb-2">Our Vision for the Future</h4>
-                        <p className="text-sm text-gray-600">
-                            To be the leading African consulting firm, recognized for transforming 
-                            lives through innovative and sustainable infrastructure solutions.
-                        </p>
+                <div className="border-t border-gray-200 pt-14 md:pt-16">
+                    <div className="flex items-end justify-between gap-6">
+                        <div>
+                            <span className="text-sm font-normal tracking-[0.04em] text-brand-gold">03 / Values</span>
+                            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-brand-blue">How we operate.</h3>
+                        </div>
+                        <span className="hidden text-xs text-gray-400 md:block">Five principles. One standard.</span>
                     </div>
-                    <a
-                      href="/projects"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        setView('projects');
-                      }}
-                      className="px-8 py-3 bg-brand-blue text-white hover:bg-brand-blue/90 transition-all text-sm font-semibold"
-                    >
-                        View Our Projects
-                    </a>
+                    <div className="mt-9 grid gap-y-8 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-5 lg:gap-x-0">
+                        {[
+                            { title: 'Innovative Excellence', icon: Lightbulb },
+                            { title: 'Integrity', icon: ShieldCheck },
+                            { title: 'Agility', icon: Gauge },
+                            { title: 'Collaboration', icon: UsersRound },
+                            { title: 'Responsibility', icon: HandHeart },
+                        ].map((value, index) => {
+                            const Icon = value.icon;
+                            return (
+                            <article
+                                key={value.title}
+                                className={`flex flex-col items-start gap-3 lg:px-8 ${index > 0 ? 'lg:border-l lg:border-gray-200' : 'lg:pl-0'} ${index === 4 ? 'lg:pr-0' : ''}`}
+                            >
+                                <Icon aria-hidden="true" size={27} strokeWidth={1.35} className="text-brand-gold" />
+                                <h4 className="text-lg font-semibold leading-snug tracking-tight text-brand-blue">{value.title}</h4>
+                            </article>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <div className="grid gap-8 border-t border-gray-200 pt-14 md:pt-16 lg:grid-cols-[0.32fr_0.68fr] lg:gap-14">
+                        <div>
+                            <span className="text-sm font-normal tracking-[0.04em] text-brand-gold">04 / Value Proposition</span>
+                        </div>
+                        <div>
+                            <p className="max-w-4xl text-xl font-medium leading-relaxed text-brand-blue md:text-2xl">
+                                Mamadi International is Africa’s integrated infrastructure partner – rooted locally, connected globally. We deliver complex infrastructure as one accountable platform, with the speed, integrity and reliability our clients can build on.
+                            </p>
+                            <p className="mt-7 text-sm font-semibold tracking-wide text-brand-gold">Innovative infrastructure. Sustainable impact.</p>
+                        </div>
                 </div>
             </div>
         </Section>
@@ -463,48 +480,4 @@ const LeadershipPortrait: React.FC<{ image?: string; name: string; className?: s
       />
     </div>
   );
-};
-
-type ValueIconVariant = 'integrity' | 'excellence' | 'reliability';
-
-const ValueIcon: React.FC<{ variant: ValueIconVariant }> = ({ variant }) => {
-    const common = {
-        width: 28,
-        height: 28,
-        viewBox: '0 0 24 24',
-        fill: 'none',
-        stroke: 'currentColor',
-        strokeWidth: 1.15,
-        strokeLinecap: 'round' as const,
-        strokeLinejoin: 'round' as const,
-        className: 'text-brand-gold',
-        'aria-hidden': true,
-    };
-
-    if (variant === 'integrity') {
-        return (
-            <svg {...common}>
-                <path d="M12 3 5.5 5.8v5.6c0 4.1 2.7 7.6 6.5 9.1 3.8-1.5 6.5-5 6.5-9.1V5.8L12 3Z" />
-                <path d="m8.8 12.2 2.1 2.1 4.4-4.7" />
-            </svg>
-        );
-    }
-
-    if (variant === 'excellence') {
-        return (
-            <svg {...common}>
-                <path d="M12 4.5 14 9l4.8.4-3.6 3.1 1.1 4.7L12 14.7l-4.3 2.5 1.1-4.7-3.6-3.1L10 9l2-4.5Z" />
-                <path d="M12 9.2v3.1" />
-            </svg>
-        );
-    }
-
-    return (
-        <svg {...common}>
-            <path d="M5 12.5a7 7 0 0 1 11.9-5" />
-            <path d="M19 11.5a7 7 0 0 1-11.9 5" />
-            <path d="M17 4.5v3.3h-3.3" />
-            <path d="M7 19.5v-3.3h3.3" />
-        </svg>
-    );
 };
