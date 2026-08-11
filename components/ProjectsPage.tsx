@@ -8,7 +8,6 @@ type Category = 'Water & Sanitation' | 'Energy' | 'Environmental' | 'Sustainabil
 export interface Project {
   title: string;
   location?: string;
-  value?: string;
   category: Category;
 }
 
@@ -16,60 +15,50 @@ export const projects: Project[] = [
   {
     title: 'Upgrade and Refurbishment of Olifantspoort and Ebenezer Water Schemes',
     location: 'South Africa',
-    value: '$1.1 Billion USD',
     category: 'Water & Sanitation',
   },
   {
     title: 'Implementation of the New Ncandu Dam, Water Treatment Works and Associated Infrastructure',
     location: 'Amajuba District, KwaZulu-Natal, South Africa',
-    value: '$188 Million USD',
     category: 'Water & Sanitation',
   },
   {
     title: 'Impedle WWTP, Richmond/Greater Indalene Sanitation Scheme and Khambathini WWTP Supply Scheme to the SEZ',
     location: 'South Africa',
-    value: '$352 Million USD',
     category: 'Water & Sanitation',
   },
   {
     title: 'New Glass Plant Pre-Feasibility Study',
     location: 'Melbourne, Australia',
-    value: '$176 Million USD',
     category: 'Water & Sanitation',
   },
   {
     title: 'Bankable Feasibility Study for a 136MWp Solar PV Project',
     location: 'Rustenburg, South Africa',
-    value: '$176 Million USD',
     category: 'Energy',
   },
   {
     title: 'Bid Windows 5 and 6 of the Renewable Energy Independent Power Producer Procurement Programme',
     location: 'South Africa',
-    value: '$2.9 Million USD',
     category: 'Energy',
   },
   {
     title: 'Transaction Advisory for Renewable Energy Interventions in Government Buildings',
     location: 'South Africa',
-    value: '$2.5 Million USD',
     category: 'Energy',
   },
   {
     title: 'Development of the Shell Downstream South Africa Climate Change Report',
     location: 'South Africa',
-    value: '$10,000 USD',
     category: 'Environmental',
   },
   {
     title: 'Feasibility Study for a Waste Buy-Back Centre Facility',
-    value: '$21,000 USD',
     category: 'Environmental',
   },
   {
     title: 'Air Quality Impact Assessment for the Proposed Extension of the Shell Polokwane Fuel Depot',
     location: 'Polokwane, South Africa',
-    value: '$50,000 USD',
     category: 'Environmental',
   },
   {
@@ -85,25 +74,21 @@ export const projects: Project[] = [
   {
     title: 'Development of a National Framework for Weather, Water and Climate Services for Zambia',
     location: 'Zambia',
-    value: '$100,000 USD',
     category: 'Sustainability',
   },
   {
     title: 'Low-Carbon and Climate-Resilient Industrial Development — Phase II',
     location: 'Egypt, Kenya, Senegal and South Africa',
-    value: '$15,000 USD',
     category: 'Sustainability',
   },
   {
     title: 'Guidelines for a National Framework for Weather, Water and Climate Services for WMO',
     location: 'International',
-    value: '$20,000 USD',
     category: 'Sustainability',
   },
   {
     title: 'Mpumalanga Climate Change Response Strategy and Implementation Plan for the Agricultural Sector',
     location: 'Mpumalanga, South Africa',
-    value: '$100,000 USD',
     category: 'Sustainability',
   },
 ];
@@ -258,19 +243,8 @@ export const ProjectsPage: React.FC = () => {
                                             <FadeIn key={idx} delay={idx * 100}>
                                                 <article
                                                   id={getProjectSlug(project.title)}
-                                                  className={`scroll-mt-40 grid gap-8 border-b border-gray-100 py-14 md:py-16 lg:grid-cols-[minmax(245px,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12 xl:gap-16 ${idx === 0 ? 'pt-6 md:pt-6' : ''}`}
+                                                  className={`scroll-mt-40 border-b border-gray-100 py-14 md:py-16 ${idx === 0 ? 'pt-6 md:pt-6' : ''}`}
                                                 >
-                                                    <div>
-                                                        <span className="mb-3 block text-xs font-medium text-brand-gold">Project value</span>
-                                                        {project.value ? (
-                                                          <p className="text-3xl font-semibold leading-none tracking-tight text-brand-blue md:text-4xl xl:text-[2.65rem]">
-                                                            {project.value}
-                                                          </p>
-                                                        ) : (
-                                                          <p className="text-sm text-gray-400">Not stated in the reference</p>
-                                                        )}
-                                                    </div>
-
                                                     <div>
                                                         <span className="mb-3 block text-xs font-medium text-gray-400">Selected experience</span>
                                                         <h3 className="text-xl font-medium leading-snug text-brand-blue md:text-2xl">
