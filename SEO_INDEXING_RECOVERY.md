@@ -20,6 +20,13 @@
 
 ## Google Search Console setup
 
+### Status on 11 August 2026
+
+- Added and verified the URL-prefix property for `https://mamadi-company.vercel.app/` using an HTML meta tag.
+- Submitted `sitemap.xml`; Search Console accepted the submission.
+- The initial sitemap table briefly reported `Couldn't fetch`, while the public sitemap was independently verified as HTTP 200 with the correct `application/xml` content type. Recheck the report after Google finishes processing the new property.
+- The homepage indexing request reached Google's live-URL test, but Google returned `Quota exceeded`. Retry the homepage and remaining priority URLs after the daily quota resets.
+
 1. Open https://search.google.com/search-console.
 2. Add a **URL-prefix property** for:
 
@@ -69,4 +76,3 @@ Connect a branded domain or subdomain, such as `international.mamadi.co.za`, whe
 2. Permanently redirect the Vercel hostname to the branded domain.
 3. Add and verify the branded property in Search Console.
 4. Submit the branded sitemap and request indexing again.
-
