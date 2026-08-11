@@ -3,7 +3,7 @@ import { getProjectSlug, projects } from './ProjectsPage';
 
 type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application';
 
-const siteUrl = 'https://mamadi.co.za';
+const siteUrl = 'https://mamadi-company.vercel.app';
 
 const pageSeo: Record<View, { path: string; title: string; description: string }> = {
   home: {
