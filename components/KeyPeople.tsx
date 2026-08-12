@@ -26,7 +26,8 @@ const leadership: TeamMember[] = [
   {
     name: "Victor Kongo",
     role: "Regional Director | East Africa (Kenya)",
-    image: "/assets/Director Images/Victor.webp"
+    image: "/assets/Director Images/Victor.webp",
+    noWrap: true
   },
   {
     name: "Seokhoon Ko",
@@ -50,7 +51,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: "Sandra Govere",
-    role: "CEO | BluePoint Finance",
+    role: "Financial Advisor Services",
     image: "/assets/Director Images/Sandra.webp"
   },
   {
@@ -79,6 +80,21 @@ const leadership: TeamMember[] = [
     image: "/assets/Director Images/Zvikomborero Hoko.webp"
   }
 ];
+
+// Splits a role like "Regional Director | Central and West Africa (Ghana)" so the
+// trailing "(Country)" segment is forced onto its own line instead of wrapping mid-word.
+const renderRole = (role: string) => {
+  const match = role.match(/^(.*\S)\s+(\([^)]+\))$/);
+  if (!match) return role;
+  const [, lead, trailing] = match;
+  return (
+    <>
+      {lead}
+      <br />
+      {trailing}
+    </>
+  );
+};
 
 export const KeyPeople: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -178,7 +194,9 @@ export const KeyPeople: React.FC = () => {
                     <div className="flex flex-col gap-1">
                       <h3 className="text-xl font-semibold text-brand-blue tracking-tight">{person.name}</h3>
                       {person.role && (
-                        <p className="text-xs text-brand-gold font-medium">{person.role}</p>
+                        <p className="text-xs text-brand-gold font-medium leading-relaxed">
+                          {person.noWrap ? person.role : renderRole(person.role)}
+                        </p>
                       )}
                     </div>
                   </div>

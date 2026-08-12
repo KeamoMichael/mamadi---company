@@ -21,6 +21,7 @@ const operationsDirector = {
 const continentalLeadership = [
   { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'International delivery', image: '/assets/Director Images/Valentine.webp' },
   { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations', image: '/assets/Director Images/Kgaugelo Mokwena.webp' },
+  { name: 'Ms Sandra Govere', role: 'Financial Advisor Services', area: 'Financial advisory', image: '/assets/Director Images/Sandra.webp' },
 ];
 
 const countryLeadership = [
@@ -39,13 +40,13 @@ const countryLeadership = [
   { country: 'Mozambique', flagImage: '/assets/flaticon-country-flags/mozambique.png', flagEmoji: '', entity: 'Mamadi Mozambique', descriptor: 'Mozambique operations', leaders: [
     { name: 'Silver Mucavele', role: 'Director', image: '/assets/Director Images/Silver Mucavele.webp' },
   ] },
-  { country: 'Ghana', flagImage: '/assets/flaticon-country-flags/ghana-rectangular.png', flagEmoji: '', paddedFlag: true, entity: 'Mamadi Ghana', descriptor: 'Central & West Africa', leaders: [
+  { country: 'Ghana', flagImage: '', flagEmoji: '', entity: 'Ghana', descriptor: 'Central & West Africa', leaders: [
     { name: 'Thokozani Magwaza', role: 'Regional Director', image: '/assets/Director Images/Thokozani Magwaza.webp' },
   ] },
   { country: 'Kenya', flagImage: '/assets/flaticon-country-flags/kenya.png', flagEmoji: '', entity: 'Mamadi Kenya', descriptor: 'East Africa', leaders: [
     { name: 'Dr Victor Kongo', role: 'Regional Director', image: '/assets/Director Images/Victor.webp' },
   ] },
-  { country: 'Zimbabwe', flagImage: '/assets/flaticon-country-flags/zimbabwe-rectangular.png', flagEmoji: '', paddedFlag: true, entity: 'Mamadi Zimbabwe', descriptor: 'Southern Africa', leaders: [
+  { country: 'Zimbabwe', flagImage: '', flagEmoji: '', entity: 'Zimbabwe', descriptor: 'Southern Africa', leaders: [
     { name: 'Eng. Zvikomborero Hoko', role: 'Operations Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.webp' },
   ] },
 ];
@@ -54,6 +55,7 @@ const specialistFunctions = [
   { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'International services', image: '/assets/Director Images/Adv. Emmanuel Tem.webp' },
   { name: 'Gustave Mizero', role: 'Projects Engineer', area: 'Engineering delivery' },
   { name: 'Ms Lucia Mogale', role: 'Senior Project Administrator', area: 'Project support' },
+  { name: 'Letlhogonolo Matsapola', role: 'Project Finance Specialist', area: '' },
   { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment', image: '/assets/Director Images/Osborne Muvingi.webp' },
 ];
 
@@ -294,11 +296,11 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                                   decoding="async"
                                 />
                               </span>
-                            ) : (
+                            ) : group.flagEmoji ? (
                               <span role="img" aria-label={`Flag of ${group.country}`} className="text-xl leading-none">
                                 {group.flagEmoji}
                               </span>
-                            )}
+                            ) : null}
                             <p className="text-xs font-medium leading-relaxed text-gray-400">{group.entity}</p>
                           </div>
                           <h4 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
@@ -328,13 +330,20 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                   ))}
                 </div>
                 <div className="mt-12 grid gap-x-12 sm:grid-cols-2">
-                  {specialistFunctions.filter((leader) => !leader.image).map((leader) => (
-                    <article key={leader.name} className="border-t border-brand-gold/45 py-6">
-                      <span className="text-xs font-medium tracking-wide text-gray-400">Specialist Function</span>
-                      <h4 className="mt-4 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
-                      <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
-                      <p className="mt-2 text-xs leading-relaxed text-gray-400">{leader.area}</p>
-                    </article>
+                  {[
+                    specialistFunctions.filter((leader) => !leader.image).slice(0, 1),
+                    specialistFunctions.filter((leader) => !leader.image).slice(1),
+                  ].map((column, columnIndex) => (
+                    <div key={columnIndex} className="flex flex-col">
+                      {column.map((leader) => (
+                        <article key={leader.name} className="border-t border-brand-gold/45 py-6">
+                          <span className="text-xs font-medium tracking-wide text-gray-400">Specialist Function</span>
+                          <h4 className="mt-4 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
+                          <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
+                          <p className="mt-2 text-xs leading-relaxed text-gray-400">{leader.area}</p>
+                        </article>
+                      ))}
+                    </div>
                   ))}
                 </div>
               </div>
