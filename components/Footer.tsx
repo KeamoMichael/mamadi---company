@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Instagram } from 'lucide-react';
+import { ChevronRight, Instagram, Linkedin } from 'lucide-react';
 import { headOffice } from '../data/contact';
 
 interface FooterProps {
@@ -56,6 +56,11 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
                 icon={<Instagram size={18} />}
                 href="https://www.instagram.com/mamadi.international?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 label="Follow Mamadi International on Instagram"
+              />
+              <SocialIcon
+                icon={<Linkedin size={18} />}
+                href="https://lnkd.in/p/dhRWE9gS"
+                label="Follow Mamadi International on LinkedIn"
               />
             </div>
           </div>
@@ -182,14 +187,6 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
             <span className="cursor-default">
               PAIA Access
             </span>
-            <a
-              href="https://www.flaticon.com/free-icons/flags"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-brand-blue"
-            >
-              Flag icons by Magnific via Flaticon
-            </a>
           </div>
         </div>
       </div>
