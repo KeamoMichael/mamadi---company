@@ -46,7 +46,7 @@ const countryLeadership = [
     { name: 'Dr Victor Kongo', role: 'Regional Director', image: '/assets/Director Images/Victor.webp' },
   ] },
   { country: 'Zimbabwe', flagImage: '/assets/flaticon-country-flags/zimbabwe-rectangular.png', flagEmoji: '', paddedFlag: true, entity: 'Mamadi Zimbabwe', descriptor: 'Southern Africa', leaders: [
-    { name: 'Mr Zvikomborero Hoko', role: 'Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.webp' },
+    { name: 'Eng. Zvikomborero Hoko', role: 'Operations Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.webp' },
   ] },
 ];
 

@@ -74,8 +74,8 @@ const leadership: TeamMember[] = [
     image: "/assets/Director Images/Osborne Muvingi.webp"
   },
   {
-    name: "Zvikomborero Hoko",
-    role: "Excellence Director | Africa (Zimbabwe)",
+    name: "Eng. Zvikomborero Hoko",
+    role: "Operations Excellence Director | Africa (Zimbabwe)",
     image: "/assets/Director Images/Zvikomborero Hoko.webp"
   }
 ];
