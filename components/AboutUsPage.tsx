@@ -41,7 +41,7 @@ const countryLeadership = [
     { name: 'Silver Mucavele', role: 'CEO | Mamadi Mozambique', image: '/assets/Director Images/Silver Mucavele.webp' },
   ] },
   { country: 'Ghana', flagImage: '', flagEmoji: '', entity: 'Ghana', descriptor: 'Central & West Africa', leaders: [
-    { name: 'Thokozani Magwaza', role: 'Regional Director', image: '/assets/Director Images/Thokozani Magwaza.webp' },
+    { name: 'Thokozani Magwaza', role: 'Regional Director | Central and West Africa', image: '/assets/Director Images/Thokozani Magwaza.webp' },
   ] },
 
   { country: 'Zimbabwe', flagImage: '', flagEmoji: '', entity: 'Zimbabwe', descriptor: 'Southern Africa', leaders: [

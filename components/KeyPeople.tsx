@@ -55,7 +55,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: "Thokozani Magwaza",
-    role: "Regional Director",
+    role: "Regional Director | Central and West Africa",
     image: "/assets/Director Images/Thokozani Magwaza.webp"
   },
   {
