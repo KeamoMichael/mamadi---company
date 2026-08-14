@@ -6,11 +6,11 @@ const leadership: TeamMember[] = [
   {
     name: "Mabu Mamadi",
     role: "Chairman | Mamadi International",
-    image: "/assets/Director Images/Mabu.webp"
+    image: "/assets/Director Images/Mabu2.jpg"
   },
   {
     name: "Dr Tendai Sawunyama",
-    role: "Operations Director | Africa",
+    role: "Operations Director",
     image: "/assets/Director Images/Dr Tendai.webp"
   },
   {
@@ -24,14 +24,8 @@ const leadership: TeamMember[] = [
     image: "/assets/Director Images/Ike.webp"
   },
   {
-    name: "Victor Kongo",
-    role: "Regional Director | East Africa (Kenya)",
-    image: "/assets/Director Images/Victor.webp",
-    noWrap: true
-  },
-  {
     name: "Seokhoon Ko",
-    role: "Finance and Infrastructure Planning: Specialist (UK)",
+    role: "Finance and Infrastructure Planning: Specialist",
     image: "/assets/Director Images/Seokhoon Ko.webp"
   },
   {
@@ -61,7 +55,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: "Thokozani Magwaza",
-    role: "Regional Director | Central and West Africa (Ghana)",
+    role: "Regional Director",
     image: "/assets/Director Images/Thokozani Magwaza.webp"
   },
   {
@@ -71,30 +65,15 @@ const leadership: TeamMember[] = [
   },
   {
     name: "Osborne Muvingi",
-    role: "Senior Investment Officer | Africa",
+    role: "Senior Investment Officer",
     image: "/assets/Director Images/Osborne Muvingi.webp"
   },
   {
     name: "Eng. Zvikomborero Hoko",
-    role: "Operations Excellence Director | Africa (Zimbabwe)",
+    role: "Operations Excellence Director",
     image: "/assets/Director Images/Zvikomborero Hoko.webp"
   }
 ];
-
-// Splits a role like "Regional Director | Central and West Africa (Ghana)" so the
-// trailing "(Country)" segment is forced onto its own line instead of wrapping mid-word.
-const renderRole = (role: string) => {
-  const match = role.match(/^(.*\S)\s+(\([^)]+\))$/);
-  if (!match) return role;
-  const [, lead, trailing] = match;
-  return (
-    <>
-      {lead}
-      <br />
-      {trailing}
-    </>
-  );
-};
 
 export const KeyPeople: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -195,7 +174,7 @@ export const KeyPeople: React.FC = () => {
                       <h3 className="text-xl font-semibold text-brand-blue tracking-tight">{person.name}</h3>
                       {person.role && (
                         <p className="text-xs text-brand-gold font-medium leading-relaxed">
-                          {person.noWrap ? person.role : renderRole(person.role)}
+                          {person.role}
                         </p>
                       )}
                     </div>
