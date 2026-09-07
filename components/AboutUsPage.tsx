@@ -103,7 +103,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
   }, [activeSection]);
 
   return (
-    <div className="pt-20">
+    <div>
       {/* About Hero */}
       <section
         className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
