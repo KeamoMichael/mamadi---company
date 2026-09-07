@@ -106,7 +106,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
     <div>
       {/* About Hero */}
       <section
-        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
+        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-40 pb-36 text-white md:pb-44"
         style={{ backgroundImage: "url('/assets/Hero Section Images/About Us-Hero Section.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/70" />
