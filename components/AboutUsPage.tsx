@@ -13,7 +13,7 @@ const groupChairman = {
 
 const operationsDirector = {
   name: 'Dr Tendai Sawunyama',
-  role: 'Operations Director',
+  role: 'Operations Director | Africa',
   area: 'Africa',
   image: '/assets/Director Images/Dr Tendai.png',
 };

@@ -10,7 +10,7 @@ const leadership: TeamMember[] = [
   },
   {
     name: "Dr Tendai Sawunyama",
-    role: "Operations Director",
+    role: "Operations Director | Africa",
     image: "/assets/Director Images/Dr Tendai.png"
   },
   {
