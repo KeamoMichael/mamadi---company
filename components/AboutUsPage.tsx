@@ -8,53 +8,53 @@ const groupChairman = {
   name: 'Mr Mabu Mamadi',
   role: 'Executive Chairman',
   area: 'Global',
-  image: '/assets/Director Images/Mabu2.jpg',
+  image: '/assets/Director Images/Mabu.png',
 };
 
 const operationsDirector = {
   name: 'Dr Tendai Sawunyama',
   role: 'Operations Director',
   area: 'Africa',
-  image: '/assets/Director Images/Dr Tendai.webp',
+  image: '/assets/Director Images/Dr Tendai.png',
 };
 
 const continentalLeadership = [
-  { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'International delivery', image: '/assets/Director Images/Valentine.webp' },
-  { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations', image: '/assets/Director Images/Kgaugelo Mokwena.webp' },
-  { name: 'Ms Sandra Govere', role: 'Financial Advisor Services', area: 'Financial advisory', image: '/assets/Director Images/Sandra.webp' },
+  { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'International delivery', image: '/assets/Director Images/Valentine.png' },
+  { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations', image: '/assets/Director Images/Kgaugelo.png' },
+  { name: 'Ms Sandra Govere', role: 'Financial Advisor Services', area: 'Financial advisory', image: '/assets/Director Images/Sandra.png' },
 ];
 
 const countryLeadership = [
   { country: 'South Africa', flagImage: '/assets/flaticon-country-flags/south-africa.png', flagEmoji: '', entity: 'Mamadi South Africa', descriptor: 'Mamadi & Company South Africa', leaders: [
-    { name: 'Mr Ike Rampedi', role: 'CEO | Mamadi SA', image: '/assets/Director Images/Ike.webp' },
+    { name: 'Mr Ike Rampedi', role: 'CEO | Mamadi SA', image: '/assets/Director Images/Ike.png' },
   ] },
   { country: 'United States', flagImage: '/assets/flaticon-country-flags/usa.png', flagEmoji: '', entity: 'Mamadi USA', descriptor: '', leaders: [
-    { name: 'Mr Manfield Mandigora', role: 'CEO | Mamadi USA', image: '/assets/Director Images/Manfield Mandigora.webp' },
+    { name: 'Mr Manfield Mandigora', role: 'CEO | Mamadi USA', image: '/assets/Director Images/Manfield Mandigora.png' },
   ] },
   { country: 'India', flagImage: '/assets/flaticon-country-flags/india.png', flagEmoji: '', entity: 'Mamadi India', descriptor: '', leaders: [
-    { name: 'Mr Avnish Gupta', role: 'CEO | Mamadi India', image: '/assets/Director Images/Avish Gupta.webp' },
+    { name: 'Mr Avnish Gupta', role: 'CEO | Mamadi India', image: '/assets/Director Images/Avnish.png' },
   ] },
   { country: 'United Kingdom', flagImage: '/assets/flaticon-country-flags/united-kingdom.jpg', flagEmoji: '', entity: 'Mamadi UK', descriptor: 'United Kingdom office', leaders: [
-    { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', image: '/assets/Director Images/Seokhoon Ko.webp' },
+    { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', image: '/assets/Director Images/Seokhoon Ko.png' },
   ] },
   { country: 'Mozambique', flagImage: '/assets/flaticon-country-flags/mozambique.png', flagEmoji: '', entity: 'Mamadi Mozambique', descriptor: 'Mozambique operations', leaders: [
-    { name: 'Silver Mucavele', role: 'CEO | Mamadi Mozambique', image: '/assets/Director Images/Silver Mucavele.webp' },
+    { name: 'Silver Mucavele', role: 'CEO | Mamadi Mozambique', image: '/assets/Director Images/Mucavele.png' },
   ] },
   { country: 'Ghana', flagImage: '', flagEmoji: '', entity: 'Ghana', descriptor: 'Central & West Africa', leaders: [
-    { name: 'Thokozani Magwaza', role: 'Regional Director | Central and West Africa', image: '/assets/Director Images/Thokozani Magwaza.webp' },
+    { name: 'Thokozani Magwaza', role: 'Regional Director | Central and West Africa', image: '/assets/Director Images/Thokozani Magwaza.png' },
   ] },
 
   { country: 'Zimbabwe', flagImage: '', flagEmoji: '', entity: 'Zimbabwe', descriptor: 'Southern Africa', leaders: [
-    { name: 'Eng. Zvikomborero Hoko', role: 'Operations Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.webp' },
+    { name: 'Eng. Zvikomborero Hoko', role: 'Operations Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.png' },
   ] },
 ];
 
 const specialistFunctions = [
-  { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'International services', image: '/assets/Director Images/Adv. Emmanuel Tem.webp' },
+  { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'International services', image: '/assets/Director Images/Adv Emmanuel Tem.png' },
   { name: 'Gustave Mizero', role: 'Projects Engineer', area: 'Engineering delivery' },
   { name: 'Ms Lucia Mogale', role: 'Senior Project Administrator', area: 'Project support' },
   { name: 'Letlhogonolo Matsapola', role: 'Project Finance Specialist', area: '' },
-  { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment', image: '/assets/Director Images/Osborne Muvingi.webp' },
+  { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment', image: '/assets/Director Images/Osborn.png' },
 ];
 
 type AboutUsPageProps = {

@@ -6,72 +6,72 @@ const leadership: TeamMember[] = [
   {
     name: "Mabu Mamadi",
     role: "Chairman | Mamadi International",
-    image: "/assets/Director Images/Mabu2.jpg"
+    image: "/assets/Director Images/Mabu.png"
   },
   {
     name: "Dr Tendai Sawunyama",
     role: "Operations Director",
-    image: "/assets/Director Images/Dr Tendai.webp"
+    image: "/assets/Director Images/Dr Tendai.png"
   },
   {
     name: "Avnish Gupta",
     role: "CEO | Mamadi India",
-    image: "/assets/Director Images/Avish Gupta.webp"
+    image: "/assets/Director Images/Avnish.png"
   },
   {
     name: "Ike Rampedi",
     role: "CEO | Mamadi SA",
-    image: "/assets/Director Images/Ike.webp"
+    image: "/assets/Director Images/Ike.png"
   },
   {
     name: "Seokhoon Ko",
     role: "Finance and Infrastructure Planning: Specialist",
-    image: "/assets/Director Images/Seokhoon Ko.webp"
+    image: "/assets/Director Images/Seokhoon Ko.png"
   },
   {
     name: "Valentine Chadyiwa",
     role: "EPC Director",
-    image: "/assets/Director Images/Valentine.webp"
+    image: "/assets/Director Images/Valentine.png"
   },
   {
     name: "Silver Mucavele",
     role: "CEO | Mamadi Mozambique",
-    image: "/assets/Director Images/Silver Mucavele.webp"
+    image: "/assets/Director Images/Mucavele.png"
   },
   {
     name: "Manfield Mandigora",
     role: "CEO | Mamadi USA",
-    image: "/assets/Director Images/Manfield Mandigora.webp"
+    image: "/assets/Director Images/Manfield Mandigora.png"
   },
   {
     name: "Sandra Govere",
     role: "Financial Advisor Services",
-    image: "/assets/Director Images/Sandra.webp"
+    image: "/assets/Director Images/Sandra.png"
   },
   {
     name: "Kgaugelo Mokwena",
     role: "Executive Personal Assistant to Chairman",
-    image: "/assets/Director Images/Kgaugelo Mokwena.webp"
+    image: "/assets/Director Images/Kgaugelo.png"
   },
   {
     name: "Thokozani Magwaza",
     role: "Regional Director | Central and West Africa",
-    image: "/assets/Director Images/Thokozani Magwaza.webp"
+    image: "/assets/Director Images/Thokozani Magwaza.png"
   },
   {
     name: "Adv. Emmanuel Tem",
     role: "Senior Consultant",
-    image: "/assets/Director Images/Adv. Emmanuel Tem.webp"
+    image: "/assets/Director Images/Adv Emmanuel Tem.png"
   },
   {
     name: "Osborne Muvingi",
     role: "Senior Investment Officer",
-    image: "/assets/Director Images/Osborne Muvingi.webp"
+    image: "/assets/Director Images/Osborn.png"
   },
   {
     name: "Eng. Zvikomborero Hoko",
     role: "Operations Excellence Director",
-    image: "/assets/Director Images/Zvikomborero Hoko.webp"
+    image: "/assets/Director Images/Zvikomborero Hoko.png"
   }
 ];
 
