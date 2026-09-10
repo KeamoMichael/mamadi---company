@@ -21,7 +21,7 @@ const operationsDirector = {
 const continentalLeadership = [
   { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'International delivery', image: '/assets/Director Images/Valentine.png' },
   { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations', image: '/assets/Director Images/Kgaugelo.png' },
-  { name: 'Ms Sandra Govere', role: 'Financial Advisor Services', area: 'Financial advisory', image: '/assets/Director Images/Sandra.png' },
+  { name: 'Ms Sandra Govere', role: 'Financial Advisory Services', area: 'Financial advisory', image: '/assets/Director Images/Sandra.png' },
 ];
 
 const countryLeadership = [
