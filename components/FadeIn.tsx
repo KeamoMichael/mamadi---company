@@ -11,6 +11,14 @@ export const FadeIn: React.FC<FadeInProps> = ({ children, className = "", delay 
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Tall sections (such as the About page leadership grid on mobile) may
+    // never have 10% of their full height inside the viewport at once. Reveal
+    // content as soon as it actually enters the viewport instead.
+    if (!('IntersectionObserver' in window)) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,7 +27,7 @@ export const FadeIn: React.FC<FadeInProps> = ({ children, className = "", delay 
         }
       },
       {
-        threshold: 0.1,
+        threshold: 0,
         rootMargin: '0px 0px -50px 0px'
       }
     );
@@ -28,11 +36,7 @@ export const FadeIn: React.FC<FadeInProps> = ({ children, className = "", delay 
       observer.observe(ref.current);
     }
 
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
