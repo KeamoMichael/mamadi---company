@@ -6,7 +6,7 @@ const leadership: TeamMember[] = [
   {
     name: "Mabu Mamadi",
     role: "Chairman | Mamadi International",
-    image: "/assets/Director Images/Mabu.png"
+    image: "/assets/Director Images/Mabu navy suit.png"
   },
   {
     name: "Dr Tendai Sawunyama",

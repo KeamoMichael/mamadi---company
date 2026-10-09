@@ -229,16 +229,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
               ref={heroH1Ref}
               className="text-4xl md:text-5xl font-semibold tracking-tight mb-5 md:mb-10 [@media(min-width:1024px)_and_(max-height:720px)]:mb-6 leading-tight text-brand-blue"
             >
-              Engineering the Future of <br className="hidden md:block" />
-              <span className="text-brand-gold">Infrastructure</span> in Africa and Beyond
+              Innovative infrastructure.<br className="hidden md:block" />
+              <span className="text-brand-gold">Sustainable impact.</span>
             </h1>
             <p
               ref={heroPRef}
               className="text-sm md:text-base text-gray-500 max-w-3xl mx-auto mb-6 md:mb-14 [@media(min-width:1024px)_and_(max-height:720px)]:mb-8 leading-relaxed font-normal"
             >
-              Mamadi International is a multidisciplinary consulting firm delivering world-class
-              engineering, environmental, and project management solutions. We bridge the gap
-              between technical excellence and sustainable community development.
+              Mamadi International is a Pan-African infrastructure group with international operations,
+              integrating engineering, sustainability and technology to deliver infrastructure that improves lives.
             </p>
             <div ref={heroBtnsRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <a

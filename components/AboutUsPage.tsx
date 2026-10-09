@@ -3,12 +3,15 @@ import { Gauge, HandHeart, Lightbulb, ShieldCheck, UsersRound } from 'lucide-rea
 import { Section } from './Section';
 import { WorldMap } from './WorldMap';
 import { useNavbarHeight } from './useNavbarHeight';
+import { ValueProposition } from './ValueProposition';
+import { strategicPillars } from '../data/companyProfile';
+import { globalOffices } from '../data/contact';
 
 const groupChairman = {
   name: 'Mr Mabu Mamadi',
   role: 'Executive Chairman',
   area: 'Global',
-  image: '/assets/Director Images/Mabu.png',
+  image: '/assets/Director Images/Mabu navy suit.png',
 };
 
 const operationsDirector = {
@@ -117,9 +120,8 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
               Leading with technical excellence and community impact.
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Established as a multidisciplinary firm, Mamadi International has grown into a
-              trusted partner for infrastructure development across Africa, combining
-              international standards with deep local insights.
+              Mamadi International is a Pan-African infrastructure group with international operations,
+              integrating engineering, sustainability and technology to deliver infrastructure that improves lives.
             </p>
           </div>
         </div>
@@ -163,14 +165,13 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
         <Section label="Who We Are">
             <div className="flex flex-col gap-8">
                 <p className="text-lg text-brand-blue font-medium leading-relaxed max-w-3xl">
-                    Mamadi International is an established, multidisciplinary engineering and consulting firm 
-                    dedicated to delivering technical excellence and sustainable infrastructure solutions.
+                    Mamadi International combines multidisciplinary engineering with sustainability and technology,
+                    supporting public and private sector infrastructure development across Africa and beyond.
                 </p>
                 <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-                    We provide a comprehensive suite of professional services, acting as a strategic partner 
-                    to both public and private sectors. Our approach integrates global best practices with 
-                    deep local insights, ensuring every project yields long-term socio-economic value and 
-                    measurable community impact.
+                    Our services span feasibility studies, PPP structuring and engineering design, alongside
+                    environmental compliance, climate adaptation and digital engineering. We connect
+                    international technical expertise with local knowledge and client requirements.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
                     {[
@@ -337,16 +338,26 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                             Mamadi Global Presence
                         </h2>
                         <p className="text-sm text-gray-500 leading-relaxed">
-                            Headquartered in Dubai, Mamadi International maintains a strategic
-                            regional presence with a growing footprint across the African continent.
-                            Our ability to mobilize technical expertise across diverse territories
-                            allows us to address complex infrastructure challenges in varying
-                            regulatory and environmental contexts.
+                            Headquartered in Mauritius, Mamadi International undertakes projects across Africa and beyond.
+                            Our international network connects clients with local expertise and supports
+                            delivery across different regulatory and environmental contexts.
                         </p>
                         <p className="text-sm text-gray-500 leading-relaxed">
                             We are committed to regional integration and delivering excellence
                             wherever our clients require sophisticated engineering and consulting solutions.
                         </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="text-xl font-semibold text-brand-blue">Global Office Network</h3>
+                    <div className="mt-8 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+                        {globalOffices.map(({ country, address }) => (
+                            <article key={country} className="border-t border-brand-gold/45 pt-5">
+                                <h4 className="text-sm font-semibold text-brand-gold">{country}</h4>
+                                <p className="mt-3 text-sm leading-relaxed text-gray-500">{address}</p>
+                            </article>
+                        ))}
                     </div>
                 </div>
 
@@ -419,15 +430,32 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                     </div>
                 </div>
 
+                <div className="border-t border-gray-200 pt-14 md:pt-16">
+                    <h3 className="text-2xl font-semibold text-brand-blue">Our 2026–2035 Strategy</h3>
+                    <p className="mt-5 max-w-3xl text-sm leading-relaxed text-gray-500">
+                        Our ambition is to become a global leader in innovative, integrated solutions for sustainable infrastructure development.
+                        We are building towards integrated PPP lifecycle delivery, engineering, procurement and construction with financing (EPC+F),
+                        digital engineering and sustainability. Think Global, Act Local guides this approach.
+                    </p>
+                    <ol className="mt-8 space-y-6">
+                        {strategicPillars.map(({ title, description }, index) => (
+                            <li key={title} className="grid grid-cols-[2rem_1fr] gap-4 border-t border-gray-200 pt-5">
+                                <span className="text-brand-gold">{String(index + 1).padStart(2, '0')}</span>
+                                <div>
+                                    <h4 className="text-lg font-semibold text-brand-blue">{title}</h4>
+                                    <p className="mt-2 text-sm leading-relaxed text-gray-500">{description}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+
                 <div className="grid gap-8 border-t border-gray-200 pt-14 md:pt-16 lg:grid-cols-[0.32fr_0.68fr] lg:gap-14">
                         <div>
                             <span className="text-sm font-normal tracking-[0.04em] text-brand-gold">04 / Value Proposition</span>
                         </div>
                         <div>
-                            <p className="max-w-4xl text-xl font-medium leading-relaxed text-brand-blue md:text-2xl">
-                                Mamadi International is Africa’s integrated infrastructure partner – rooted locally, connected globally. We deliver complex infrastructure as one accountable platform, with the speed, integrity and reliability our clients can build on.
-                            </p>
-                            <p className="mt-7 text-sm font-semibold tracking-wide text-brand-gold">Innovative infrastructure. Sustainable impact.</p>
+                            <ValueProposition />
                         </div>
                 </div>
             </div>

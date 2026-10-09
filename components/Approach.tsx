@@ -5,11 +5,11 @@ import { ApproachStep } from '../types';
 const steps: ApproachStep[] = [
   {
     title: "Strategic Planning",
-    description: "We conduct feasibility studies and master planning to ensure project viability."
+    description: "Feasibility studies, master planning and PPP structuring help clients assess project viability and financing options."
   },
   {
     title: "Design & Engineering",
-    description: "Our team delivers comprehensive civil, structural, and environmental design solutions."
+    description: "Multidisciplinary design and digital engineering address infrastructure needs alongside environmental compliance and climate adaptation."
   },
   {
     title: "Project Management",
@@ -73,8 +73,9 @@ export const Approach: React.FC = () => {
       <div className="flex flex-col gap-16">
         {/* Intro Text */}
         <p className="text-sm text-gray-500 leading-relaxed max-w-2xl">
-          We provide end-to-end solutions in engineering, sustainability, and technology, 
-          distinguishing ourselves through technical excellence and innovative, award-winning results.
+          We combine engineering, sustainability and technology with practical delivery capability.
+          Our 2026–2035 strategy builds towards integrated PPP lifecycle delivery and engineering,
+          procurement and construction with financing (EPC+F), supported by digital engineering.
         </p>
 
         {/* List */}

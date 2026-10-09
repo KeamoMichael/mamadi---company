@@ -9,12 +9,12 @@ const pageSeo: Record<View, { path: string; title: string; description: string }
   home: {
     path: '/',
     title: 'Mamadi International | Engineering & Infrastructure Consultancy',
-    description: 'Mamadi International is a multidisciplinary engineering and infrastructure consultancy delivering advisory, environmental, energy and project solutions across Africa and international markets.',
+    description: 'Mamadi International is a Pan-African infrastructure group integrating engineering, sustainability and technology across Africa and international markets.',
   },
   about: {
     path: '/about',
     title: 'About Mamadi International | Leadership & Global Footprint',
-    description: 'Learn about Mamadi International, our leadership, values and international footprint supporting sustainable infrastructure and engineering delivery.',
+    description: 'Explore Mamadi International’s leadership, value proposition, 2026–2035 strategy and global offices, including Mauritius and the USA.',
   },
   projects: {
     path: '/projects',

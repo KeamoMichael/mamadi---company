@@ -13,3 +13,12 @@ export const headOffice = {
     lng: 28.1259,
   },
 } as const;
+
+export const globalOffices = [
+  { country: 'South Africa', address: headOffice.addressLines.join(', ') },
+  { country: 'Mauritius', address: 'Level 8C, Cyber Tower II, Ebene, Cyber City, Mauritius' },
+  { country: 'United Kingdom', address: '100 Bishopsgate, London EC2M 1GT, UK' },
+  { country: 'Mozambique', address: 'No 76 Bairro Mahlangalene, Germano De Magalhaes, Maputo' },
+  { country: 'Tanzania', address: '196 Rose Garden Road, Mikocheni, Dar Es Salaam' },
+  { country: 'USA', address: '2605 Jetstream Road, Herndon, Virginia 20171, USA' },
+] as const;
