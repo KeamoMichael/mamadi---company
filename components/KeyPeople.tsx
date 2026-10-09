@@ -35,12 +35,12 @@ const leadership: TeamMember[] = [
   },
   {
     name: "Silver Mucavele",
-    role: "CEO | Mamadi Mozambique",
+    role: "Director | Mamadi Mozambique",
     image: "/assets/Director Images/Mucavele.png"
   },
   {
     name: "Manfield Mandigora",
-    role: "CEO | Mamadi USA",
+    role: "Director | Mamadi USA",
     image: "/assets/Director Images/Manfield Mandigora.png"
   },
   {

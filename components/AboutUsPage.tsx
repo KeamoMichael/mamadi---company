@@ -32,7 +32,7 @@ const countryLeadership = [
     { name: 'Mr Ike Rampedi', role: 'CEO | Mamadi SA', image: '/assets/Director Images/Ike.png' },
   ] },
   { country: 'United States', flagImage: '/assets/flaticon-country-flags/usa.png', flagEmoji: '', entity: 'Mamadi USA', descriptor: '', leaders: [
-    { name: 'Mr Manfield Mandigora', role: 'CEO | Mamadi USA', image: '/assets/Director Images/Manfield Mandigora.png' },
+    { name: 'Mr Manfield Mandigora', role: 'Director | Mamadi USA', image: '/assets/Director Images/Manfield Mandigora.png' },
   ] },
   { country: 'India', flagImage: '/assets/flaticon-country-flags/india.png', flagEmoji: '', entity: 'Mamadi India', descriptor: '', leaders: [
     { name: 'Mr Avnish Gupta', role: 'CEO | Mamadi India', image: '/assets/Director Images/Avnish.png' },
@@ -41,7 +41,7 @@ const countryLeadership = [
     { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', image: '/assets/Director Images/Seokhoon Ko.png' },
   ] },
   { country: 'Mozambique', flagImage: '/assets/flaticon-country-flags/mozambique.png', flagEmoji: '', entity: 'Mamadi Mozambique', descriptor: 'Mozambique operations', leaders: [
-    { name: 'Silver Mucavele', role: 'CEO | Mamadi Mozambique', image: '/assets/Director Images/Mucavele.png' },
+    { name: 'Silver Mucavele', role: 'Director | Mamadi Mozambique', image: '/assets/Director Images/Mucavele.png' },
   ] },
   { country: 'Ghana', flagImage: '', flagEmoji: '', entity: 'Ghana', descriptor: 'Central & West Africa', leaders: [
     { name: 'Thokozani Magwaza', role: 'Regional Director | Central and West Africa', image: '/assets/Director Images/Thokozani Magwaza.png' },
