@@ -6,59 +6,11 @@ import { useNavbarHeight } from './useNavbarHeight';
 import { ValueProposition } from './ValueProposition';
 import { strategicPillars } from '../data/companyProfile';
 import { globalOffices } from '../data/contact';
+import { leadership } from '../data/leadership';
 
-const groupChairman = {
-  name: 'Mr Mabu Mamadi',
-  role: 'Executive Chairman',
-  area: 'Global',
-  image: '/assets/Director Images/Mabu navy suit.png',
-};
-
-const operationsDirector = {
-  name: 'Dr Tendai Sawunyama',
-  role: 'Operations Director | Africa',
-  area: 'Africa',
-  image: '/assets/Director Images/Dr Tendai.png',
-};
-
-const continentalLeadership = [
-  { name: 'Mr Valentine Chadyiwa', role: 'EPC Director', area: 'International delivery', image: '/assets/Director Images/Valentine.png' },
-  { name: 'Mrs Kgaugelo Mokwena', role: 'Executive Personal Assistant', area: 'Africa operations', image: '/assets/Director Images/Kgaugelo.png' },
-  { name: 'Ms Sandra Govere', role: 'Financial Advisory Services', area: 'Financial advisory', image: '/assets/Director Images/Sandra.png' },
-];
-
-const countryLeadership = [
-  { country: 'South Africa', flagImage: '/assets/flaticon-country-flags/south-africa.png', flagEmoji: '', entity: 'Mamadi South Africa', descriptor: 'Mamadi & Company South Africa', leaders: [
-    { name: 'Mr Ike Rampedi', role: 'CEO | Mamadi SA', image: '/assets/Director Images/Ike.png' },
-  ] },
-  { country: 'United States', flagImage: '/assets/flaticon-country-flags/usa.png', flagEmoji: '', entity: 'Mamadi USA', descriptor: '', leaders: [
-    { name: 'Mr Manfield Mandigora', role: 'Director | Mamadi USA', image: '/assets/Director Images/Manfield Mandigora.png' },
-  ] },
-  { country: 'India', flagImage: '/assets/flaticon-country-flags/india.png', flagEmoji: '', entity: 'Mamadi India', descriptor: '', leaders: [
-    { name: 'Mr Avnish Gupta', role: 'CEO | Mamadi India', image: '/assets/Director Images/Avnish.png' },
-  ] },
-  { country: 'United Kingdom', flagImage: '/assets/flaticon-country-flags/united-kingdom.jpg', flagEmoji: '', entity: 'Mamadi UK', descriptor: 'United Kingdom office', leaders: [
-    { name: 'Mr Seokhoon Ko', role: 'Financing & Infrastructure Planning Specialist', image: '/assets/Director Images/Seokhoon Ko.png' },
-  ] },
-  { country: 'Mozambique', flagImage: '/assets/flaticon-country-flags/mozambique.png', flagEmoji: '', entity: 'Mamadi Mozambique', descriptor: 'Mozambique operations', leaders: [
-    { name: 'Silver Mucavele', role: 'Director | Mamadi Mozambique', image: '/assets/Director Images/Mucavele.png' },
-  ] },
-  { country: 'Ghana', flagImage: '', flagEmoji: '', entity: 'Ghana', descriptor: 'Central & West Africa', leaders: [
-    { name: 'Thokozani Magwaza', role: 'Regional Director | Central and West Africa', image: '/assets/Director Images/Thokozani Magwaza.png' },
-  ] },
-
-  { country: 'Zimbabwe', flagImage: '', flagEmoji: '', entity: 'Zimbabwe', descriptor: 'Southern Africa', leaders: [
-    { name: 'Eng. Zvikomborero Hoko', role: 'Operations Excellence Director', image: '/assets/Director Images/Zvikomborero Hoko.png' },
-  ] },
-];
-
-const specialistFunctions = [
-  { name: 'Adv Emmanuel Tem', role: 'Legal & Taxation Specialist', area: 'International services', image: '/assets/Director Images/Adv Emmanuel Tem.png' },
-  { name: 'Gustave Mizero', role: 'Projects Engineer', area: 'Engineering delivery' },
-  { name: 'Ms Lucia Mogale', role: 'Senior Project Administrator', area: 'Project support' },
-  { name: 'Letlhogonolo Matsapola', role: 'Project Finance Specialist', area: '' },
-  { name: 'Mr Osborne Muvingi', role: 'Senior Investment Officer', area: 'Investment', image: '/assets/Director Images/Osborn.png' },
-];
+const [groupChairman, operationsDirector] = leadership;
+const deliveryLeadership = leadership.slice(2, 9);
+const specialistFunctions = leadership.slice(9);
 
 type AboutUsPageProps = {
   setView: (view: 'projects') => void;
@@ -227,7 +179,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                 />
                 <div>
                   <span className="text-sm text-brand-gold">International leadership</span>
-                  <p className="mt-3 text-sm text-gray-400">{groupChairman.role} · {groupChairman.area}</p>
+                  <p className="mt-3 text-sm text-gray-400">{groupChairman.role}</p>
                   <h3 className="mt-5 text-3xl font-semibold tracking-tight text-brand-blue md:text-5xl">
                     {groupChairman.name}
                   </h3>
@@ -246,83 +198,27 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                   <h3 className="mt-5 text-2xl font-semibold tracking-tight text-brand-blue md:text-3xl">
                     {operationsDirector.name}
                   </h3>
-                  <p className="mt-2 text-sm text-gray-500">{operationsDirector.role} · {operationsDirector.area}</p>
+                  <p className="mt-2 text-sm text-gray-500">{operationsDirector.role}</p>
                 </div>
               </article>
 
-              <div className="border-t border-gray-100 py-10 md:py-12">
-                <div className="mb-9 max-w-2xl">
-                  <h3 className="text-sm font-medium text-brand-gold">International & continental leadership</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-gray-400">
-                    Roles that support Mamadi International and its operations across multiple countries.
-                  </p>
+              {[
+                { title: 'Country, regional & delivery leadership', people: deliveryLeadership },
+                { title: 'Operations & specialist leadership', people: specialistFunctions },
+              ].map(({ title, people }) => (
+                <div key={title} className="border-t border-gray-100 py-10 md:py-12">
+                  <h3 className="mb-9 text-sm font-medium text-brand-gold">{title}</h3>
+                  <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+                    {people.map((leader) => (
+                      <article key={leader.name}>
+                        <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
+                        <h4 className="mt-5 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
+                        <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
+                      </article>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
-                  {continentalLeadership.map((leader) => (
-                    <article key={leader.name}>
-                      <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
-                      <p className="mt-5 text-xs leading-relaxed text-gray-400">{leader.area}</p>
-                      <h4 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
-                      <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-t border-gray-100 py-10 md:py-12">
-                <div className="mb-9 max-w-2xl">
-                  <h3 className="text-sm font-medium text-brand-gold">Country & regional leadership</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-gray-400">
-                    Each leader below is shown under the country or regional entity they represent.
-                  </p>
-                </div>
-                <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
-                  {countryLeadership.map((group) => (
-                    <section key={group.country}>
-                      {group.leaders.map((leader) => (
-                        <article key={leader.name}>
-                          <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
-                          <h4 className="mt-5 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
-                          <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
-                        </article>
-                      ))}
-                    </section>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-t border-gray-100 pt-12">
-                <h3 className="border-b border-brand-gold/35 pb-4 text-sm font-medium text-brand-gold">
-                  International specialist functions
-                </h3>
-                <div className="mt-9 grid gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
-                  {specialistFunctions.filter((leader) => leader.image).map((leader) => (
-                    <article key={leader.name}>
-                      <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
-                      <h4 className="mt-5 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
-                      <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
-                      <p className="mt-2 text-xs leading-relaxed text-gray-400">{leader.area}</p>
-                    </article>
-                  ))}
-                </div>
-                <div className="mt-12 grid gap-x-12 sm:grid-cols-2">
-                  {[
-                    specialistFunctions.filter((leader) => !leader.image).slice(0, 1),
-                    specialistFunctions.filter((leader) => !leader.image).slice(1),
-                  ].map((column, columnIndex) => (
-                    <div key={columnIndex} className="flex flex-col">
-                      {column.map((leader) => (
-                        <article key={leader.name} className="border-t border-brand-gold/45 py-6">
-                          <span className="text-xs font-medium tracking-wide text-gray-400">Specialist Function</span>
-                          <h4 className="mt-4 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
-                          <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
-                          <p className="mt-2 text-xs leading-relaxed text-gray-400">{leader.area}</p>
-                        </article>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </Section>
