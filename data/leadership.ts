@@ -75,6 +75,7 @@ export const leadership: TeamMember[] = [
   {
     "name": "Letlhogonolo Matsapola",
     "role": "Senior Investment Officer",
+    "imageFit": "contain",
     "image": "/assets/Director Images/Letlhogonolo Matsapola.png"
   }
 ];

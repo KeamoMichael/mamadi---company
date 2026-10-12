@@ -211,7 +211,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                   <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                     {people.map((leader) => (
                       <article key={leader.name}>
-                        <LeadershipPortrait image={leader.image} name={leader.name} className="w-full" />
+                        <LeadershipPortrait image={leader.image} name={leader.name} imageFit={leader.imageFit} className="w-full" />
                         <h4 className="mt-5 text-lg font-semibold leading-snug tracking-tight text-brand-blue">{leader.name}</h4>
                         <p className="mt-2 text-xs font-medium text-brand-gold">{leader.role}</p>
                       </article>
@@ -361,7 +361,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
   );
 };
 
-const LeadershipPortrait: React.FC<{ image?: string; name: string; className?: string }> = ({ image, name, className = '' }) => {
+const LeadershipPortrait: React.FC<{ image?: string; name: string; imageFit?: 'cover' | 'contain'; className?: string }> = ({ image, name, imageFit = 'cover', className = '' }) => {
   if (image) {
     return (
       <img
@@ -369,7 +369,7 @@ const LeadershipPortrait: React.FC<{ image?: string; name: string; className?: s
         alt={name}
         loading="lazy"
         decoding="async"
-        className={`aspect-[3/4] bg-gray-100 object-cover ${className}`}
+        className={`aspect-[3/4] bg-gray-100 ${imageFit === 'contain' ? 'object-contain' : 'object-cover'} ${className}`}
       />
     );
   }

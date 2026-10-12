@@ -93,7 +93,7 @@ export const KeyPeople: React.FC = () => {
                         alt={person.name}
                         loading={index < 3 ? 'eager' : 'lazy'}
                         decoding="async"
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full ${person.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
                       />
                     </div>
 

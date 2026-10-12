@@ -1,4 +1,5 @@
 export interface TeamMember {
+  imageFit?: 'cover' | 'contain';
   name: string;
   role: string;
   image: string;
