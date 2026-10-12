@@ -114,12 +114,17 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
           </div>
 
           {/* Contact Info */}
-          <div className="flex flex-col gap-6">
-            <h4 className="text-white font-bold text-sm uppercase tracking-widest">Connect</h4>
-            <div className="flex flex-col gap-3 text-sm text-gray-400">
-              <div className="text-sm leading-relaxed">
-                <p className="font-semibold text-brand-gold">USA Office</p>
-                <p className="mt-2">2605 Jetstream Road<br />Herndon, Virginia 20171, USA</p>
+          <div>
+            <h4 className="text-brand-gold font-semibold text-lg mb-6">Connect</h4>
+            <div className="flex flex-col gap-3 text-sm leading-relaxed text-gray-500">
+              <div className="flex items-start gap-3">
+                <FooterContactIcon>
+                  <MinimalFooterIcon variant="location" />
+                </FooterContactIcon>
+                <div>
+                  <p className="font-semibold text-brand-gold">USA Office</p>
+                  <p>13849 Park Centre Rd<br />Suite A, Herndon,<br />VA, 20171</p>
+                </div>
               </div>
               <a
                 href={headOfficeMapsUrl}
