@@ -117,15 +117,6 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
           <div>
             <h4 className="text-brand-gold font-semibold text-lg mb-6">Connect</h4>
             <div className="flex flex-col gap-3 text-sm leading-relaxed text-gray-500">
-              <div className="flex items-start gap-3">
-                <FooterContactIcon>
-                  <MinimalFooterIcon variant="location" />
-                </FooterContactIcon>
-                <div>
-                  <p className="font-semibold text-brand-gold">USA Office</p>
-                  <p>13849 Park Centre Rd<br />Suite A, Herndon,<br />VA, 20171</p>
-                </div>
-              </div>
               <a
                 href={headOfficeMapsUrl}
                 target="_blank"

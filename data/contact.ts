@@ -20,5 +20,5 @@ export const globalOffices = [
   { country: 'United Kingdom', address: '100 Bishopsgate, London EC2M 1GT, UK' },
   { country: 'Mozambique', address: 'No 76 Bairro Mahlangalene, Germano De Magalhaes, Maputo' },
   { country: 'Tanzania', address: '196 Rose Garden Road, Mikocheni, Dar Es Salaam' },
-  { country: 'USA', address: '2605 Jetstream Road, Herndon, Virginia 20171, USA' },
+  { country: 'USA', address: '13849 Park Centre Rd, Suite A, Herndon, VA, 20171' },
 ] as const;
