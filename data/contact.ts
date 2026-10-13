@@ -1,3 +1,5 @@
+export const southAfricaWebsite = 'https://www.mamadi.co.za';
+
 export const headOffice = {
   city: 'Midrand',
   addressLines: [

@@ -63,10 +63,10 @@ export const ContactPage: React.FC = () => {
     };
 
   return (
-    <div className="pt-20 min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section
-        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
+        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-40 pb-36 text-white md:pb-44"
         style={{ backgroundImage: "url('/assets/officeBuilding.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/75" />

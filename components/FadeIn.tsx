@@ -4,9 +4,10 @@ interface FadeInProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  variant?: 'default' | 'subtle';
 }
 
-export const FadeIn: React.FC<FadeInProps> = ({ children, className = "", delay = 0 }) => {
+export const FadeIn: React.FC<FadeInProps> = ({ children, className = "", delay = 0, variant = 'default' }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -42,7 +43,7 @@ export const FadeIn: React.FC<FadeInProps> = ({ children, className = "", delay 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out transform ${
+      className={variant === 'subtle' ? `section-reveal ${isVisible ? 'section-reveal-visible' : ''} ${className}` : `transition-all duration-1000 ease-out transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}

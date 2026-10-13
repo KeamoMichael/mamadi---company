@@ -1,11 +1,11 @@
 import React from 'react';
-import { Gauge, HandHeart, Lightbulb, ShieldCheck, UsersRound } from 'lucide-react';
+import { ArrowUpRight, Gauge, HandHeart, Lightbulb, ShieldCheck, UsersRound } from 'lucide-react';
 import { Section } from './Section';
 import { WorldMap } from './WorldMap';
 import { useNavbarHeight } from './useNavbarHeight';
 import { ValueProposition } from './ValueProposition';
 import { strategicPillars } from '../data/companyProfile';
-import { globalOffices } from '../data/contact';
+import { globalOffices, southAfricaWebsite } from '../data/contact';
 import { leadership } from '../data/leadership';
 
 const [groupChairman, operationsDirector] = leadership;
@@ -80,22 +80,25 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
       </section>
 
       {/* Navigation for About Section (Internal) */}
-      <div
-        ref={navRef}
+      <nav
+        aria-label="About Us sections"
         style={{ top: navbarHeight }}
-        className="sticky bg-white border-b border-gray-100 z-30 overflow-x-auto scrollbar-none"
+        className="sticky bg-white border-b border-gray-100 z-30"
       >
+        <div ref={navRef} className="overflow-x-auto scrollbar-none">
         <div className="container mx-auto pl-6 md:px-12 lg:px-20 max-w-screen-2xl flex gap-10 whitespace-nowrap">
             {sectionItems.map((item, index) => (
                 <a
                     key={item.id}
                     data-section={item.id}
+                    aria-current={activeSection === item.id ? 'location' : undefined}
                     href={`#${item.id}`}
                     onClick={(e) => {
                         e.preventDefault();
                         const element = document.getElementById(item.id);
                         if (element) {
-                            const y = element.getBoundingClientRect().top + window.scrollY - 150;
+                            const offset = navbarHeight + (navRef.current?.offsetHeight ?? 72) + 16;
+                            const y = element.getBoundingClientRect().top + window.scrollY - offset;
                             window.scrollTo({ top: y, behavior: 'smooth' });
                         }
                     }}
@@ -110,7 +113,8 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                 </a>
             ))}
         </div>
-      </div>
+        </div>
+      </nav>
 
       {/* Who We Are Section */}
       <div id="who-we-are">
@@ -252,6 +256,20 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ setView }) => {
                             <article key={country} className="border-t border-brand-gold/45 pt-5">
                                 <h4 className="text-sm font-semibold text-brand-gold">{country}</h4>
                                 <p className="mt-3 text-sm leading-relaxed text-gray-500">{address}</p>
+                                {country === 'South Africa' && (
+                                  <div className="mt-6 border-t border-brand-gold/20 pt-5">
+                                    <a
+                                      href={southAfricaWebsite}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="Visit our South African website (opens in a new tab)"
+                                      className="group mt-4 inline-flex items-center gap-2 border-b border-brand-gold pb-1 text-sm font-semibold text-brand-blue transition-colors hover:text-brand-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-gold"
+                                    >
+                                      Visit our South African website
+                                      <ArrowUpRight size={18} aria-hidden="true" className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                    </a>
+                                  </div>
+                                )}
                             </article>
                         ))}
                     </div>

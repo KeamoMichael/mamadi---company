@@ -138,22 +138,25 @@ export const SectorsPage: React.FC = () => {
   const scrollToSector = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
-    const y = element.getBoundingClientRect().top + window.scrollY - navbarHeight - 72;
+    const offset = navbarHeight + (navRef.current?.offsetHeight ?? 72) + 16;
+    const y = element.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: y, behavior: 'smooth' });
   };
 
   return (
-    <main className="pt-20 bg-white">
-      <div
-        ref={navRef}
+    <main className="bg-white" style={{ paddingTop: navbarHeight }}>
+      <nav
+        aria-label="Sector sections"
         style={{ top: navbarHeight }}
-        className="sticky z-30 overflow-x-auto border-b border-gray-100 bg-white scrollbar-none"
+        className="sticky z-30 border-b border-gray-100 bg-white"
       >
+        <div ref={navRef} className="overflow-x-auto scrollbar-none">
         <div className="container mx-auto flex max-w-screen-2xl items-center gap-9 whitespace-nowrap pl-6 md:px-12 lg:px-20">
           {sectors.map((sector, index) => (
             <button
               key={sector.id}
               data-sector={sector.id}
+              aria-current={activeSection === sector.id ? 'location' : undefined}
               onClick={() => scrollToSector(sector.id)}
               className={`group relative flex items-center gap-2.5 pt-8 pb-6 text-sm font-medium transition-colors ${
                 activeSection === sector.id ? 'text-brand-gold' : 'text-gray-500 hover:text-brand-blue'
@@ -167,7 +170,8 @@ export const SectorsPage: React.FC = () => {
             </button>
           ))}
         </div>
-      </div>
+        </div>
+      </nav>
 
       {sectors.map((sector, index) => (
         <section id={sector.id} key={sector.id} className="scroll-mt-36">

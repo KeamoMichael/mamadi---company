@@ -7,6 +7,7 @@ import { Values } from './components/Values';
 import { KeyPeople } from './components/KeyPeople';
 import { Approach } from './components/Approach';
 import { Engagements } from './components/Engagements';
+import { SouthAfricaFeature } from './components/SouthAfricaFeature';
 import { Stats } from './components/Stats';
 import { Footer } from './components/Footer';
 import { AboutUsPage } from './components/AboutUsPage';
@@ -97,6 +98,7 @@ function App() {
           <Values />
           <KeyPeople />
           <Approach />
+          <SouthAfricaFeature />
           <Engagements setView={setView} />
         </>
       )}

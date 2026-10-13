@@ -60,9 +60,9 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onApply }) => {
   );
 
   return (
-    <main className="pt-20">
+    <main>
       <section
-        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
+        className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-40 pb-36 text-white md:pb-44"
         style={{ backgroundImage: "url('/assets/Hero Section Images/Vacancies-Hero Section.webp')" }}
       >
         <div className="absolute inset-0 bg-brand-blue/70" />

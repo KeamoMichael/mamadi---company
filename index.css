@@ -3,6 +3,14 @@
   to { stroke-dashoffset: 0; }
 }
 
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 .project-icon-awaiting {
   opacity: 0;
 }
@@ -72,5 +80,27 @@
   .project-icon-sustainability path {
     animation: none;
     stroke-dashoffset: 0;
+  }
+}
+
+/* Restrained, one-time entrances for the homepage closing sections. */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-reveal-visible,
+.section-reveal:focus-within {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    transition-delay: 0ms !important;
   }
 }

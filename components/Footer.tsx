@@ -1,6 +1,6 @@
 import React from 'react';
-import { ChevronRight, Instagram, Linkedin } from 'lucide-react';
-import { headOffice } from '../data/contact';
+import { ArrowUpRight, ChevronRight, Instagram, Linkedin } from 'lucide-react';
+import { headOffice, southAfricaWebsite } from '../data/contact';
 
 interface FooterProps {
   setView: (view: 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application') => void;
@@ -168,6 +168,16 @@ export const Footer: React.FC<FooterProps> = ({ setView }) => {
                   <MinimalFooterIcon variant="mail" />
                 </FooterContactIcon>
                 <span>info@mamadi.co.za</span>
+              </a>
+              <a
+                href={southAfricaWebsite}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Mamadi South Africa (opens in a new tab)"
+                className="group mt-3 inline-flex items-center gap-2 self-start border-b border-brand-gold/50 pb-1 font-semibold text-brand-blue transition-colors hover:text-brand-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-gold"
+              >
+                Mamadi South Africa
+                <ArrowUpRight size={16} aria-hidden="true" className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             </div>
           </div>

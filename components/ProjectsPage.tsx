@@ -151,10 +151,10 @@ export const ProjectsPage: React.FC = () => {
     }, [activeSection]);
 
     return (
-        <div className="pt-20 min-h-screen bg-white">
+        <div className="min-h-screen bg-white">
              {/* Hero Section (Matched to AboutUsPage) */}
             <section
-                className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-24 pb-36 text-white md:pb-44"
+                className="relative overflow-hidden bg-brand-blue bg-cover bg-center pt-40 pb-36 text-white md:pb-44"
                 style={{ backgroundImage: "url('/assets/Hero Section Images/Our Projects-Hero Section03.webp')" }}
             >
                 <div className="absolute inset-0 bg-brand-blue/70" />
@@ -174,16 +174,18 @@ export const ProjectsPage: React.FC = () => {
             </section>
 
             {/* Sticky Navigation */}
-            <div
-                ref={navRef}
+            <nav
+                aria-label="Project sections"
                 style={{ top: navbarHeight }}
-                className="sticky bg-white border-b border-gray-100 z-30 overflow-x-auto scrollbar-none"
+                className="sticky bg-white border-b border-gray-100 z-30"
             >
+                <div ref={navRef} className="overflow-x-auto scrollbar-none">
                 <div className="container mx-auto pl-6 md:px-12 lg:px-20 max-w-screen-2xl flex items-center gap-10 whitespace-nowrap">
                     {categories.map((cat, index) => (
                         <a
                             key={cat.id}
                             data-section={cat.id}
+                            aria-current={activeSection === cat.id ? 'location' : undefined}
                             href={`#${cat.id}`}
                             className={`group flex items-center gap-3 pt-8 pb-6 text-sm font-semibold transition-colors relative ${
                                 activeSection === cat.id ? 'text-brand-gold' : 'text-gray-500 hover:text-brand-blue'
@@ -192,7 +194,8 @@ export const ProjectsPage: React.FC = () => {
                                 e.preventDefault();
                                 const element = document.getElementById(cat.id);
                                 if (element) {
-                                    const y = element.getBoundingClientRect().top + window.scrollY - 150;
+                                    const offset = navbarHeight + (navRef.current?.offsetHeight ?? 0) + 16;
+                                    const y = element.getBoundingClientRect().top + window.scrollY - offset;
                                     window.scrollTo({ top: y, behavior: 'smooth' });
                                 }
                             }}
@@ -210,7 +213,8 @@ export const ProjectsPage: React.FC = () => {
                         </a>
                     ))}
                 </div>
-            </div>
+                </div>
+            </nav>
 
             {/* Main Content */}
             <div className="bg-gray-50/30">

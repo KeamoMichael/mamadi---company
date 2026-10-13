@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { FadeIn } from './FadeIn';
 
 type View = 'home' | 'about' | 'projects' | 'contact' | 'insights';
 
@@ -12,16 +13,16 @@ export const Engagements: React.FC<EngagementsProps> = ({ setView }) => {
     <section className="border-t border-gray-100 bg-white py-24 md:py-32">
       <div className="container mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">
         <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-end md:gap-16 lg:gap-24">
-          <div>
+          <FadeIn variant="subtle">
             <span className="mb-5 block text-sm font-normal tracking-[0.04em] text-brand-gold">
               Where We Are
             </span>
             <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-brand-blue md:text-4xl lg:text-5xl">
               See how Mamadi is growing across the world.
             </h2>
-          </div>
+          </FadeIn>
 
-          <div className="max-w-xl md:justify-self-end">
+          <FadeIn variant="subtle" delay={120} className="max-w-xl md:justify-self-end">
             <p className="mb-8 text-sm leading-relaxed text-gray-500 md:text-base">
               Explore our latest international launches, strategic partnerships and technology-led engineering initiatives across the markets where we operate.
             </p>
@@ -39,7 +40,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ setView }) => {
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </a>
-          </div>
+          </FadeIn>
         </div>
       </div>
     </section>

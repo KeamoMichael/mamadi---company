@@ -13,11 +13,11 @@ export const events: Event[] = [
   {
     id: 1,
     tag: 'Global Expansion',
-    location: 'Washington, D.C., United States',
+    location: 'Herndon, Virginia, United States',
     date: 'July 2026',
     title: 'Mamadi has launched in the United States',
     description:
-      'Mamadi International has officially launched in Washington, D.C., extending its global footprint into the United States. The new presence creates a platform for cross-border partnerships, engineering collaboration and infrastructure advisory work connecting the United States, Africa and Mamadi’s wider international network.',
+      'Mamadi International has officially launched in Herndon, Virginia, extending its global footprint into the United States. The new presence creates a platform for cross-border partnerships, engineering collaboration and infrastructure advisory work connecting the United States, Africa and Mamadi’s wider international network.',
     image: '/Insights/July/07%20July/BG%20Image.webp',
     imagePosition: 'center',
   },

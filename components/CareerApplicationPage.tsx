@@ -111,8 +111,8 @@ export const CareerApplicationPage: React.FC<CareerApplicationPageProps> = ({
   };
 
   return (
-    <main className="pt-20">
-      <section className="bg-brand-blue py-16 text-white md:py-20">
+    <main>
+      <section className="bg-brand-blue pt-40 pb-16 text-white md:pb-20">
         <div className="container mx-auto max-w-screen-2xl px-6 md:px-12 lg:px-20">
           <a
             href="/careers"
