@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Mouse } from 'lucide-react';
 
 const QUOTE_LINES = [
-  "The people who are crazy enough",
+  "“The people who are crazy enough",
   "to think they can change the world",
-  "are the ones who do.",
+  "are the ones who do.”",
 ];
-const ATTRIBUTION = "— Steve Jobs";
+const ATTRIBUTION = "Steve Jobs";
 
 const clamp = (v: number, min = 0, max = 1) => Math.min(max, Math.max(min, v));
 
@@ -295,7 +295,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
             ))}
             <p
               ref={attrRef}
-              className="text-brand-gold text-xs tracking-widest uppercase mt-4 md:mt-5 text-left w-full max-w-2xl"
+              className="text-white text-xs tracking-widest uppercase mt-4 md:mt-5 text-left w-full max-w-2xl"
               style={{ opacity: 0, transform: 'translateY(16px)', filter: 'blur(10px)' }}
             >
               {ATTRIBUTION}
