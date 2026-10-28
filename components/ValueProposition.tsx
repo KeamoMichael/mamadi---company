@@ -8,7 +8,7 @@ export const ValueProposition: React.FC = () => (
     </p>
     <ul className="mt-9 grid gap-x-10 gap-y-8 sm:grid-cols-2">
       {valueProposition.map(({ title, description }) => (
-        <li key={title} className="border-t border-brand-gold/45 pt-5">
+        <li key={title} className="border-t border-gray-200 pt-5">
           <h3 className="text-lg font-semibold leading-snug text-brand-blue">{title}</h3>
           <p className="mt-3 text-sm leading-relaxed text-gray-500">{description}</p>
         </li>
