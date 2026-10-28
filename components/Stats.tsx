@@ -51,13 +51,17 @@ export const Stats: React.FC = () => {
           {stats.map((stat, i) => (
             <div
               key={i}
-              className={`py-12 px-6 flex flex-col gap-2
-                ${i < 2 ? 'border-b md:border-b-0' : ''}
-                ${i % 2 === 0 ? 'border-r' : 'md:border-r'}
-                ${i === stats.length - 1 ? 'border-r-0' : ''}
-                border-gray-100`}
+              className={`relative py-12 px-6 flex flex-col gap-2 ${i === 0 ? 'md:pl-0' : ''} ${i === stats.length - 1 ? 'md:pr-0' : ''}`}
             >
-              <span className="text-4xl md:text-5xl font-bold text-brand-blue tracking-tight">
+              {i > 0 && (
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-0 top-1/2 h-14 w-px -translate-y-1/2 bg-gray-200 ${
+                    i % 2 === 0 ? 'hidden md:block' : 'block'
+                  }`}
+                />
+              )}
+              <span className="text-4xl md:text-5xl font-semibold text-brand-blue tracking-tight">
                 <Counter value={Number(stat.value)} suffix={stat.suffix} started={started} />
               </span>
               <span className="text-sm font-semibold text-brand-gold">{stat.label}</span>
