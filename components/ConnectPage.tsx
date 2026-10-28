@@ -25,9 +25,13 @@ const CONNECT_STYLES = `
   margin: 0;
   color: #142238;
   font: 16px/1.5 Figtree, Arial, sans-serif;
-  background: radial-gradient(ellipse at 50% 0%, #c3a05c0d, transparent 65%), #f7f6f2;
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('/assets/connect/connect-bg.jpg') center / cover no-repeat fixed;
   min-height: 100svh;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
 }
 .mamadi-connect-root a {
   color: inherit;
@@ -50,10 +54,15 @@ const CONNECT_STYLES = `
   outline-offset: 4px;
 }
 .mamadi-connect-root .profile {
+  width: 100%;
   max-width: 560px;
   margin: auto;
   padding: 26px 24px 30px;
   text-align: center;
+  background: #ffffff;
+  border: 0;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
 }
 .mamadi-connect-root .identity .mark {
   width: 90px;
@@ -336,16 +345,16 @@ const CONNECT_STYLES = `
 }
 @media (min-width: 760px) {
   .mamadi-connect-root {
-    padding: 32px 0;
+    padding: 32px 16px;
   }
   .mamadi-connect-root .profile {
     padding: 32px 28px;
     max-width: 560px;
     min-height: 820px;
-    border: 1px solid #e8e6df;
+    border: 0;
     border-radius: 24px;
-    background: #ffffff80;
-    box-shadow: 0 12px 60px #17243a04;
+    background: #ffffff;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
   }
 }
 @media (max-width: 350px) {
@@ -630,7 +639,7 @@ export const ConnectPage: React.FC = () => {
         <div className="identity">
           <img
             className="mark"
-            src="/assets/connect/mark.jpg"
+            src="/assets/connect/mark.png"
             alt="Mamadi International"
           />
           <h1>Mamadi International</h1>
