@@ -17,9 +17,11 @@ import { InsightsPage } from './components/InsightsPage';
 import { CareersPage } from './components/CareersPage';
 import { CareerApplicationPage } from './components/CareerApplicationPage';
 import { SectorsPage } from './components/SectorsPage';
+import { ConnectPage } from './components/ConnectPage';
 import { Seo } from './components/Seo';
 
-type View = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application';
+type MainView = 'home' | 'about' | 'projects' | 'sectors' | 'contact' | 'insights' | 'vacancies' | 'application';
+type View = MainView | 'connect';
 
 const viewPaths: Record<View, string> = {
   home: '/',
@@ -30,6 +32,7 @@ const viewPaths: Record<View, string> = {
   insights: '/insights',
   vacancies: '/careers',
   application: '/careers/apply',
+  connect: '/connect',
 };
 
 const getViewFromPath = (): View => {
@@ -84,6 +87,15 @@ function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  if (view === 'connect') {
+    return (
+      <>
+        <Seo view={view} />
+        <ConnectPage />
+      </>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white text-brand-blue font-sans selection:bg-brand-gold selection:text-white">
