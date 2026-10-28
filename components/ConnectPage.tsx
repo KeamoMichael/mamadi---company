@@ -185,7 +185,7 @@ const CONNECT_STYLES = `
 .mamadi-connect-root footer p {
   font-size: 12px;
   line-height: 1.65;
-  margin: 0 0 15px;
+  margin: 0;
 }
 .mamadi-connect-root footer small {
   font-size: 8px;
@@ -821,13 +821,7 @@ export const ConnectPage: React.FC = () => {
         </nav>
 
         <footer>
-          <span className="gold-rule" />
-          <p>
-            Innovative infrastructure.
-            <br />
-            Sustainable impact.
-          </p>
-          <small>MAMADI INTERNATIONAL</small>
+          <p>© 2026 Mamadi International. All rights reserved.</p>
         </footer>
       </main>
 
