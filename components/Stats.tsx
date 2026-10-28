@@ -56,7 +56,7 @@ export const Stats: React.FC = () => {
               <span className="text-4xl md:text-5xl font-semibold text-brand-blue tracking-tight">
                 <Counter value={Number(stat.value)} suffix={stat.suffix} started={started} />
               </span>
-              <span className="text-sm font-semibold text-brand-gold">{stat.label}</span>
+              <span className="text-sm font-semibold text-brand-blue">{stat.label}</span>
               <span className="text-xs text-gray-400">{stat.sub}</span>
             </div>
           ))}
