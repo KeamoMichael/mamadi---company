@@ -227,10 +227,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
           <div className="container mx-auto px-6 md:px-12 text-center">
             <h1
               ref={heroH1Ref}
-              className="text-4xl md:text-5xl font-semibold tracking-tight mb-5 md:mb-10 [@media(min-width:1024px)_and_(max-height:720px)]:mb-6 leading-tight text-brand-blue"
+              className="min-w-0 max-w-full text-[clamp(1.75rem,8vw,2.25rem)] md:text-5xl font-semibold tracking-tight mb-5 md:mb-10 [@media(min-width:1024px)_and_(max-height:720px)]:mb-6 leading-tight text-brand-blue"
             >
-              Innovative infrastructure.<br className="hidden md:block" />
-              <span className="text-brand-gold">Sustainable impact.</span>
+              <span className="block text-balance">Innovative infrastructure.</span>
+              <span className="block text-balance text-brand-gold">Sustainable impact.</span>
             </h1>
             <p
               ref={heroPRef}
