@@ -236,8 +236,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ setView }) => {
               ref={heroPRef}
               className="text-sm md:text-base text-gray-500 max-w-3xl mx-auto mb-6 md:mb-14 [@media(min-width:1024px)_and_(max-height:720px)]:mb-8 leading-relaxed font-normal"
             >
-              Mamadi International is a Pan-African infrastructure group with international operations,
-              integrating engineering, sustainability and technology to deliver infrastructure that improves lives.
+              Mamadi provides end-to-end solutions across engineering, sustainability and technology, combining technical excellence with practical delivery capability.
             </p>
             <div ref={heroBtnsRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <a
